@@ -1,0 +1,11 @@
+name: example
+publish_to: none
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  instacare_components:
+    path: ../
+flutter:
+  uses-material-design: true
