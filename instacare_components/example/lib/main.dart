@@ -12,14 +12,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isUser = true;
+  bool isPartner = true;  // Start with Partner theme
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: isUser ? UserTheme.theme : PartnerTheme.theme,
+    theme: isPartner ? PartnerTheme.theme : UserTheme.theme,
     home: Gallery(
-      onToggle: () => setState(() => isUser = !isUser),
-      name: isUser ? '👤 User (Blue)' : '💼 Partner (Purple)',
+      onToggle: () => setState(() => isPartner = !isPartner),
+      name: isPartner ? '💼 Partner (Green/Beige)' : '👤 User (White/Green)',
     ),
   );
 }
@@ -34,14 +34,16 @@ class Gallery extends StatefulWidget {
 
 class _GalleryState extends State<Gallery> {
   bool loading = false;
+  String otp = '';
+  String? selectedGender;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Components'),
+        title: const Text('Instacare Components'),
         actions: [
-          Chip(label: Text(widget.name)),
+          Chip(label: Text(widget.name, style: const TextStyle(fontSize: 12))),
           IconButton(icon: const Icon(Icons.palette), onPressed: widget.onToggle),
           const SizedBox(width: 8),
         ],
@@ -49,51 +51,123 @@ class _GalleryState extends State<Gallery> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const ICCard(child: Text('Theme-aware components!\nClick palette to switch.')),
-          const SizedBox(height: 20),
-          Text('BUTTONS', style: Theme.of(context).textTheme.headlineSmall),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: [
-              ICButton(text: 'Small', size: ButtonSize.small, onPressed: () {}),
-              ICButton(text: 'Medium', onPressed: () {}),
-              ICButton(text: 'Large', size: ButtonSize.large, onPressed: () {}),
-              ICButton.secondary(text: 'Secondary', onPressed: () {}),
-              ICButton.text(text: 'Text', onPressed: () {}),
-              ICButton(
-                text: loading ? 'Loading' : 'Load',
-                isLoading: loading,
-                onPressed: () {
-                  setState(() => loading = true);
-                  Future.delayed(const Duration(seconds: 2), () {
-                    if (mounted) setState(() => loading = false);
-                  });
-                },
-              ),
-              ICButton(text: 'Icon', icon: Icons.check, onPressed: () {}),
-            ],
+          ICCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Theme-Aware Components', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 8),
+                Text('Click palette to switch:\n• Partner: Dark green + Beige\n• User: Dark green + White', style: TextStyle(color: Colors.grey.shade700)),
+              ],
+            ),
           ),
+          const SizedBox(height: 24),
+          
+          Text('BUTTONS', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(height: 12),
-          ICButton(text: 'Full Width', fullWidth: true, onPressed: () {}),
-          const SizedBox(height: 20),
-          Text('TEXT FIELDS', style: Theme.of(context).textTheme.headlineSmall),
-          const SizedBox(height: 12),
-          const ICTextField(label: 'Email', hint: 'Enter email', prefixIcon: Icons.email),
-          const SizedBox(height: 12),
-          const ICTextField.password(label: 'Password'),
-          const SizedBox(height: 12),
-          const ICTextField(label: 'Phone', hint: '+91', prefixIcon: Icons.phone, keyboardType: TextInputType.phone),
-          const SizedBox(height: 20),
-          Text('CARDS', style: Theme.of(context).textTheme.headlineSmall),
-          const SizedBox(height: 12),
-          const ICInfoCard(
-            leading: CircleAvatar(child: Icon(Icons.person)),
-            title: 'Dr. Smith',
-            subtitle: 'Cardiologist',
-            trailing: Icon(Icons.chevron_right),
+          ICCard(
+            child: Column(
+              children: [
+                ICButton(text: 'Primary Button', fullWidth: true, onPressed: () {}),
+                const SizedBox(height: 12),
+                ICButton.secondary(text: 'Secondary Button', fullWidth: true, onPressed: () {}),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Expanded(child: ICButton(text: 'Small', size: ButtonSize.small, onPressed: () {})),
+                    const SizedBox(width: 8),
+                    Expanded(child: ICButton(text: 'Medium', size: ButtonSize.medium, onPressed: () {})),
+                    const SizedBox(width: 8),
+                    Expanded(child: ICButton(text: 'Large', size: ButtonSize.large, onPressed: () {})),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                ICButton(
+                  text: loading ? 'Loading...' : 'Load Data',
+                  isLoading: loading,
+                  fullWidth: true,
+                  onPressed: () {
+                    setState(() => loading = true);
+                    Future.delayed(const Duration(seconds: 2), () {
+                      if (mounted) setState(() => loading = false);
+                    });
+                  },
+                ),
+                const SizedBox(height: 12),
+                const ICButton(text: 'Disabled', fullWidth: true, isDisabled: true, onPressed: null),
+              ],
+            ),
           ),
+          
+          const SizedBox(height: 24),
+          Text('TEXT INPUTS', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 12),
+          ICCard(
+            child: Column(
+              children: [
+                const ICTextField(label: 'Email', hint: 'Enter your email', prefixIcon: Icons.email_outlined),
+                const SizedBox(height: 16),
+                const ICTextField.password(label: 'Password', hint: 'Enter password'),
+                const SizedBox(height: 16),
+                const ICPhoneInput(label: 'Phone Number', hint: '98765 43210'),
+                const SizedBox(height: 16),
+                ICDropdown<String>(
+                  label: 'Gender',
+                  hint: 'Select gender',
+                  value: selectedGender,
+                  items: const ['Male', 'Female', 'Other'],
+                  onChanged: (val) => setState(() => selectedGender = val),
+                ),
+              ],
+            ),
+          ),
+          
+          const SizedBox(height: 24),
+          Text('OTP INPUT', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 12),
+          ICCard(
+            child: Column(
+              children: [
+                const Text('Enter OTP', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                const SizedBox(height: 16),
+                ICOtpInput(
+                  length: 4,
+                  onCompleted: (val) => setState(() => otp = val),
+                ),
+                const SizedBox(height: 16),
+                if (otp.isNotEmpty) Text('Entered OTP: $otp', style: TextStyle(color: Colors.grey.shade600)),
+              ],
+            ),
+          ),
+          
+          const SizedBox(height: 24),
+          Text('CARDS', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 12),
+          ICCard(
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 24,
+                  backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                  child: Icon(Icons.person, color: Theme.of(context).colorScheme.primary),
+                ),
+                const SizedBox(width: 12),
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Dr. Smith', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                      SizedBox(height: 4),
+                      Text('Cardiologist', style: TextStyle(color: Colors.grey)),
+                    ],
+                  ),
+                ),
+                const Icon(Icons.chevron_right),
+              ],
+            ),
+          ),
+          
+          const SizedBox(height: 40),
         ],
       ),
     );

@@ -1,36 +1,64 @@
 import 'package:flutter/material.dart';
 
 class PartnerTheme {
+  // Colors from your Figma design
+  static const Color primaryGreen = Color(0xFF1B4332);      // Dark green from buttons
+  static const Color lightBeige = Color(0xFFD4C5B9);       // Background beige
+  static const Color darkText = Color(0xFF1A1A1A);         // Text color
+  
   static ThemeData get theme => ThemeData(
     useMaterial3: true,
-    colorScheme: const ColorScheme.light(primary: Color(0xFF9C27B0), secondary: Color(0xFFFF6F00)),
-    appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF9C27B0), foregroundColor: Colors.white),
+    scaffoldBackgroundColor: lightBeige,
+    colorScheme: ColorScheme.light(
+      primary: primaryGreen,
+      secondary: const Color(0xFF52796F),
+      surface: Colors.white,
+      error: const Color(0xFFD32F2F),
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+      foregroundColor: darkText,
+      elevation: 0,
+      centerTitle: false,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF9C27B0),
+        backgroundColor: primaryGreen,
         foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: const Color(0xFF9C27B0),
-        side: const BorderSide(color: Color(0xFF9C27B0), width: 1.5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        foregroundColor: primaryGreen,
+        side: const BorderSide(color: primaryGreen, width: 1.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Color(0xFF9C27B0), width: 2),
-      ),
       filled: true,
       fillColor: Colors.white,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: Colors.grey.shade300),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: Colors.grey.shade300),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: primaryGreen, width: 2),
+      ),
     ),
     cardTheme: CardThemeData(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      color: Colors.white,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: Colors.grey.shade200),
+      ),
     ),
   );
 }
