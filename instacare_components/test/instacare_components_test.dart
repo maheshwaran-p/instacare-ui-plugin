@@ -1,29 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:instacare_components/instacare_components.dart';
-import 'package:instacare_components/instacare_components_platform_interface.dart';
-import 'package:instacare_components/instacare_components_method_channel.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-class MockInstacareComponentsPlatform
-    with MockPlatformInterfaceMixin
-    implements InstacareComponentsPlatform {
-
-  @override
-  Future<String?> getPlatformVersion() => Future.value('42');
-}
 
 void main() {
-  final InstacareComponentsPlatform initialPlatform = InstacareComponentsPlatform.instance;
-
-  test('$MethodChannelInstacareComponents is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelInstacareComponents>());
+  test('button size extension exposes expected heights', () {
+    expect(ButtonSize.small.height, 40);
+    expect(ButtonSize.medium.height, 48);
+    expect(ButtonSize.large.height, 56);
   });
 
-  test('getPlatformVersion', () async {
-    InstacareComponents instacareComponentsPlugin = InstacareComponents();
-    MockInstacareComponentsPlatform fakePlatform = MockInstacareComponentsPlatform();
-    InstacareComponentsPlatform.instance = fakePlatform;
+  testWidgets('InstaCareButton renders text', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: InstaCareButton(text: 'Continue'),
+        ),
+      ),
+    );
 
-    expect(await instacareComponentsPlugin.getPlatformVersion(), '42');
+    expect(find.byType(InstaCareButton), findsOneWidget);
+    expect(find.text('Continue'), findsOneWidget);
   });
 }
+

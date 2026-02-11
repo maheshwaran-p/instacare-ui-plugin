@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '../theme/color.dart';
 
-class ICTextField extends StatefulWidget {
+class InstaCareTextField extends StatefulWidget {
   final String? label;
   final String? hint;
   final TextEditingController? controller;
@@ -16,7 +16,7 @@ class ICTextField extends StatefulWidget {
   final String? errorText;
   final FormFieldValidator<String>? validator;
 
-  const ICTextField({
+  const InstaCareTextField({
     super.key,
     this.label,
     this.hint,
@@ -33,7 +33,7 @@ class ICTextField extends StatefulWidget {
     this.validator,
   });
 
-  const ICTextField.password({
+  const InstaCareTextField.password({
     super.key,
     this.label,
     this.hint,
@@ -50,10 +50,10 @@ class ICTextField extends StatefulWidget {
         showPasswordToggle = true;
 
   @override
-  State<ICTextField> createState() => _ICTextFieldState();
+  State<InstaCareTextField> createState() => _ICTextFieldState();
 }
 
-class _ICTextFieldState extends State<ICTextField> {
+class _ICTextFieldState extends State<InstaCareTextField> {
   late bool _obscureText;
 
   @override
@@ -97,22 +97,19 @@ class _ICTextFieldState extends State<ICTextField> {
             suffixIcon: _buildSuffixIcon(),
             errorText: widget.errorText,
             filled: true,
-            fillColor: Colors.white,
+            fillColor: AppColors.ivory7,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderSide: const BorderSide(color: AppColors.primary3),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderSide: const BorderSide(color: AppColors.primary3),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primary,
-                width: 2,
-              ),
+              borderSide: const BorderSide(color: AppColors.primary1, width: 2),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
@@ -138,3 +135,4 @@ class _ICTextFieldState extends State<ICTextField> {
     return widget.suffixIcon;
   }
 }
+
