@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '../theme/color.dart';
+import '../theme/typography.dart';
 
-class ICTextField extends StatefulWidget {
+class InstaCareTextField extends StatefulWidget {
   final String? label;
   final String? hint;
   final TextEditingController? controller;
@@ -15,8 +16,14 @@ class ICTextField extends StatefulWidget {
   final bool showPasswordToggle;
   final String? errorText;
   final FormFieldValidator<String>? validator;
+  final Color? fillColor;
+  final Color? borderColor;
+  final Color? focusedBorderColor;
+  final Color? hintColor;
+  final Color? labelColor;
+  final double borderRadius;
 
-  const ICTextField({
+  const InstaCareTextField({
     super.key,
     this.label,
     this.hint,
@@ -31,9 +38,15 @@ class ICTextField extends StatefulWidget {
     this.showPasswordToggle = false,
     this.errorText,
     this.validator,
+    this.fillColor,
+    this.borderColor,
+    this.focusedBorderColor,
+    this.hintColor,
+    this.labelColor,
+    this.borderRadius = 8,
   });
 
-  const ICTextField.password({
+  const InstaCareTextField.password({
     super.key,
     this.label,
     this.hint,
@@ -42,6 +55,12 @@ class ICTextField extends StatefulWidget {
     this.enabled = true,
     this.errorText,
     this.validator,
+    this.fillColor,
+    this.borderColor,
+    this.focusedBorderColor,
+    this.hintColor,
+    this.labelColor,
+    this.borderRadius = 8,
   })  : obscureText = true,
         keyboardType = null,
         prefixIcon = Icons.lock_outline,
@@ -50,10 +69,10 @@ class ICTextField extends StatefulWidget {
         showPasswordToggle = true;
 
   @override
-  State<ICTextField> createState() => _ICTextFieldState();
+  State<InstaCareTextField> createState() => _ICTextFieldState();
 }
 
-class _ICTextFieldState extends State<ICTextField> {
+class _ICTextFieldState extends State<InstaCareTextField> {
   late bool _obscureText;
 
   @override
@@ -71,10 +90,9 @@ class _ICTextFieldState extends State<ICTextField> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFF1A1A1A),
+            style: InstaCareTypography.s.copyWith(
+              fontWeight: FontWeight.w600,
+              color: widget.labelColor ?? AppColors.gray2,
             ),
           ),
           const SizedBox(height: 8),
@@ -87,36 +105,42 @@ class _ICTextFieldState extends State<ICTextField> {
           validator: widget.validator,
           maxLines: _obscureText ? 1 : widget.maxLines,
           enabled: widget.enabled,
-          style: const TextStyle(fontSize: 16),
+          style: InstaCareTypography.r,
           decoration: InputDecoration(
             hintText: widget.hint,
-            hintStyle: TextStyle(color: Colors.grey.shade400),
-            prefixIcon: widget.prefixIcon != null 
-                ? Icon(widget.prefixIcon, color: Colors.grey.shade600) 
+            hintStyle: InstaCareTypography.r
+                .copyWith(color: widget.hintColor ?? AppColors.gray6),
+            prefixIcon: widget.prefixIcon != null
+                ? Icon(widget.prefixIcon, color: AppColors.gray4)
                 : null,
             suffixIcon: _buildSuffixIcon(),
             errorText: widget.errorText,
             filled: true,
-            fillColor: Colors.white,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            fillColor: widget.fillColor ?? AppColors.ivory7,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: BorderSide(
+                color: widget.borderColor ?? AppColors.primary3,
+              ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: BorderSide(
+                color: widget.borderColor ?? AppColors.primary3,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
               borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primary,
+                color: widget.focusedBorderColor ?? AppColors.primary1,
                 width: 2,
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: Colors.red),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: const BorderSide(color: AppColors.error3),
             ),
             counterText: '',
           ),
@@ -129,8 +153,10 @@ class _ICTextFieldState extends State<ICTextField> {
     if (widget.showPasswordToggle && widget.obscureText) {
       return IconButton(
         icon: Icon(
-          _obscureText ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-          color: Colors.grey.shade600,
+          _obscureText
+              ? Icons.visibility_outlined
+              : Icons.visibility_off_outlined,
+          color: AppColors.gray4,
         ),
         onPressed: () => setState(() => _obscureText = !_obscureText),
       );

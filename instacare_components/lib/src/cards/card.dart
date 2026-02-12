@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import '../theme/color.dart';
 
-class ICCard extends StatelessWidget {
+class InstaCareCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onTap;
   final Color? backgroundColor;
   final double? elevation;
 
-  const ICCard({
+  const InstaCareCard({
     super.key,
     required this.child,
     this.padding,
@@ -20,10 +21,10 @@ class ICCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: elevation ?? 0,
-      color: backgroundColor ?? Colors.white,
+      color: backgroundColor ?? AppColors.baseWhite,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: Colors.grey.shade200),
+        side: const BorderSide(color: AppColors.primary3),
       ),
       child: InkWell(
         onTap: onTap,

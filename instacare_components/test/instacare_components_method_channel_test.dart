@@ -1,27 +1,25 @@
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:instacare_components/instacare_components_method_channel.dart';
+import 'package:instacare_components/instacare_components.dart';
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  test('button size extension exposes expected horizontal padding', () {
+    expect(ButtonSize.small.padding.horizontal, 32);
+    expect(ButtonSize.medium.padding.horizontal, 48);
+    expect(ButtonSize.large.padding.horizontal, 64);
+  });
 
-  MethodChannelInstacareComponents platform = MethodChannelInstacareComponents();
-  const MethodChannel channel = MethodChannel('instacare_components');
-
-  setUp(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
-      channel,
-      (MethodCall methodCall) async {
-        return '42';
-      },
+  testWidgets('InstaCareButton.secondary renders as OutlinedButton', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: InstaCareButton.secondary(text: 'Secondary'),
+        ),
+      ),
     );
-  });
 
-  tearDown(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
-  });
-
-  test('getPlatformVersion', () async {
-    expect(await platform.getPlatformVersion(), '42');
+    expect(find.byType(OutlinedButton), findsOneWidget);
+    expect(find.text('Secondary'), findsOneWidget);
   });
 }
+
