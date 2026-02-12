@@ -3,7 +3,7 @@ library instacare_components;
 export 'src/badges/status_badge.dart';
 export 'src/buttons/button.dart';
 export 'src/cards/booking_card.dart';
-export 'src/cards/card_grid_view.dart';
+export 'src/cards/card_list_view.dart';
 export 'src/cards/service_card.dart';
 export 'src/inputs/text_field.dart';
 export 'src/inputs/otp_input.dart';

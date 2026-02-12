@@ -24,34 +24,17 @@ class InstaCareStatusBadge extends StatelessWidget {
   Color _backgroundColor(BuildContext context) {
     switch (type) {
       case InstaCareStatusBadgeType.active:
-        return AppColors.successBg;
+        return AppColors.success8;
       case InstaCareStatusBadgeType.upcoming:
-        return AppColors.infoBg;
+        return AppColors.secondary8;
       case InstaCareStatusBadgeType.cancelled:
-        return AppColors.errorBg;
+        return AppColors.error9;
       case InstaCareStatusBadgeType.inTravel:
-        return AppColors.warningBg;
+        return AppColors.ivory1;
       case InstaCareStatusBadgeType.completed:
-        return AppColors.completedBg;
+        return AppColors.infoBg;
       case InstaCareStatusBadgeType.custom:
         return Theme.of(context).colorScheme.surfaceContainerHighest;
-    }
-  }
-
-  Color _textColor(BuildContext context) {
-    switch (type) {
-      case InstaCareStatusBadgeType.active:
-        return AppColors.successFg;
-      case InstaCareStatusBadgeType.upcoming:
-        return AppColors.infoFg;
-      case InstaCareStatusBadgeType.cancelled:
-        return AppColors.errorFg;
-      case InstaCareStatusBadgeType.inTravel:
-        return AppColors.warningFg;
-      case InstaCareStatusBadgeType.completed:
-        return AppColors.completedFg;
-      case InstaCareStatusBadgeType.custom:
-        return Theme.of(context).colorScheme.onSurfaceVariant;
     }
   }
 
@@ -67,7 +50,7 @@ class InstaCareStatusBadge extends StatelessWidget {
         label,
         style: InstaCareTypography.sm.copyWith(
           fontWeight: FontWeight.w600,
-          color: _textColor(context),
+          color: AppColors.primary2,
         ),
       ),
     );

@@ -49,7 +49,7 @@ class InstaCareDatePickerField extends StatelessWidget {
           child: InputDecorator(
             decoration: InputDecoration(
               filled: true,
-              fillColor: AppColors.baseWhite,
+              fillColor: AppColors.ivory7,
               suffixIcon: const Icon(Icons.calendar_today_outlined),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),

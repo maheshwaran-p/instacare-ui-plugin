@@ -353,7 +353,7 @@ class _GalleryState extends State<Gallery> {
             children: [
               InstaCareOtpInput(
                 length: 6,
-                 onChanged: (value) => setState(() => otp = value),
+                onChanged: (value) => setState(() => otp = value),
                 onCompleted: (value) => setState(() => otp = value),
               ),
               if (otp.isNotEmpty) ...[
@@ -482,22 +482,26 @@ class _GalleryState extends State<Gallery> {
           ),
         ),
         _componentBlock(
-          title: 'Card Grid View',
-          fileName: 'card_grid_view.dart',
-          child: const InstaCareCardGridView(
-            children: [
-              InstaCareCard(
+          title: 'Card List View',
+          fileName: 'card_list_view.dart',
+          child: const InstaCareCardListView(
+            items: [
+              InstaCareCardListItem(
+                card: InstaCareCard(
                   backgroundColor: AppColors.ivory7,
-                  child: Center(child: Text('Card 1'))),
-              InstaCareCard(
+                  child: Center(child: Text('Card')),
+                ),
+                title: 'Wound Dressing',
+                body: 'Daily care service with dressing change.',
+              ),
+              InstaCareCardListItem(
+                card: InstaCareCard(
                   backgroundColor: AppColors.ivory7,
-                  child: Center(child: Text('Card 2'))),
-              InstaCareCard(
-                  backgroundColor: AppColors.ivory7,
-                  child: Center(child: Text('Card 3'))),
-              InstaCareCard(
-                  backgroundColor: AppColors.ivory7,
-                  child: Center(child: Text('Card 4'))),
+                  child: Center(child: Text('Card')),
+                ),
+                title: 'Nursing Visit',
+                body: 'Vitals check and medication support.',
+              ),
             ],
           ),
         ),
@@ -569,7 +573,7 @@ class _GalleryState extends State<Gallery> {
           title: 'No Components',
           fileName: 'partner_only',
           child: const Text(
-            'All component demos are shown under Partner to avoid duplicates.',
+            'not yet ready ...',
           ),
         ),
       ],
@@ -584,7 +588,7 @@ class _GalleryState extends State<Gallery> {
         _componentBlock(
           title: 'No Components',
           fileName: 'common',
-          child: const Text('Common is intentionally empty.'),
+          child: const Text('not ready yet ....'),
         ),
       ],
     );
