@@ -34,15 +34,14 @@ class InstaCareBottomAppNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    const resolvedOuterBackground = AppColors.baseWhite;
-    final resolvedInnerBackground = backgroundColor ?? AppColors.ivory7;
+    final resolvedInnerBackground = backgroundColor ?? AppColors.primary1;
     final resolvedSelected = selectedItemColor ?? theme.colorScheme.primary;
-    final resolvedUnselected = unselectedItemColor ?? AppColors.primary6;
-    final resolvedBorder = topBorderColor ?? AppColors.primary2;
+    final resolvedUnselected = unselectedItemColor ?? AppColors.primary4;
+    final resolvedBorder = topBorderColor ?? AppColors.primary1;
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: resolvedOuterBackground,
+        color: AppColors.baseWhite,
         border: Border(top: BorderSide(color: resolvedBorder)),
         boxShadow: showShadow
             ? [

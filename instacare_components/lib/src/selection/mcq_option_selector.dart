@@ -55,7 +55,7 @@ class InstaCareMcqOptionSelector extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(
-                          color: isSelected ? Theme.of(context).colorScheme.primary : AppColors.primary8,
+                          color: isSelected ? Theme.of(context).colorScheme.primary : AppColors.primary7,
                           width: 1.4,
                         ),
                       ),
@@ -67,7 +67,7 @@ class InstaCareMcqOptionSelector extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                color: isSelected ? Theme.of(context).colorScheme.primary : AppColors.primary7,
+                                color: isSelected ? Theme.of(context).colorScheme.primary : AppColors.primary2,
                                 width: 2,
                               ),
                             ),

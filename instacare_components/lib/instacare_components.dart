@@ -1,5 +1,6 @@
 library instacare_components;
 
+export 'src/animation/skeleton_loading.dart';
 export 'src/badges/status_badge.dart';
 export 'src/buttons/button.dart';
 export 'src/cards/booking_card.dart';

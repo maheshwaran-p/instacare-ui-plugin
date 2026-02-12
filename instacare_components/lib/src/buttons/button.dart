@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../animation/skeleton_loading.dart';
 import '../types/button_size.dart';
 import '../theme/color.dart';
 import '../theme/typography.dart';
@@ -49,15 +50,16 @@ class InstaCareButton extends StatelessWidget {
             : AppColors.gray2;
 
         final Widget child = isLoading
-            ? Container(
+            ? InstaCareSkeletonLoading(
                 height: 12,
                 width: skeletonWidth,
-                decoration: BoxDecoration(
-                  color: _variant == _ButtonVariant.primary
-                      ? AppColors.baseWhite.withValues(alpha: 0.35)
-                      : AppColors.gray1.withValues(alpha: 0.14),
-                  borderRadius: BorderRadius.circular(999),
-                ),
+                borderRadius: const BorderRadius.all(Radius.circular(999)),
+                baseColor: _variant == _ButtonVariant.primary
+                    ? AppColors.baseWhite.withValues(alpha: 0.24)
+                    : AppColors.gray8,
+                highlightColor: _variant == _ButtonVariant.primary
+                    ? AppColors.baseWhite.withValues(alpha: 0.6)
+                    : AppColors.baseWhite,
               )
             : Row(
                 mainAxisSize: MainAxisSize.min,

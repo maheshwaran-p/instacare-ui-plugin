@@ -54,6 +54,7 @@ class _GalleryState extends State<Gallery> {
   int rating = 3;
   int currentStepperStep = 0;
   int currentNavIndex = 0;
+  int bookingCardStateIndex = 0;
   DateTime? selectedDate;
   bool checkOne = false;
   String selectedRadio = 'Yes';
@@ -160,6 +161,32 @@ class _GalleryState extends State<Gallery> {
     );
   }
 
+  Widget _bookingStateControl() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(5, (index) {
+          final isSelected = bookingCardStateIndex == index;
+          return InkWell(
+            borderRadius: BorderRadius.circular(8),
+            onTap: () => setState(() => bookingCardStateIndex = index),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              child: Text(
+                '${index + 1}',
+                style: InstaCareTypography.m.copyWith(
+                  color: isSelected ? AppColors.primary2 : AppColors.gray4,
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
   Widget _componentBlock({
     required String title,
     required String fileName,
@@ -200,6 +227,64 @@ class _GalleryState extends State<Gallery> {
     );
   }
 
+  Widget _skeletonPagePreview() {
+    return Column(
+      children: [
+        const InstaCareSkeletonLoading(
+          width: double.infinity,
+          height: 18,
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+        ),
+        const SizedBox(height: 10),
+        const InstaCareSkeletonLoading(
+          width: double.infinity,
+          height: 12,
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+        ),
+        const SizedBox(height: 8),
+        const InstaCareSkeletonLoading(
+          width: double.infinity,
+          height: 12,
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: const [
+            InstaCareSkeletonLoading(
+              width: 56,
+              height: 56,
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                children: [
+                  InstaCareSkeletonLoading(
+                    width: double.infinity,
+                    height: 12,
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                  ),
+                  SizedBox(height: 8),
+                  InstaCareSkeletonLoading(
+                    width: double.infinity,
+                    height: 12,
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 14),
+        const InstaCareSkeletonLoading(
+          width: double.infinity,
+          height: 48,
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+      ],
+    );
+  }
+
   Widget _bottomNavDemo() {
     return _componentBlock(
       title: 'Bottom App Nav Bar (Reference)',
@@ -210,13 +295,14 @@ class _GalleryState extends State<Gallery> {
           currentIndex: currentNavIndex,
           onTap: (index) => setState(() => currentNavIndex = index),
           backgroundColor: AppColors.ivory7,
-          selectedItemColor: AppColors.primary3,
+          selectedItemColor: AppColors.primary2,
           unselectedItemColor: AppColors.primary6,
           topBorderColor: AppColors.primary2,
+          showShadow: true,
           items: const [
             InstaCareBottomNavItem(icon: Icons.home_outlined, label: 'Home'),
             InstaCareBottomNavItem(
-              icon: Icons.calendar_today_outlined,
+              icon: Icons.list_alt,
               label: 'Bookings',
             ),
             InstaCareBottomNavItem(
@@ -269,6 +355,12 @@ class _GalleryState extends State<Gallery> {
                   onPressed: null),
             ],
           ),
+        ),
+        _sectionHeading('Animation'),
+        _componentBlock(
+          title: 'Skeleton Loading',
+          fileName: 'animation/skeleton_loading.dart',
+          child: _skeletonPagePreview(),
         ),
         _sectionHeading('Inputs'),
         _componentBlock(
@@ -461,7 +553,7 @@ class _GalleryState extends State<Gallery> {
         _componentBlock(
           title: 'Booking Card',
           fileName: 'booking_card.dart',
-          child: const InstaCareBookingCard(
+          child: InstaCareBookingCard(
             category: 'Category',
             serviceName: 'Service Name',
             patientName: 'Patient Name',
@@ -469,8 +561,11 @@ class _GalleryState extends State<Gallery> {
             location: 'Location Name',
             dateTime: '00:00 AM - 00:00 AM',
             backgroundColor: AppColors.ivory7,
+            showStateSelector: false,
+            stateIndex: bookingCardStateIndex,
           ),
         ),
+        _bookingStateControl(),
         _componentBlock(
           title: 'Income Tile',
           fileName: 'income_tile.dart',
