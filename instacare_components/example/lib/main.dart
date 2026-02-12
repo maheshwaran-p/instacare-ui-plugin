@@ -228,28 +228,28 @@ class _GalleryState extends State<Gallery> {
   }
 
   Widget _skeletonPagePreview() {
-    return Column(
+    return const Column(
       children: [
-        const InstaCareSkeletonLoading(
+        InstaCareSkeletonLoading(
           width: double.infinity,
           height: 18,
           borderRadius: BorderRadius.all(Radius.circular(6)),
         ),
-        const SizedBox(height: 10),
-        const InstaCareSkeletonLoading(
+        SizedBox(height: 10),
+        InstaCareSkeletonLoading(
           width: double.infinity,
           height: 12,
           borderRadius: BorderRadius.all(Radius.circular(6)),
         ),
-        const SizedBox(height: 8),
-        const InstaCareSkeletonLoading(
+        SizedBox(height: 8),
+        InstaCareSkeletonLoading(
           width: double.infinity,
           height: 12,
           borderRadius: BorderRadius.all(Radius.circular(6)),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
-          children: const [
+          children: [
             InstaCareSkeletonLoading(
               width: 56,
               height: 56,
@@ -275,8 +275,8 @@ class _GalleryState extends State<Gallery> {
             ),
           ],
         ),
-        const SizedBox(height: 14),
-        const InstaCareSkeletonLoading(
+        SizedBox(height: 14),
+        InstaCareSkeletonLoading(
           width: double.infinity,
           height: 48,
           borderRadius: BorderRadius.all(Radius.circular(8)),
