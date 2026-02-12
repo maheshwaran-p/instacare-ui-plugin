@@ -28,6 +28,28 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+class _BookingCardDemoState {
+  final String category;
+  final String serviceName;
+  final String patientName;
+  final String bookingId;
+  final String location;
+  final String dateTime;
+  final String? durationText;
+  final InstaCareStatusBadgeType status;
+
+  const _BookingCardDemoState({
+    required this.category,
+    required this.serviceName,
+    required this.patientName,
+    required this.bookingId,
+    required this.location,
+    required this.dateTime,
+    required this.status,
+    this.durationText,
+  });
+}
+
 class Gallery extends StatefulWidget {
   final bool isPartner;
   final ValueChanged<bool> onRoleChanged;
@@ -60,6 +82,56 @@ class _GalleryState extends State<Gallery> {
   String selectedRadio = 'Yes';
   final Set<String> selectedFilters = <String>{'Wound Dressing'};
   Set<String> selectedMultiDropdown = <String>{'check box 2'};
+  final List<_BookingCardDemoState> _bookingCardStates =
+      const <_BookingCardDemoState>[
+    _BookingCardDemoState(
+      category: 'Nursing',
+      serviceName: 'Vitals Monitoring',
+      patientName: 'Jimmy',
+      bookingId: '0125',
+      location: 'Anna Nagar',
+      dateTime: 'Sep 08, 10.30 AM',
+      status: InstaCareStatusBadgeType.active,
+    ),
+    _BookingCardDemoState(
+      category: 'Nursing',
+      serviceName: 'Vitals Monitoring',
+      patientName: 'Jimmy',
+      bookingId: '0125',
+      location: 'Anna Nagar',
+      dateTime: 'Sep 08, 10.30 AM',
+      durationText: 'Duration : 1h 30m',
+      status: InstaCareStatusBadgeType.inTravel,
+    ),
+    _BookingCardDemoState(
+      category: 'Nursing',
+      serviceName: 'Vitals Monitoring',
+      patientName: 'John Durai',
+      bookingId: '0125',
+      location: 'Anna Nagar',
+      dateTime: 'Sep 08, 10.30 AM',
+      status: InstaCareStatusBadgeType.upcoming,
+    ),
+    _BookingCardDemoState(
+      category: 'Nursing',
+      serviceName: 'Vitals Monitoring',
+      patientName: 'Jimmy',
+      bookingId: '0125',
+      location: 'Anna Nagar',
+      dateTime: 'Sep 08, 10.30 AM',
+      durationText: 'Duration : 1h 30m',
+      status: InstaCareStatusBadgeType.completed,
+    ),
+    _BookingCardDemoState(
+      category: 'Nursing',
+      serviceName: 'Vitals Monitoring',
+      patientName: 'Jimmy',
+      bookingId: '0125',
+      location: 'Anna Nagar',
+      dateTime: 'Sep 08, 10.30 AM',
+      status: InstaCareStatusBadgeType.cancelled,
+    ),
+  ];
 
   @override
   void initState() {
@@ -166,7 +238,7 @@ class _GalleryState extends State<Gallery> {
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(5, (index) {
+        children: List.generate(_bookingCardStates.length, (index) {
           final isSelected = bookingCardStateIndex == index;
           return InkWell(
             borderRadius: BorderRadius.circular(8),
@@ -318,6 +390,9 @@ class _GalleryState extends State<Gallery> {
   }
 
   Widget _buildPartnerPage() {
+    final bookingState = _bookingCardStates[
+        bookingCardStateIndex.clamp(0, _bookingCardStates.length - 1)];
+
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       children: [
@@ -554,15 +629,15 @@ class _GalleryState extends State<Gallery> {
           title: 'Booking Card',
           fileName: 'booking_card.dart',
           child: InstaCareBookingCard(
-            category: 'Category',
-            serviceName: 'Service Name',
-            patientName: 'Patient Name',
-            bookingId: '1001',
-            location: 'Location Name',
-            dateTime: '00:00 AM - 00:00 AM',
+            category: bookingState.category,
+            serviceName: bookingState.serviceName,
+            patientName: bookingState.patientName,
+            bookingId: bookingState.bookingId,
+            location: bookingState.location,
+            dateTime: bookingState.dateTime,
+            durationText: bookingState.durationText,
+            status: bookingState.status,
             backgroundColor: AppColors.ivory7,
-            showStateSelector: false,
-            stateIndex: bookingCardStateIndex,
           ),
         ),
         _bookingStateControl(),
