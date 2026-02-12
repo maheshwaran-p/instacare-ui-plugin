@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/color.dart';
+import '../theme/typography.dart';
 
 class InstaCareDatePickerField extends StatelessWidget {
   final String? label;
@@ -25,7 +26,10 @@ class InstaCareDatePickerField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null) ...[
-          Text(label!, style: const TextStyle(fontWeight: FontWeight.w500)),
+          Text(
+            label!,
+            style: InstaCareTypography.s.copyWith(fontWeight: FontWeight.w600),
+          ),
           const SizedBox(height: 8),
         ],
         InkWell(
@@ -45,7 +49,7 @@ class InstaCareDatePickerField extends StatelessWidget {
           child: InputDecorator(
             decoration: InputDecoration(
               filled: true,
-              fillColor: Colors.white,
+              fillColor: AppColors.baseWhite,
               suffixIcon: const Icon(Icons.calendar_today_outlined),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -58,7 +62,9 @@ class InstaCareDatePickerField extends StatelessWidget {
             ),
             child: Text(
               text,
-              style: TextStyle(color: value == null ? Colors.grey.shade600 : Colors.black87),
+              style: InstaCareTypography.r.copyWith(
+                color: value == null ? AppColors.gray4 : AppColors.gray2,
+              ),
             ),
           ),
         ),
@@ -66,4 +72,3 @@ class InstaCareDatePickerField extends StatelessWidget {
     );
   }
 }
-

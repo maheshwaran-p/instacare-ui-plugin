@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/color.dart';
 
 class InstaCareRatingScale extends StatelessWidget {
   final int maxRating;
@@ -23,11 +24,10 @@ class InstaCareRatingScale extends StatelessWidget {
           onPressed: () => onRatingChanged(ratingValue),
           icon: Icon(
             isFilled ? Icons.star : Icons.star_border,
-            color: isFilled ? const Color(0xFFFFA500) : Colors.grey.shade400,
+            color: isFilled ? AppColors.secondary2 : AppColors.gray6,
           ),
         );
       }),
     );
   }
 }
-

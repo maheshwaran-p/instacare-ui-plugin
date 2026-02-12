@@ -21,7 +21,7 @@ class InstaCareCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: elevation ?? 0,
-      color: backgroundColor ?? Colors.white,
+      color: backgroundColor ?? AppColors.baseWhite,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: const BorderSide(color: AppColors.primary3),
@@ -37,4 +37,3 @@ class InstaCareCard extends StatelessWidget {
     );
   }
 }
-

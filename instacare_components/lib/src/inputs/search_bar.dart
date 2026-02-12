@@ -22,7 +22,7 @@ class InstaCareSearchBar extends StatelessWidget {
         hintText: hint,
         prefixIcon: const Icon(Icons.search),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: AppColors.baseWhite,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(color: AppColors.primary3),
@@ -39,4 +39,3 @@ class InstaCareSearchBar extends StatelessWidget {
     );
   }
 }
-

@@ -19,14 +19,16 @@ class InstaCareDropdownWithCheckbox<T> extends StatefulWidget {
     this.itemLabel,
     this.hint = 'placeholder',
     this.label,
-    this.initiallyExpanded = true,
+    this.initiallyExpanded = false,
   });
 
   @override
-  State<InstaCareDropdownWithCheckbox<T>> createState() => _ICDropdownWithCheckboxState<T>();
+  State<InstaCareDropdownWithCheckbox<T>> createState() =>
+      _ICDropdownWithCheckboxState<T>();
 }
 
-class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbox<T>> {
+class _ICDropdownWithCheckboxState<T>
+    extends State<InstaCareDropdownWithCheckbox<T>> {
   late bool _expanded;
   final ScrollController _scrollController = ScrollController();
 
@@ -47,10 +49,12 @@ class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbo
     return LayoutBuilder(
       builder: (context, constraints) {
         final selected = widget.selectedItems;
-        final width = constraints.maxWidth.isFinite ? constraints.maxWidth : 320.0;
+        final width =
+            constraints.maxWidth.isFinite ? constraints.maxWidth : 320.0;
         final fieldTextSize = (width * 0.042).clamp(14.0, 16.0);
         final itemTextSize = (width * 0.04).clamp(14.0, 16.0);
-        final maxListHeight = ((widget.items.length * 44.0) + 8).clamp(96.0, 220.0);
+        final maxListHeight =
+            ((widget.items.length * 44.0) + 8).clamp(96.0, 220.0);
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +62,8 @@ class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbo
             if (widget.label != null) ...[
               Text(
                 widget.label!,
-                style: InstaCareTypography.m.copyWith(fontSize: fieldTextSize, color: AppColors.gray2),
+                style: InstaCareTypography.m
+                    .copyWith(fontSize: fieldTextSize, color: AppColors.gray2),
               ),
               const SizedBox(height: 8),
             ],
@@ -69,27 +74,36 @@ class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbo
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.transparent,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                   suffixIcon: Icon(
-                    _expanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                    _expanded
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_down,
                     color: AppColors.gray4,
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: _expanded ? AppColors.primary1 : AppColors.primary3),
+                    borderSide: BorderSide(
+                        color: _expanded
+                            ? AppColors.primary1
+                            : AppColors.primary3),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: _expanded ? AppColors.primary1 : AppColors.primary3),
+                    borderSide: BorderSide(
+                        color: _expanded
+                            ? AppColors.primary1
+                            : AppColors.primary3),
                   ),
                 ),
                 child: Text(
                   widget.hint,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: AppColors.gray5,
+                  style: InstaCareTypography.r.copyWith(
                     fontSize: fieldTextSize,
+                    color: AppColors.gray5,
                   ),
                 ),
               ),
@@ -112,7 +126,8 @@ class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbo
                     itemBuilder: (context, index) {
                       final item = widget.items[index];
                       final isChecked = selected.contains(item);
-                      final label = widget.itemLabel?.call(item) ?? item.toString();
+                      final label =
+                          widget.itemLabel?.call(item) ?? item.toString();
 
                       return Material(
                         color: isChecked ? AppColors.gray8 : Colors.transparent,
@@ -127,7 +142,8 @@ class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbo
                             widget.onChanged(next);
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
                             child: Row(
                               children: [
                                 SizedBox(
@@ -144,16 +160,21 @@ class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbo
                                       }
                                       widget.onChanged(next);
                                     },
-                                    side: const BorderSide(color: AppColors.primary3),
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+                                    side: const BorderSide(
+                                        color: AppColors.primary3),
+                                    materialTapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                    visualDensity: const VisualDensity(
+                                        horizontal: -4, vertical: -4),
                                   ),
                                 ),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Text(
                                     label,
-                                    style: InstaCareTypography.r.copyWith(fontSize: itemTextSize, color: AppColors.gray2),
+                                    style: InstaCareTypography.r.copyWith(
+                                        fontSize: itemTextSize,
+                                        color: AppColors.gray2),
                                   ),
                                 ),
                               ],
@@ -172,4 +193,3 @@ class _ICDropdownWithCheckboxState<T> extends State<InstaCareDropdownWithCheckbo
     );
   }
 }
-

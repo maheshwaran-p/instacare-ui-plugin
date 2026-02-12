@@ -1,8 +1,10 @@
 library instacare_components;
+
 export 'src/badges/status_badge.dart';
 export 'src/buttons/button.dart';
 export 'src/cards/booking_card.dart';
 export 'src/cards/card_grid_view.dart';
+export 'src/cards/service_card.dart';
 export 'src/inputs/text_field.dart';
 export 'src/inputs/otp_input.dart';
 export 'src/inputs/dropdown.dart';
@@ -19,8 +21,10 @@ export 'src/feedback/progress_bar.dart';
 export 'src/navigation/bottom_app_nav_bar.dart';
 export 'src/navigation/top_header_title.dart';
 export 'src/pills/hours_summary_pill.dart';
+export 'src/pills/appointment_status_pills.dart';
 export 'src/selection/filter_pills.dart';
 export 'src/selection/mcq_option_selector.dart';
+export 'src/selection/pill_chip.dart';
 export 'src/selection/radio_buttons.dart';
 export 'src/selection/rating_scale.dart';
 export 'src/selection/service_pills.dart';
@@ -29,4 +33,3 @@ export 'src/theme/color.dart';
 export 'src/theme/typography.dart';
 export 'src/types/button_size.dart';
 export 'src/upload/file_upload_tile.dart';
-

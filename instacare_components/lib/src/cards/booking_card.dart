@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../badges/status_badge.dart';
 import 'card.dart';
+import '../theme/color.dart';
+import '../theme/typography.dart';
 
 class InstaCareBookingCard extends StatelessWidget {
   final String category;
@@ -36,24 +38,28 @@ class InstaCareBookingCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   '$category - $serviceName',
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                  style: InstaCareTypography.m
+                      .copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               InstaCareStatusBadge(label: status.name, type: status),
             ],
           ),
           const SizedBox(height: 8),
-          Text(patientName),
+          Text(patientName, style: InstaCareTypography.r),
           const SizedBox(height: 4),
-          Text('Booking ID: $bookingId', style: TextStyle(color: Colors.grey.shade700)),
+          Text(
+            'Booking ID: $bookingId',
+            style: InstaCareTypography.s.copyWith(color: AppColors.gray4),
+          ),
           const SizedBox(height: 8),
-          Text(location, style: TextStyle(color: Colors.grey.shade700)),
+          Text(location,
+              style: InstaCareTypography.s.copyWith(color: AppColors.gray4)),
           const SizedBox(height: 4),
-          Text(dateTime, style: TextStyle(color: Colors.grey.shade700)),
+          Text(dateTime,
+              style: InstaCareTypography.s.copyWith(color: AppColors.gray4)),
         ],
       ),
     );
   }
 }
-
-

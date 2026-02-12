@@ -9,7 +9,7 @@ This package exposes reusable widgets for forms, selection controls, cards, feed
 - `buttons`: `InstaCareButton`, `InstaCareButton.secondary`
 - `inputs`: `InstaCareTextField`, `InstaCareOtpInput`, `InstaCarePhoneInput`, `InstaCareDropdown`, `InstaCareDropdownWithCheckbox`, `InstaCareDatePickerField`, `InstaCareCheckboxField`, `InstaCareSearchBar`
 - `selection`: `InstaCareRadioButtons`, `InstaCareMcqOptionSelector`, `InstaCareServicePills`, `InstaCareFilterPills`, `InstaCareRatingScale`
-- `cards`: `InstaCareCard`, `InstaCareBookingCard`, `InstaCareIncomeTile`, `InstaCareCardGridView`
+- `cards`: `InstaCareCard`, `InstaCareServiceCard`, `InstaCareBookingCard`, `InstaCareIncomeTile`, `InstaCareCardGridView`
 - `feedback`: `InstaCareMessageBox`, `InstaCareProgressBar`
 - `navigation`: `InstaCareTopHeaderTitle`, `InstaCareBottomAppNavBar`
 - `badges/pills/steps/upload`: `InstaCareStatusBadge`, `InstaCareHoursSummaryPill`, `InstaCareVerticalStepper`, `InstaCareFileUploadTile`
@@ -214,6 +214,12 @@ InstaCareCardGridView(
     InstaCareCard(child: Text('A')),
     InstaCareCard(child: Text('B')),
   ],
+);
+
+InstaCareServiceCard(
+  title: 'Nursing',
+  subtitle: 'Compassionate care',
+  priceText: 'from Rs499',
 );
 ```
 

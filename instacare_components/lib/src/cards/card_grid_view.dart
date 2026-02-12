@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 class InstaCareCardGridView extends StatelessWidget {
   final List<Widget> children;
   final int crossAxisCount;
+  final double crossAxisSpacing;
+  final double mainAxisSpacing;
+  final double childAspectRatio;
 
   const InstaCareCardGridView({
     super.key,
     required this.children,
     this.crossAxisCount = 2,
+    this.crossAxisSpacing = 12,
+    this.mainAxisSpacing = 12,
+    this.childAspectRatio = 1.1,
   });
 
   @override
@@ -16,11 +22,10 @@ class InstaCareCardGridView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: crossAxisCount,
-      crossAxisSpacing: 12,
-      mainAxisSpacing: 12,
-      childAspectRatio: 1.1,
+      crossAxisSpacing: crossAxisSpacing,
+      mainAxisSpacing: mainAxisSpacing,
+      childAspectRatio: childAspectRatio,
       children: children,
     );
   }
 }
-

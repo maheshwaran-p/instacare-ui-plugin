@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pill_chip.dart';
 
 class InstaCareFilterPills extends StatelessWidget {
   final List<String> items;
@@ -19,13 +20,12 @@ class InstaCareFilterPills extends StatelessWidget {
       runSpacing: 8,
       children: items.map((item) {
         final isSelected = selected.contains(item);
-        return FilterChip(
-          label: Text(item),
+        return InstaCarePillChip(
+          label: item,
           selected: isSelected,
-          onSelected: (_) => onToggle(item),
+          onTap: () => onToggle(item),
         );
       }).toList(),
     );
   }
 }
-

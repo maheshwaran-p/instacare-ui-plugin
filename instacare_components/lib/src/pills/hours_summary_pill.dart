@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/typography.dart';
 
 class InstaCareHoursSummaryPill extends StatelessWidget {
   final String text;
@@ -18,7 +19,7 @@ class InstaCareHoursSummaryPill extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: TextStyle(
+        style: InstaCareTypography.s.copyWith(
           color: Theme.of(context).colorScheme.primary,
           fontWeight: FontWeight.w600,
         ),
@@ -26,4 +27,3 @@ class InstaCareHoursSummaryPill extends StatelessWidget {
     );
   }
 }
-

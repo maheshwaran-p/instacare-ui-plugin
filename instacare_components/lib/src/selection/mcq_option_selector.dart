@@ -38,7 +38,7 @@ class InstaCareMcqOptionSelector extends StatelessWidget {
           children: [
             Text(
               question,
-              style: InstaCareTypography.h2.copyWith(color: AppColors.gray2),
+              style: InstaCareTypography.h3.copyWith(color: AppColors.gray2),
             ),
             const SizedBox(height: 18),
             ...options.map(
@@ -88,7 +88,7 @@ class InstaCareMcqOptionSelector extends StatelessWidget {
                           Expanded(
                             child: Text(
                               option,
-                              style: InstaCareTypography.h3.copyWith(color: AppColors.gray2),
+                              style: InstaCareTypography.r.copyWith(color: AppColors.gray2),
                             ),
                           ),
                         ],

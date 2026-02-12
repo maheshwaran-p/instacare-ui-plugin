@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/color.dart';
 
 class InstaCareRadioOption<T> {
   final T value;
@@ -25,41 +26,44 @@ class InstaCareRadioButtons<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final children = options
         .map(
-          (option) => Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              InkWell(
-                borderRadius: BorderRadius.circular(999),
-                onTap: () => onChanged(option.value),
-                child: Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: groupValue == option.value
-                          ? Theme.of(context).colorScheme.primary
-                          : Colors.grey.shade500,
-                      width: 2,
+          (option) => InkWell(
+            borderRadius: BorderRadius.circular(999),
+            onTap: () => onChanged(option.value),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: groupValue == option.value
+                            ? Theme.of(context).colorScheme.primary
+                            : AppColors.gray5,
+                        width: 2,
+                      ),
                     ),
-                  ),
-                  child: groupValue == option.value
-                      ? Center(
-                          child: Container(
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.primary,
+                    child: groupValue == option.value
+                        ? Center(
+                            child: Container(
+                              width: 10,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                             ),
-                          ),
-                        )
-                      : null,
-                ),
+                          )
+                        : null,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(option.label),
+                ],
               ),
-              const SizedBox(width: 8),
-              Text(option.label),
-            ],
+            ),
           ),
         )
         .toList();
@@ -74,4 +78,3 @@ class InstaCareRadioButtons<T> extends StatelessWidget {
     );
   }
 }
-

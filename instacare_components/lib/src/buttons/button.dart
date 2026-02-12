@@ -39,11 +39,14 @@ class InstaCareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final width = constraints.maxWidth.isFinite ? constraints.maxWidth : 320.0;
+        final width =
+            constraints.maxWidth.isFinite ? constraints.maxWidth : 320.0;
         final textSize = (width * 0.045).clamp(13.0, 16.0);
         final iconSize = (width * 0.05).clamp(16.0, 18.0);
         final skeletonWidth = (width * 0.34).clamp(56.0, 120.0);
-        final textColor = _variant == _ButtonVariant.primary ? AppColors.baseWhite : AppColors.gray2;
+        final textColor = _variant == _ButtonVariant.primary
+            ? AppColors.baseWhite
+            : AppColors.gray2;
 
         final Widget child = isLoading
             ? Container(
@@ -51,8 +54,8 @@ class InstaCareButton extends StatelessWidget {
                 width: skeletonWidth,
                 decoration: BoxDecoration(
                   color: _variant == _ButtonVariant.primary
-                      ? Colors.white.withValues(alpha: 0.35)
-                      : Colors.black.withValues(alpha: 0.14),
+                      ? AppColors.baseWhite.withValues(alpha: 0.35)
+                      : AppColors.gray1.withValues(alpha: 0.14),
                   borderRadius: BorderRadius.circular(999),
                 ),
               )
@@ -68,7 +71,8 @@ class InstaCareButton extends StatelessWidget {
                     child: Text(
                       text,
                       overflow: TextOverflow.ellipsis,
-                      style: InstaCareTypography.m.copyWith(fontSize: textSize, color: textColor),
+                      style: InstaCareTypography.m
+                          .copyWith(fontSize: textSize, color: textColor),
                     ),
                   ),
                 ],
@@ -96,7 +100,8 @@ class InstaCareButton extends StatelessWidget {
             backgroundColor: theme.colorScheme.primary,
             foregroundColor: AppColors.baseWhite,
             padding: size.padding,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             elevation: 0,
           ),
           child: child,
@@ -106,10 +111,14 @@ class InstaCareButton extends StatelessWidget {
           onPressed: (isLoading || isDisabled) ? null : onPressed,
           style: OutlinedButton.styleFrom(
             foregroundColor: AppColors.gray2,
-            backgroundColor: const Color(0xFFD3D5D4),
+            backgroundColor: AppColors.primary8,
             padding: size.padding,
-            side: BorderSide(color: isDisabled ? Colors.grey.shade400 : theme.colorScheme.primary, width: 1.2),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            side: BorderSide(
+              color: isDisabled ? AppColors.gray6 : theme.colorScheme.primary,
+              width: 1.2,
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
           child: child,
         );
@@ -118,4 +127,3 @@ class InstaCareButton extends StatelessWidget {
 }
 
 enum _ButtonVariant { primary, secondary }
-

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../theme/color.dart';
+import '../theme/typography.dart';
 
 class InstaCareProgressBar extends StatelessWidget {
   final double value;
@@ -17,7 +19,10 @@ class InstaCareProgressBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null) ...[
-          Text(label!, style: const TextStyle(fontWeight: FontWeight.w600)),
+          Text(
+            label!,
+            style: InstaCareTypography.s.copyWith(fontWeight: FontWeight.w600),
+          ),
           const SizedBox(height: 8),
         ],
         ClipRRect(
@@ -25,14 +30,17 @@ class InstaCareProgressBar extends StatelessWidget {
           child: LinearProgressIndicator(
             minHeight: 10,
             value: clamped,
-            backgroundColor: Colors.grey.shade200,
-            valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primary),
+            backgroundColor: AppColors.gray8,
+            valueColor: AlwaysStoppedAnimation<Color>(
+                Theme.of(context).colorScheme.primary),
           ),
         ),
         const SizedBox(height: 6),
-        Text('${(clamped * 100).round()}% completed', style: TextStyle(color: Colors.grey.shade700, fontSize: 12)),
+        Text(
+          '${(clamped * 100).round()}% completed',
+          style: InstaCareTypography.xs.copyWith(color: AppColors.gray4),
+        ),
       ],
     );
   }
 }
-

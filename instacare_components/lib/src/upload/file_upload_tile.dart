@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/color.dart';
+import '../theme/typography.dart';
 
 class InstaCareFileUploadTile extends StatefulWidget {
   final VoidCallback onTap;
@@ -14,7 +15,8 @@ class InstaCareFileUploadTile extends StatefulWidget {
   });
 
   @override
-  State<InstaCareFileUploadTile> createState() => _InstaCareFileUploadTileState();
+  State<InstaCareFileUploadTile> createState() =>
+      _InstaCareFileUploadTileState();
 }
 
 class _InstaCareFileUploadTileState extends State<InstaCareFileUploadTile> {
@@ -32,19 +34,28 @@ class _InstaCareFileUploadTileState extends State<InstaCareFileUploadTile> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: _active ? AppColors.primary1 : AppColors.primary3),
+          border: Border.all(
+              color: _active ? AppColors.primary1 : AppColors.primary3),
         ),
         child: Column(
           children: [
-            Icon(Icons.upload_file, size: 28, color: Theme.of(context).colorScheme.primary),
+            Icon(Icons.upload_file,
+                size: 28, color: Theme.of(context).colorScheme.primary),
             const SizedBox(height: 8),
-            Text(widget.title, style: const TextStyle(fontWeight: FontWeight.w700)),
+            Text(
+              widget.title,
+              style:
+                  InstaCareTypography.s.copyWith(fontWeight: FontWeight.w700),
+            ),
             const SizedBox(height: 4),
-            Text(widget.subtitle, textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade700, fontSize: 12)),
+            Text(
+              widget.subtitle,
+              textAlign: TextAlign.center,
+              style: InstaCareTypography.xs.copyWith(color: AppColors.gray4),
+            ),
           ],
         ),
       ),
     );
   }
 }
-

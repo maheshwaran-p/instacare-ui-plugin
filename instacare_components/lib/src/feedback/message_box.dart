@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../theme/color.dart';
+import '../theme/typography.dart';
 
 enum InstaCareMessageType { info, error, pending, success }
 
@@ -30,26 +32,26 @@ class InstaCareMessageBox extends StatelessWidget {
   Color _backgroundColor() {
     switch (type) {
       case InstaCareMessageType.info:
-        return const Color(0xFFEAF2FF);
+        return AppColors.infoBg;
       case InstaCareMessageType.error:
-        return const Color(0xFFFFECEC);
+        return AppColors.errorBg;
       case InstaCareMessageType.pending:
-        return const Color(0xFFFFF6E5);
+        return AppColors.warningBg;
       case InstaCareMessageType.success:
-        return const Color(0xFFE8F7ED);
+        return AppColors.successBg;
     }
   }
 
   Color _foregroundColor() {
     switch (type) {
       case InstaCareMessageType.info:
-        return const Color(0xFF1D4ED8);
+        return AppColors.infoFg;
       case InstaCareMessageType.error:
-        return const Color(0xFFB42318);
+        return AppColors.errorFg;
       case InstaCareMessageType.pending:
-        return const Color(0xFF9A6700);
+        return AppColors.warningFg;
       case InstaCareMessageType.success:
-        return const Color(0xFF1E7F43);
+        return AppColors.successFg;
     }
   }
 
@@ -74,16 +76,15 @@ class InstaCareMessageBox extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: InstaCareTypography.s.copyWith(
                     fontWeight: FontWeight.w700,
                     color: fg,
-                    fontSize: 14,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   body,
-                  style: TextStyle(color: fg, fontSize: 13),
+                  style: InstaCareTypography.xs.copyWith(color: fg),
                 ),
               ],
             ),
@@ -93,4 +94,3 @@ class InstaCareMessageBox extends StatelessWidget {
     );
   }
 }
-

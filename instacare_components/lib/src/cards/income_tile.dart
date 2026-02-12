@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'card.dart';
+import '../theme/color.dart';
+import '../theme/typography.dart';
 
 class InstaCareIncomeTile extends StatelessWidget {
   final String title;
@@ -25,9 +27,16 @@ class InstaCareIncomeTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: TextStyle(color: Colors.grey.shade700)),
+                Text(
+                  title,
+                  style: InstaCareTypography.s.copyWith(color: AppColors.gray4),
+                ),
                 const SizedBox(height: 6),
-                Text(amount, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
+                Text(
+                  amount,
+                  style: InstaCareTypography.h2
+                      .copyWith(fontSize: 24, fontWeight: FontWeight.w800),
+                ),
               ],
             ),
           ),
@@ -38,5 +47,3 @@ class InstaCareIncomeTile extends StatelessWidget {
     );
   }
 }
-
-

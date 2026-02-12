@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import '../theme/color.dart';
+import '../theme/typography.dart';
 
-enum InstaCareStatusBadgeType { active, upcoming, cancelled, inTravel, completed, custom }
+enum InstaCareStatusBadgeType {
+  active,
+  upcoming,
+  cancelled,
+  inTravel,
+  completed,
+  custom
+}
 
 class InstaCareStatusBadge extends StatelessWidget {
   final String label;
@@ -15,15 +24,15 @@ class InstaCareStatusBadge extends StatelessWidget {
   Color _backgroundColor(BuildContext context) {
     switch (type) {
       case InstaCareStatusBadgeType.active:
-        return const Color(0xFFE8F7ED);
+        return AppColors.successBg;
       case InstaCareStatusBadgeType.upcoming:
-        return const Color(0xFFE8F1FF);
+        return AppColors.infoBg;
       case InstaCareStatusBadgeType.cancelled:
-        return const Color(0xFFFFECEC);
+        return AppColors.errorBg;
       case InstaCareStatusBadgeType.inTravel:
-        return const Color(0xFFFFF6E5);
+        return AppColors.warningBg;
       case InstaCareStatusBadgeType.completed:
-        return const Color(0xFFEDEBFF);
+        return AppColors.completedBg;
       case InstaCareStatusBadgeType.custom:
         return Theme.of(context).colorScheme.surfaceContainerHighest;
     }
@@ -32,15 +41,15 @@ class InstaCareStatusBadge extends StatelessWidget {
   Color _textColor(BuildContext context) {
     switch (type) {
       case InstaCareStatusBadgeType.active:
-        return const Color(0xFF1E7F43);
+        return AppColors.successFg;
       case InstaCareStatusBadgeType.upcoming:
-        return const Color(0xFF1D4ED8);
+        return AppColors.infoFg;
       case InstaCareStatusBadgeType.cancelled:
-        return const Color(0xFFB42318);
+        return AppColors.errorFg;
       case InstaCareStatusBadgeType.inTravel:
-        return const Color(0xFF9A6700);
+        return AppColors.warningFg;
       case InstaCareStatusBadgeType.completed:
-        return const Color(0xFF5B21B6);
+        return AppColors.completedFg;
       case InstaCareStatusBadgeType.custom:
         return Theme.of(context).colorScheme.onSurfaceVariant;
     }
@@ -49,15 +58,14 @@ class InstaCareStatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
       decoration: BoxDecoration(
         color: _backgroundColor(context),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
         label,
-        style: TextStyle(
-          fontSize: 12,
+        style: InstaCareTypography.sm.copyWith(
           fontWeight: FontWeight.w600,
           color: _textColor(context),
         ),
@@ -65,4 +73,3 @@ class InstaCareStatusBadge extends StatelessWidget {
     );
   }
 }
-
