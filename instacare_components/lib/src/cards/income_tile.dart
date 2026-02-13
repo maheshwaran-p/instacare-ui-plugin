@@ -8,6 +8,7 @@ import '../types/button_size.dart';
 class InstaCareIncomeTile extends StatelessWidget {
   final String title;
   final String amount;
+  final String redeemButtonText;
   final VoidCallback? onRedeem;
   final Color? backgroundColor;
 
@@ -15,6 +16,7 @@ class InstaCareIncomeTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.amount,
+    required this.redeemButtonText,
     this.onRedeem,
     this.backgroundColor,
   });
@@ -48,7 +50,7 @@ class InstaCareIncomeTile extends StatelessWidget {
           if (onRedeem != null) ...[
             const SizedBox(height: 16),
             InstaCareButton(
-              text: 'Redeem',
+              text: redeemButtonText,
               onPressed: onRedeem,
               fullWidth: true,
               size: ButtonSize.medium,

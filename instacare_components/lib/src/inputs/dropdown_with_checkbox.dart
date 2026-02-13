@@ -7,7 +7,7 @@ class InstaCareDropdownWithCheckbox<T> extends StatefulWidget {
   final Set<T> selectedItems;
   final ValueChanged<Set<T>> onChanged;
   final String Function(T)? itemLabel;
-  final String hint;
+  final String? hint;
   final String? label;
   final bool initiallyExpanded;
 
@@ -17,7 +17,7 @@ class InstaCareDropdownWithCheckbox<T> extends StatefulWidget {
     required this.selectedItems,
     required this.onChanged,
     this.itemLabel,
-    this.hint = 'placeholder',
+    this.hint,
     this.label,
     this.initiallyExpanded = false,
   });
@@ -98,7 +98,7 @@ class _ICDropdownWithCheckboxState<T>
                   ),
                 ),
                 child: Text(
-                  widget.hint,
+                  widget.hint ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: InstaCareTypography.r.copyWith(
