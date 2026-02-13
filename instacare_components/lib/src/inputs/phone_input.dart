@@ -21,15 +21,12 @@ class InstaCarePhoneInput extends StatelessWidget {
     this.countryIsoCode = 'IN',
   });
 
-  // ───── Design tokens (STANDARD) ─────
-  static const double _fieldHeight = 52;
-  static const double _radius = 12;
+  // ───── Design tokens (matching InstaCareTextField) ─────
+  static const double _radius = 8;
   static const double _flagSize = 20;
-  static const double _iconSize = 20;
 
   static const double _outerPadding = 16;
   static const double _smallGap = 8;
-  static const double _mediumGap = 16;
   static const double _codeGap = 12;
 
   @override
@@ -41,105 +38,87 @@ class InstaCarePhoneInput extends StatelessWidget {
         if (label != null) ...[
           Text(
             label!,
-            style: InstaCareTypography.m.copyWith(
-              fontSize: 14,
+            style: InstaCareTypography.s.copyWith(
+              fontWeight: FontWeight.w600,
               color: AppColors.gray2,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
         ],
 
-        SizedBox(
-          height: _fieldHeight,
-          child: TextFormField(
-            controller: controller,
-            keyboardType: TextInputType.phone,
-            onChanged: onChanged,
-            style: InstaCareTypography.m.copyWith(
-              fontSize: 16,
-              color: AppColors.gray2,
+        TextFormField(
+          controller: controller,
+          keyboardType: TextInputType.phone,
+          onChanged: onChanged,
+          style: InstaCareTypography.r,
+          decoration: InputDecoration(
+            hintText: hint ?? '87921 34521',
+            hintStyle: InstaCareTypography.r.copyWith(
+              color: AppColors.gray6,
             ),
-            decoration: InputDecoration(
-              hintText: hint ?? '87921 34521',
-              hintStyle: InstaCareTypography.m.copyWith(
-                fontSize: 16,
-                color: AppColors.gray5,
-              ),
 
-              /// IMPORTANT: remove default 48px constraint
-              prefixIconConstraints:
-                  const BoxConstraints(minWidth: 0, minHeight: 0),
+            /// IMPORTANT: remove default 48px constraint
+            prefixIconConstraints:
+                const BoxConstraints(minWidth: 0, minHeight: 0),
 
-              /// ───── Prefix ─────
-              prefixIcon: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: _outerPadding),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // Flag
-                    Container(
-                      width: _flagSize + 8,
-                      height: _flagSize + 8,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.baseWhite,
-                      ),
-                      alignment: Alignment.center,
-                      child: CountryFlag.fromCountryCode(
-                        countryIsoCode,
-                        width: _flagSize,
-                        height: _flagSize,
-                        borderRadius: 999,
-                      ),
+            /// ───── Prefix ─────
+            prefixIcon: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: _outerPadding),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Flag
+                  Container(
+                    width: _flagSize + 8,
+                    height: _flagSize + 8,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.baseWhite,
                     ),
-
-                    const SizedBox(width: _smallGap),
-
-                    // Arrow
-                    const Icon(
-                      Icons.keyboard_arrow_down,
-                      size: _iconSize,
-                      color: AppColors.gray4,
+                    alignment: Alignment.center,
+                    child: CountryFlag.fromCountryCode(
+                      countryIsoCode,
+                      width: _flagSize,
+                      height: _flagSize,
+                      borderRadius: 999,
                     ),
+                  ),
 
-                    const SizedBox(width: _mediumGap),
-                    // Country code
-                    Text(
-                      countryCode,
-                      style: InstaCareTypography.m.copyWith(
-                        fontSize: 16,
-                        color: AppColors.gray2,
-                      ),
-                    ),
+                  const SizedBox(width: _smallGap),
 
-                    const SizedBox(width: _codeGap),
-                  ],
-                ),
+                  // Country code
+                  Text(
+                    countryCode,
+                    style: InstaCareTypography.r,
+                  ),
+
+                  const SizedBox(width: _codeGap),
+                ],
               ),
+            ),
 
-              filled: true,
-              fillColor: Colors.transparent,
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 14),
+            filled: true,
+            fillColor: AppColors.ivory7,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
 
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(_radius),
-                borderSide:
-                    const BorderSide(color: AppColors.primary3),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(_radius),
-                borderSide:
-                    const BorderSide(color: AppColors.primary3),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(_radius),
-                borderSide: const BorderSide(
-                  color: AppColors.primary1,
-                  width: 1.4,
-                ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(_radius),
+              borderSide:
+                  const BorderSide(color: AppColors.primary3),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(_radius),
+              borderSide:
+                  const BorderSide(color: AppColors.primary3),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(_radius),
+              borderSide: const BorderSide(
+                color: AppColors.primary1,
+                width: 2,
               ),
             ),
           ),

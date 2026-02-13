@@ -32,5 +32,6 @@ export 'src/selection/service_pills.dart';
 export 'src/steps/stepper.dart';
 export 'src/theme/color.dart';
 export 'src/theme/typography.dart';
+export 'src/theme/heading.dart';
 export 'src/types/button_size.dart';
 export 'src/upload/file_upload_tile.dart';

@@ -763,10 +763,19 @@ class _GalleryState extends State<Gallery> {
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       children: [
         _sectionHeading('Common Components'),
+        _sectionHeading('Headings'),
         _componentBlock(
-          title: 'No Components',
-          fileName: 'common',
-          child: const Text('not ready yet ....'),
+          title: 'Top Header Title',
+          fileName: 'theme/heading.dart',
+          child: InstaCareHeading.topHeaderTitle('Top Header Title'),
+        ),
+        _componentBlock(
+          title: 'Title with Back Button',
+          fileName: 'theme/heading.dart',
+          child: InstaCareHeading.titleWithBackButton(
+            text: 'Title',
+            onBackPressed: () {},
+          ),
         ),
       ],
     );
