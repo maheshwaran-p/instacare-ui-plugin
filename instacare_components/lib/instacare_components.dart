@@ -6,6 +6,7 @@ export 'src/buttons/button.dart';
 export 'src/cards/booking_card.dart';
 export 'src/cards/card_list_view.dart';
 export 'src/cards/service_card.dart';
+export 'src/cards/checkbox_card.dart';
 export 'src/inputs/text_field.dart';
 export 'src/inputs/otp_input.dart';
 export 'src/inputs/dropdown.dart';

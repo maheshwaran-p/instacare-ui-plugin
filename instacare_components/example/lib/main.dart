@@ -79,6 +79,8 @@ class _GalleryState extends State<Gallery> {
   int bookingCardStateIndex = 0;
   DateTime? selectedDate;
   bool checkOne = false;
+  bool checkboxCard1 = false;
+  bool checkboxCard2 = true;
   String selectedRadio = 'Yes';
   final Set<String> selectedFilters = <String>{'Wound Dressing'};
   Set<String> selectedMultiDropdown = <String>{'check box 2'};
@@ -657,6 +659,27 @@ class _GalleryState extends State<Gallery> {
             redeemButtonText: 'Redeem',
             onRedeem: () {},
             backgroundColor: AppColors.ivory7,
+          ),
+        ),
+        _componentBlock(
+          title: 'Checkbox Card',
+          fileName: 'checkbox_card.dart',
+          child: Column(
+            children: [
+              InstaCareCheckboxCard(
+                title: 'Card Title 1',
+                message: 'This is a small message text that describes the card content.',
+                isSelected: checkboxCard1,
+                onChanged: (value) => setState(() => checkboxCard1 = value),
+              ),
+              const SizedBox(height: 12),
+              InstaCareCheckboxCard(
+                title: 'Card Title 2',
+                message: 'Another card with a different message for demonstration.',
+                isSelected: checkboxCard2,
+                onChanged: (value) => setState(() => checkboxCard2 = value),
+              ),
+            ],
           ),
         ),
         _componentBlock(
