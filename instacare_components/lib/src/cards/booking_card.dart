@@ -14,6 +14,10 @@ class InstaCareBookingCard extends StatelessWidget {
   final String? durationText;
   final InstaCareStatusBadgeType status;
   final Color? backgroundColor;
+  final String bookingIdPrefix;
+  final String inTravelStatusLabel;
+  final String fallbackPatientInitial;
+  final String categoryServiceSeparator;
 
   const InstaCareBookingCard({
     super.key,
@@ -26,12 +30,16 @@ class InstaCareBookingCard extends StatelessWidget {
     this.durationText,
     this.status = InstaCareStatusBadgeType.active,
     this.backgroundColor,
+    required this.bookingIdPrefix,
+    required this.inTravelStatusLabel,
+    required this.fallbackPatientInitial,
+    required this.categoryServiceSeparator,
   });
 
   String _statusLabel(InstaCareStatusBadgeType status) {
     switch (status) {
       case InstaCareStatusBadgeType.inTravel:
-        return 'In-Travel';
+        return inTravelStatusLabel;
       default:
         return status.name[0].toUpperCase() + status.name.substring(1);
     }
@@ -50,7 +58,9 @@ class InstaCareBookingCard extends StatelessWidget {
                 radius: 12,
                 backgroundColor: AppColors.secondary7,
                 child: Text(
-                  patientName.isNotEmpty ? patientName[0].toUpperCase() : 'P',
+                  patientName.isNotEmpty
+                      ? patientName[0].toUpperCase()
+                      : fallbackPatientInitial,
                   style: InstaCareTypography.xs.copyWith(
                     color: AppColors.primary2,
                     fontWeight: FontWeight.w700,
@@ -76,7 +86,7 @@ class InstaCareBookingCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Booking ID: $bookingId',
+                  '$bookingIdPrefix $bookingId',
                   style: InstaCareTypography.s.copyWith(color: AppColors.gray4),
                 ),
               ),
@@ -96,7 +106,7 @@ class InstaCareBookingCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(999),
             ),
             child: Text(
-              '$category - $serviceName',
+              '$category$categoryServiceSeparator$serviceName',
               style: InstaCareTypography.s.copyWith(color: AppColors.gray2),
             ),
           ),

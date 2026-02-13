@@ -52,7 +52,7 @@ class _InstaCareDropdownState<T> extends State<InstaCareDropdown<T>> {
         final maxListHeight = ((widget.items.length * 44.0) + 8).clamp(96.0, 220.0);
 
         final selectedText = widget.value == null
-            ? (widget.hint ?? 'select')
+            ? (widget.hint ?? '')
             : (widget.itemLabel?.call(widget.value as T) ?? widget.value.toString());
 
         return Column(

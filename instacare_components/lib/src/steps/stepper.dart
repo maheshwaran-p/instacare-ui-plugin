@@ -42,8 +42,11 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
   }
 
   void _initializeAnimations() {
+    final connectorCount =
+        widget.items.isEmpty ? 0 : widget.items.length - 1;
+
     _controllers = List.generate(
-      widget.items.length - 1,
+      connectorCount,
       (index) => AnimationController(
         vsync: this,
         duration: widget.animationDuration,
@@ -62,8 +65,16 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
   @override
   void didUpdateWidget(InstaCareVerticalStepper oldWidget) {
     super.didUpdateWidget(oldWidget);
-    
-    if (oldWidget.currentStep != widget.currentStep) {
+
+    final shouldReinitialize = oldWidget.items.length != widget.items.length ||
+        oldWidget.animationDuration != widget.animationDuration;
+
+    if (shouldReinitialize) {
+      _disposeControllers();
+      _initializeAnimations();
+    }
+
+    if (oldWidget.currentStep != widget.currentStep || shouldReinitialize) {
       _updateAnimations();
     }
   }
@@ -80,10 +91,14 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
 
   @override
   void dispose() {
-    for (var controller in _controllers) {
+    _disposeControllers();
+    super.dispose();
+  }
+
+  void _disposeControllers() {
+    for (final controller in _controllers) {
       controller.dispose();
     }
-    super.dispose();
   }
 
   @override
@@ -97,57 +112,52 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
 
         final circleSize = (width / (widget.items.length * 4)).clamp(26.0, 38.0);
         final stepNumberSize = (circleSize * 0.45).clamp(12.0, 16.0);
-        final titleSize = (width * 0.045).clamp(13.0, 16.0);
-        final descriptionSize = (width * 0.035).clamp(11.0, 12.0);
 
         final primary = Theme.of(context).colorScheme.primary;
         const inactive = AppColors.gray7;
 
-        Color circleColor(int index) =>
-            index <= widget.currentStep ? primary : inactive;
-        Color labelColor(int index) =>
-            index <= widget.currentStep ? AppColors.gray2 : inactive;
-
         return Row(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    for (int index = 0; index < widget.items.length; index++) ...[
-      // Circle
-      InkWell(
-        onTap: () => widget.onStepChanged?.call(index),
-        borderRadius: BorderRadius.circular(999),
-        child: Container(
-          width: circleSize,
-          height: circleSize,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: index <= widget.currentStep ? primary : inactive,
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            '${index + 1}',
-            style: InstaCareTypography.sm.copyWith(
-              color: AppColors.baseWhite,
-              fontSize: stepNumberSize,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-      ),
-
-      // Connector (ONLY between circles)
-      if (index < widget.items.length - 1)
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 6),
-            height: 2,
-            color: index < widget.currentStep ? primary : inactive,
-          ),
-        ),
-    ],
-  ],
-);
-
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (int index = 0; index < widget.items.length; index++) ...[
+              InkWell(
+                onTap: () => widget.onStepChanged?.call(index),
+                borderRadius: BorderRadius.circular(999),
+                child: Container(
+                  width: circleSize,
+                  height: circleSize,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: index <= widget.currentStep ? primary : inactive,
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    '${index + 1}',
+                    style: InstaCareTypography.sm.copyWith(
+                      color: AppColors.baseWhite,
+                      fontSize: stepNumberSize,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              if (index < widget.items.length - 1)
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 6),
+                    height: 2,
+                    child: _AnimatedConnector(
+                      animation: _animations[index],
+                      activeColor: primary,
+                      inactiveColor: inactive,
+                      isCompleted: index < widget.currentStep,
+                      showArrow: true,
+                    ),
+                  ),
+                ),
+            ],
+          ],
+        );
       },
     );
   }

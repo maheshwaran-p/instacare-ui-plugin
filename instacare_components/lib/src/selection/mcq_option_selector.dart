@@ -19,8 +19,8 @@ class InstaCareMcqOptionSelector extends StatelessWidget {
     required this.options,
     required this.selected,
     required this.onSelected,
-    this.previousLabel = 'Previous Question',
-    this.nextLabel = 'Next Question',
+    required this.previousLabel,
+    required this.nextLabel,
     this.onPrevious,
     this.onNext,
   });
