@@ -1,11 +1,13 @@
 library instacare_components;
 
 export 'src/animation/skeleton_loading.dart';
+export 'src/animation/carousel.dart';
 export 'src/badges/status_badge.dart';
 export 'src/buttons/button.dart';
 export 'src/cards/booking_card.dart';
 export 'src/cards/card_list_view.dart';
 export 'src/cards/service_card.dart';
+export 'src/cards/checkbox_card.dart';
 export 'src/inputs/text_field.dart';
 export 'src/inputs/otp_input.dart';
 export 'src/inputs/dropdown.dart';
@@ -32,5 +34,6 @@ export 'src/selection/service_pills.dart';
 export 'src/steps/stepper.dart';
 export 'src/theme/color.dart';
 export 'src/theme/typography.dart';
+export 'src/theme/heading.dart';
 export 'src/types/button_size.dart';
 export 'src/upload/file_upload_tile.dart';

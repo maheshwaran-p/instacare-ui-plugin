@@ -28,7 +28,10 @@ class InstaCareDatePickerField extends StatelessWidget {
         if (label != null) ...[
           Text(
             label!,
-            style: InstaCareTypography.s.copyWith(fontWeight: FontWeight.w600),
+            style: InstaCareTypography.s.copyWith(
+              fontWeight: FontWeight.w600,
+              color: AppColors.gray2,
+            ),
           ),
           const SizedBox(height: 8),
         ],
@@ -50,7 +53,14 @@ class InstaCareDatePickerField extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.ivory7,
-              suffixIcon: const Icon(Icons.calendar_today_outlined),
+              suffixIcon: const Icon(
+                Icons.calendar_today_outlined,
+                color: AppColors.gray4,
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: AppColors.primary3),
@@ -59,11 +69,18 @@ class InstaCareDatePickerField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: AppColors.primary3),
               ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  color: AppColors.primary1,
+                  width: 2,
+                ),
+              ),
             ),
             child: Text(
               text,
               style: InstaCareTypography.r.copyWith(
-                color: value == null ? AppColors.gray4 : AppColors.gray2,
+                color: value == null ? AppColors.gray6 : AppColors.gray2,
               ),
             ),
           ),

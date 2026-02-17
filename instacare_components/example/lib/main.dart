@@ -79,6 +79,8 @@ class _GalleryState extends State<Gallery> {
   int bookingCardStateIndex = 0;
   DateTime? selectedDate;
   bool checkOne = false;
+  bool checkboxCard1 = false;
+  bool checkboxCard2 = true;
   String selectedRadio = 'Yes';
   final Set<String> selectedFilters = <String>{'Wound Dressing'};
   Set<String> selectedMultiDropdown = <String>{'check box 2'};
@@ -397,6 +399,256 @@ class _GalleryState extends State<Gallery> {
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       children: [
         _sectionHeading('Partner Components'),
+        _sectionHeading('Feedback'),
+        _componentBlock(
+          title: 'Message Box',
+          fileName: 'message_box.dart',
+          child: const Column(
+            children: [
+              InstaCareMessageBox(
+                  type: InstaCareMessageType.info,
+                  title: 'Info message box',
+                  body: 'Body text goes here'),
+              SizedBox(height: 8),
+              InstaCareMessageBox(
+                  type: InstaCareMessageType.error,
+                  title: 'Error message box',
+                  body: 'Body text goes here'),
+              SizedBox(height: 8),
+              InstaCareMessageBox(
+                  type: InstaCareMessageType.pending,
+                  title: 'Pending message box',
+                  body: 'Body text goes here'),
+              SizedBox(height: 8),
+              InstaCareMessageBox(
+                  type: InstaCareMessageType.success,
+                  title: 'Success message box',
+                  body: 'Body text goes here'),
+            ],
+          ),
+        ),
+        _componentBlock(
+          title: 'Progress Bar',
+          fileName: 'progress_bar.dart',
+          child: const InstaCareProgressBar(value: 0.65, label: 'Progress bar'),
+        ),
+        _sectionHeading('Cards'),
+        _componentBlock(
+          title: 'Booking Card',
+          fileName: 'booking_card.dart',
+          child: InstaCareBookingCard(
+            category: bookingState.category,
+            serviceName: bookingState.serviceName,
+            patientName: bookingState.patientName,
+            bookingId: bookingState.bookingId,
+            location: bookingState.location,
+            dateTime: bookingState.dateTime,
+            durationText: bookingState.durationText,
+            status: bookingState.status,
+            backgroundColor: AppColors.ivory7,
+            bookingIdPrefix: 'Booking ID:',
+            inTravelStatusLabel: 'In-Travel',
+            fallbackPatientInitial: 'P',
+            categoryServiceSeparator: ' - ',
+          ),
+        ),
+        _bookingStateControl(),
+        _componentBlock(
+          title: 'Income Tile',
+          fileName: 'income_tile.dart',
+          child: InstaCareIncomeTile(
+            title: "This month's earnings",
+            amount: 'Rs 0',
+            redeemButtonText: 'Redeem',
+            onRedeem: () {},
+            backgroundColor: AppColors.ivory7,
+          ),
+        ),
+        _componentBlock(
+          title: 'Card List View',
+          fileName: 'card_list_view.dart',
+          child: const InstaCareCardListView(
+            items: [
+              InstaCareCardListItem(
+                card: InstaCareCard(
+                  backgroundColor: AppColors.ivory7,
+                  child: Center(child: Text('Card')),
+                ),
+                title: 'Wound Dressing',
+                body: 'Daily care service with dressing change.',
+              ),
+              InstaCareCardListItem(
+                card: InstaCareCard(
+                  backgroundColor: AppColors.ivory7,
+                  child: Center(child: Text('Card')),
+                ),
+                title: 'Nursing Visit',
+                body: 'Vitals check and medication support.',
+              ),
+            ],
+          ),
+        ),
+        _sectionHeading('Badges'),
+        _componentBlock(
+          title: 'Appointment Status Pills',
+          fileName: 'appointment_status_pills.dart',
+          child: const InstaCareAppointmentStatusPills(),
+        ),
+        _sectionHeading('Pills'),
+        _componentBlock(
+          title: 'Hours Summary Pill',
+          fileName: 'hours_summary_pill.dart',
+          child:
+              const InstaCareHoursSummaryPill(text: 'Selected hours: 04h 30m'),
+        ),
+        _sectionHeading('Steps'),
+        _componentBlock(
+          title: 'Horizontal Stepper',
+          fileName: 'stepper.dart',
+          child: InstaCareVerticalStepper(
+            currentStep: currentStepperStep,
+            onStepChanged: (step) => setState(() => currentStepperStep = step),
+            items: const [
+              InstaCareStepperItem(title: 'Step 1'),
+              InstaCareStepperItem(title: 'Step 2'),
+              InstaCareStepperItem(title: 'Step 3'),
+            ],
+          ),
+        ),
+        _sectionHeading('Upload'),
+        _componentBlock(
+          title: 'File Upload Tile',
+          fileName: 'file_upload_tile.dart',
+          child: InstaCareFileUploadTile(onTap: () {}),
+        ),
+        _sectionHeading('Navigation'),
+        _bottomNavDemo(),
+      ],
+    );
+  }
+
+  Widget _buildPatientPage() {
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      children: [
+        _sectionHeading('Patient Components'),
+        _componentBlock(
+          title: 'No Components',
+          fileName: 'partner_only',
+          child: const Text(
+            'not yet ready ...',
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCommonPage() {
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      children: [
+        _sectionHeading('Common Components'),
+        _sectionHeading('Headings'),
+        _componentBlock(
+          title: 'Top Header Title',
+          fileName: 'theme/heading.dart',
+          child: InstaCareHeading.topHeaderTitle('Top Header Title'),
+        ),
+        _componentBlock(
+          title: 'Title with Back Button',
+          fileName: 'theme/heading.dart',
+          child: InstaCareHeading.titleWithBackButton(
+            text: 'Title',
+            onBackPressed: () {},
+          ),
+        ),
+        _sectionHeading('Animation'),
+        _componentBlock(
+          title: 'Skeleton Loading',
+          fileName: 'animation/skeleton_loading.dart',
+          child: _skeletonPagePreview(),
+        ),
+        _componentBlock(
+          title: 'Carousel',
+          fileName: 'animation/carousel.dart',
+          child: InstaCareCarousel(
+            height: 160,
+            items: [
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.primary9,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppColors.ivory3),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.gray6.withOpacity(0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Center(
+                  child: Text(
+                    'Card 1',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.gray2,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.ivory7,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppColors.ivory3),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.gray6.withOpacity(0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Center(
+                  child: Text(
+                    'Card 2',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.gray2,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.primary8,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppColors.ivory3),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.gray6.withOpacity(0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Center(
+                  child: Text(
+                    'Card 3',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.gray2,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         _sectionHeading('Buttons'),
         _componentBlock(
           title: 'Button States',
@@ -430,12 +682,6 @@ class _GalleryState extends State<Gallery> {
                   onPressed: null),
             ],
           ),
-        ),
-        _sectionHeading('Animation'),
-        _componentBlock(
-          title: 'Skeleton Loading',
-          fileName: 'animation/skeleton_loading.dart',
-          child: _skeletonPagePreview(),
         ),
         _sectionHeading('Inputs'),
         _componentBlock(
@@ -594,128 +840,6 @@ class _GalleryState extends State<Gallery> {
             onRatingChanged: (value) => setState(() => rating = value),
           ),
         ),
-        _sectionHeading('Feedback'),
-        _componentBlock(
-          title: 'Message Box',
-          fileName: 'message_box.dart',
-          child: const Column(
-            children: [
-              InstaCareMessageBox(
-                  type: InstaCareMessageType.info,
-                  title: 'Info message box',
-                  body: 'Body text goes here'),
-              SizedBox(height: 8),
-              InstaCareMessageBox(
-                  type: InstaCareMessageType.error,
-                  title: 'Error message box',
-                  body: 'Body text goes here'),
-              SizedBox(height: 8),
-              InstaCareMessageBox(
-                  type: InstaCareMessageType.pending,
-                  title: 'Pending message box',
-                  body: 'Body text goes here'),
-              SizedBox(height: 8),
-              InstaCareMessageBox(
-                  type: InstaCareMessageType.success,
-                  title: 'Success message box',
-                  body: 'Body text goes here'),
-            ],
-          ),
-        ),
-        _componentBlock(
-          title: 'Progress Bar',
-          fileName: 'progress_bar.dart',
-          child: const InstaCareProgressBar(value: 0.65, label: 'Progress bar'),
-        ),
-        _sectionHeading('Cards'),
-        _componentBlock(
-          title: 'Booking Card',
-          fileName: 'booking_card.dart',
-          child: InstaCareBookingCard(
-            category: bookingState.category,
-            serviceName: bookingState.serviceName,
-            patientName: bookingState.patientName,
-            bookingId: bookingState.bookingId,
-            location: bookingState.location,
-            dateTime: bookingState.dateTime,
-            durationText: bookingState.durationText,
-            status: bookingState.status,
-            backgroundColor: AppColors.ivory7,
-            bookingIdPrefix: 'Booking ID:',
-            inTravelStatusLabel: 'In-Travel',
-            fallbackPatientInitial: 'P',
-            categoryServiceSeparator: ' - ',
-          ),
-        ),
-        _bookingStateControl(),
-        _componentBlock(
-          title: 'Income Tile',
-          fileName: 'income_tile.dart',
-          child: InstaCareIncomeTile(
-            title: "This month's earnings",
-            amount: 'Rs 0',
-            redeemButtonText: 'Redeem',
-            onRedeem: () {},
-            backgroundColor: AppColors.ivory7,
-          ),
-        ),
-        _componentBlock(
-          title: 'Card List View',
-          fileName: 'card_list_view.dart',
-          child: const InstaCareCardListView(
-            items: [
-              InstaCareCardListItem(
-                card: InstaCareCard(
-                  backgroundColor: AppColors.ivory7,
-                  child: Center(child: Text('Card')),
-                ),
-                title: 'Wound Dressing',
-                body: 'Daily care service with dressing change.',
-              ),
-              InstaCareCardListItem(
-                card: InstaCareCard(
-                  backgroundColor: AppColors.ivory7,
-                  child: Center(child: Text('Card')),
-                ),
-                title: 'Nursing Visit',
-                body: 'Vitals check and medication support.',
-              ),
-            ],
-          ),
-        ),
-        _sectionHeading('Badges'),
-        _componentBlock(
-          title: 'Appointment Status Pills',
-          fileName: 'appointment_status_pills.dart',
-          child: const InstaCareAppointmentStatusPills(),
-        ),
-        _sectionHeading('Pills'),
-        _componentBlock(
-          title: 'Hours Summary Pill',
-          fileName: 'hours_summary_pill.dart',
-          child:
-              const InstaCareHoursSummaryPill(text: 'Selected hours: 04h 30m'),
-        ),
-        _sectionHeading('Steps'),
-        _componentBlock(
-          title: 'Horizontal Stepper',
-          fileName: 'stepper.dart',
-          child: InstaCareVerticalStepper(
-            currentStep: currentStepperStep,
-            onStepChanged: (step) => setState(() => currentStepperStep = step),
-            items: const [
-              InstaCareStepperItem(title: 'Step 1'),
-              InstaCareStepperItem(title: 'Step 2'),
-              InstaCareStepperItem(title: 'Step 3'),
-            ],
-          ),
-        ),
-        _sectionHeading('Upload'),
-        _componentBlock(
-          title: 'File Upload Tile',
-          fileName: 'file_upload_tile.dart',
-          child: InstaCareFileUploadTile(onTap: () {}),
-        ),
         _sectionHeading('Dialogs'),
         _componentBlock(
           title: 'Confirmation Dialog',
@@ -736,37 +860,27 @@ class _GalleryState extends State<Gallery> {
             },
           ),
         ),
-        _sectionHeading('Navigation'),
-        _bottomNavDemo(),
-      ],
-    );
-  }
-
-  Widget _buildPatientPage() {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      children: [
-        _sectionHeading('Patient Components'),
+        _sectionHeading('Cards'),
         _componentBlock(
-          title: 'No Components',
-          fileName: 'partner_only',
-          child: const Text(
-            'not yet ready ...',
+          title: 'Checkbox Card',
+          fileName: 'checkbox_card.dart',
+          child: Column(
+            children: [
+              InstaCareCheckboxCard(
+                title: 'Card Title 1',
+                message: 'This is a small message text that describes the card content.',
+                isSelected: checkboxCard1,
+                onChanged: (value) => setState(() => checkboxCard1 = value),
+              ),
+              const SizedBox(height: 12),
+              InstaCareCheckboxCard(
+                title: 'Card Title 2',
+                message: 'Another card with a different message for demonstration.',
+                isSelected: checkboxCard2,
+                onChanged: (value) => setState(() => checkboxCard2 = value),
+              ),
+            ],
           ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildCommonPage() {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      children: [
-        _sectionHeading('Common Components'),
-        _componentBlock(
-          title: 'No Components',
-          fileName: 'common',
-          child: const Text('not ready yet ....'),
         ),
       ],
     );
