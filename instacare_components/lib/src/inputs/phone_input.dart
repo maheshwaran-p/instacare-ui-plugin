@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:country_flags/country_flags.dart';
 import '../theme/color.dart';
 import '../theme/typography.dart';
@@ -10,6 +11,9 @@ class InstaCarePhoneInput extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final String countryCode;
   final String countryIsoCode;
+  final String? errorText;
+  final FormFieldValidator<String>? validator;
+  final int maxDigits;
 
   const InstaCarePhoneInput({
     super.key,
@@ -19,6 +23,9 @@ class InstaCarePhoneInput extends StatelessWidget {
     this.onChanged,
     this.countryCode = '+91',
     this.countryIsoCode = 'IN',
+    this.errorText,
+    this.validator,
+    this.maxDigits = 10,
   });
 
   // ───── Design tokens (matching InstaCareTextField) ─────
@@ -50,12 +57,27 @@ class InstaCarePhoneInput extends StatelessWidget {
           controller: controller,
           keyboardType: TextInputType.phone,
           onChanged: onChanged,
+          validator: validator ??
+              (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Phone number is required';
+                }
+                if (value.length != maxDigits) {
+                  return 'Phone number must be $maxDigits digits';
+                }
+                return null;
+              },
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(maxDigits),
+          ],
           style: InstaCareTypography.r,
           decoration: InputDecoration(
             hintText: hint ?? '87921 34521',
             hintStyle: InstaCareTypography.r.copyWith(
               color: AppColors.gray6,
             ),
+            errorText: errorText,
 
             /// IMPORTANT: remove default 48px constraint
             prefixIconConstraints:
@@ -118,6 +140,17 @@ class InstaCarePhoneInput extends StatelessWidget {
               borderRadius: BorderRadius.circular(_radius),
               borderSide: const BorderSide(
                 color: AppColors.primary1,
+                width: 2,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(_radius),
+              borderSide: const BorderSide(color: AppColors.error3),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(_radius),
+              borderSide: const BorderSide(
+                color: AppColors.error3,
                 width: 2,
               ),
             ),

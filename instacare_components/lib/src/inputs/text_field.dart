@@ -90,7 +90,7 @@ class _ICTextFieldState extends State<InstaCareTextField> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: InstaCareTypography.s.copyWith(
+            style: InstaCareTypography.r.copyWith(
               fontWeight: FontWeight.w600,
               color: widget.labelColor ?? AppColors.gray2,
             ),
