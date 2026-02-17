@@ -45,13 +45,13 @@ class _InstaCareFileUploadTileState extends State<InstaCareFileUploadTile> {
             Text(
               widget.title,
               style:
-                  InstaCareTypography.s.copyWith(fontWeight: FontWeight.w700),
+                  InstaCareTypography.r.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 4),
             Text(
               widget.subtitle,
               textAlign: TextAlign.center,
-              style: InstaCareTypography.xs.copyWith(color: AppColors.gray4),
+              style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
             ),
           ],
         ),

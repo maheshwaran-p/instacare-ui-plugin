@@ -64,9 +64,9 @@ class InstaCareBottomAppNavBar extends StatelessWidget {
           selectedItemColor: resolvedSelected,
           unselectedItemColor: resolvedUnselected,
           selectedLabelStyle:
-              InstaCareTypography.xs.copyWith(fontWeight: FontWeight.w600),
+              InstaCareTypography.r.copyWith(fontWeight: FontWeight.w600),
           unselectedLabelStyle:
-              InstaCareTypography.xs.copyWith(fontWeight: FontWeight.w500),
+              InstaCareTypography.r.copyWith(fontWeight: FontWeight.w500),
           items: items
               .map(
                 (item) => BottomNavigationBarItem(

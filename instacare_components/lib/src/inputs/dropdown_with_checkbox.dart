@@ -54,7 +54,7 @@ class _ICDropdownWithCheckboxState<T>
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: InstaCareTypography.s.copyWith(
+            style: InstaCareTypography.r.copyWith(
               fontWeight: FontWeight.w600,
               color: AppColors.gray2,
             ),

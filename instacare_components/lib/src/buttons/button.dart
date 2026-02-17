@@ -73,7 +73,7 @@ class InstaCareButton extends StatelessWidget {
                     child: Text(
                       text,
                       overflow: TextOverflow.ellipsis,
-                      style: InstaCareTypography.m
+                      style: InstaCareTypography.r
                           .copyWith(fontSize: textSize, color: textColor),
                     ),
                   ),

@@ -488,6 +488,27 @@ class _GalleryState extends State<Gallery> {
             ],
           ),
         ),
+        _componentBlock(
+          title: 'Checkbox Card',
+          fileName: 'checkbox_card.dart',
+          child: Column(
+            children: [
+              InstaCareCheckboxCard(
+                title: 'Card Title 1',
+                message: 'This is a small message text that describes the card content.',
+                isSelected: checkboxCard1,
+                onChanged: (value) => setState(() => checkboxCard1 = value),
+              ),
+              const SizedBox(height: 12),
+              InstaCareCheckboxCard(
+                title: 'Card Title 2',
+                message: 'Another card with a different message for demonstration.',
+                isSelected: checkboxCard2,
+                onChanged: (value) => setState(() => checkboxCard2 = value),
+              ),
+            ],
+          ),
+        ),
         _sectionHeading('Badges'),
         _componentBlock(
           title: 'Appointment Status Pills',
@@ -502,6 +523,20 @@ class _GalleryState extends State<Gallery> {
               const InstaCareHoursSummaryPill(text: 'Selected hours: 04h 30m'),
         ),
         _sectionHeading('Steps'),
+        _componentBlock(
+          title: 'MCQ Option Selector',
+          fileName: 'mcq_option_selector.dart',
+          child: InstaCareMcqOptionSelector(
+            question: 'Question',
+            options: const ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+            selected: selectedMcq,
+            onSelected: (value) => setState(() => selectedMcq = value),
+            previousLabel: 'Previous Question',
+            nextLabel: 'Next Question',
+            onPrevious: () {},
+            onNext: () {},
+          ),
+        ),
         _componentBlock(
           title: 'Horizontal Stepper',
           fileName: 'stepper.dart',
@@ -581,7 +616,7 @@ class _GalleryState extends State<Gallery> {
                   border: Border.all(color: AppColors.ivory3),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withOpacity(0.15),
+                      color: AppColors.gray6.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -605,7 +640,7 @@ class _GalleryState extends State<Gallery> {
                   border: Border.all(color: AppColors.ivory3),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withOpacity(0.15),
+                      color: AppColors.gray6.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -629,7 +664,7 @@ class _GalleryState extends State<Gallery> {
                   border: Border.all(color: AppColors.ivory3),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withOpacity(0.15),
+                      color: AppColors.gray6.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -793,20 +828,6 @@ class _GalleryState extends State<Gallery> {
           ),
         ),
         _componentBlock(
-          title: 'MCQ Option Selector',
-          fileName: 'mcq_option_selector.dart',
-          child: InstaCareMcqOptionSelector(
-            question: 'Question',
-            options: const ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-            selected: selectedMcq,
-            onSelected: (value) => setState(() => selectedMcq = value),
-            previousLabel: 'Previous Question',
-            nextLabel: 'Next Question',
-            onPrevious: () {},
-            onNext: () {},
-          ),
-        ),
-        _componentBlock(
           title: 'Service Pills',
           fileName: 'service_pills.dart',
           child: InstaCareServicePills(
@@ -860,24 +881,61 @@ class _GalleryState extends State<Gallery> {
             },
           ),
         ),
-        _sectionHeading('Cards'),
         _componentBlock(
-          title: 'Checkbox Card',
-          fileName: 'checkbox_card.dart',
+          title: 'Snackbar',
+          fileName: 'snackbar.dart',
           child: Column(
             children: [
-              InstaCareCheckboxCard(
-                title: 'Card Title 1',
-                message: 'This is a small message text that describes the card content.',
-                isSelected: checkboxCard1,
-                onChanged: (value) => setState(() => checkboxCard1 = value),
+              InstaCareButton(
+                text: 'Show Success Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.success,
+                    title: 'Success',
+                    message: 'Your action was completed successfully!',
+                  );
+                },
               ),
-              const SizedBox(height: 12),
-              InstaCareCheckboxCard(
-                title: 'Card Title 2',
-                message: 'Another card with a different message for demonstration.',
-                isSelected: checkboxCard2,
-                onChanged: (value) => setState(() => checkboxCard2 = value),
+              const SizedBox(height: 10),
+              InstaCareButton(
+                text: 'Show Error Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.error,
+                    title: 'Error',
+                    message: 'Something went wrong. Please try again.',
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              InstaCareButton(
+                text: 'Show Info Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.info,
+                    title: 'Information',
+                    message: 'Here is some useful information for you.',
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              InstaCareButton(
+                text: 'Show Pending Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.pending,
+                    title: 'Pending',
+                    message: 'Your request is being processed.',
+                  );
+                },
               ),
             ],
           ),

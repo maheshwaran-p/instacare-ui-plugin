@@ -21,7 +21,7 @@ class InstaCareProgressBar extends StatelessWidget {
         if (label != null) ...[
           Text(
             label!,
-            style: InstaCareTypography.s.copyWith(fontWeight: FontWeight.w600),
+            style: InstaCareTypography.r.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
         ],
@@ -38,7 +38,7 @@ class InstaCareProgressBar extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           '${(clamped * 100).round()}% completed',
-          style: InstaCareTypography.xs.copyWith(color: AppColors.gray4),
+          style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
         ),
       ],
     );

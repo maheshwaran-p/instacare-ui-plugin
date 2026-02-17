@@ -76,7 +76,7 @@ class InstaCareMessageBox extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: InstaCareTypography.s.copyWith(
+                  style: InstaCareTypography.r.copyWith(
                     fontWeight: FontWeight.w700,
                     color: fg,
                   ),
@@ -84,7 +84,7 @@ class InstaCareMessageBox extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   body,
-                  style: InstaCareTypography.xs.copyWith(color: fg),
+                  style: InstaCareTypography.r.copyWith(color: fg),
                 ),
               ],
             ),

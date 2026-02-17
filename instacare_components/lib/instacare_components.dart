@@ -19,6 +19,7 @@ export 'src/inputs/search_bar.dart';
 export 'src/cards/card.dart';
 export 'src/cards/income_tile.dart';
 export 'src/dialogs/confirmation_dialog.dart';
+export 'src/dialogs/snackbar.dart';
 export 'src/feedback/message_box.dart';
 export 'src/feedback/progress_bar.dart';
 export 'src/navigation/bottom_app_nav_bar.dart';
