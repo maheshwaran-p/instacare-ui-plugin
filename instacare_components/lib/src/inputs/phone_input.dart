@@ -45,7 +45,7 @@ class InstaCarePhoneInput extends StatelessWidget {
         if (label != null) ...[
           Text(
             label!,
-            style: InstaCareTypography.s.copyWith(
+            style: InstaCareTypography.r.copyWith(
               fontWeight: FontWeight.w600,
               color: AppColors.gray2,
             ),

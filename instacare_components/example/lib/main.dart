@@ -488,6 +488,27 @@ class _GalleryState extends State<Gallery> {
             ],
           ),
         ),
+        _componentBlock(
+          title: 'Checkbox Card',
+          fileName: 'checkbox_card.dart',
+          child: Column(
+            children: [
+              InstaCareCheckboxCard(
+                title: 'Card Title 1',
+                message: 'This is a small message text that describes the card content.',
+                isSelected: checkboxCard1,
+                onChanged: (value) => setState(() => checkboxCard1 = value),
+              ),
+              const SizedBox(height: 12),
+              InstaCareCheckboxCard(
+                title: 'Card Title 2',
+                message: 'Another card with a different message for demonstration.',
+                isSelected: checkboxCard2,
+                onChanged: (value) => setState(() => checkboxCard2 = value),
+              ),
+            ],
+          ),
+        ),
         _sectionHeading('Badges'),
         _componentBlock(
           title: 'Appointment Status Pills',
@@ -502,6 +523,20 @@ class _GalleryState extends State<Gallery> {
               const InstaCareHoursSummaryPill(text: 'Selected hours: 04h 30m'),
         ),
         _sectionHeading('Steps'),
+        _componentBlock(
+          title: 'MCQ Option Selector',
+          fileName: 'mcq_option_selector.dart',
+          child: InstaCareMcqOptionSelector(
+            question: 'Question',
+            options: const ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+            selected: selectedMcq,
+            onSelected: (value) => setState(() => selectedMcq = value),
+            previousLabel: 'Previous Question',
+            nextLabel: 'Next Question',
+            onPrevious: () {},
+            onNext: () {},
+          ),
+        ),
         _componentBlock(
           title: 'Horizontal Stepper',
           fileName: 'stepper.dart',
@@ -793,20 +828,6 @@ class _GalleryState extends State<Gallery> {
           ),
         ),
         _componentBlock(
-          title: 'MCQ Option Selector',
-          fileName: 'mcq_option_selector.dart',
-          child: InstaCareMcqOptionSelector(
-            question: 'Question',
-            options: const ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-            selected: selectedMcq,
-            onSelected: (value) => setState(() => selectedMcq = value),
-            previousLabel: 'Previous Question',
-            nextLabel: 'Next Question',
-            onPrevious: () {},
-            onNext: () {},
-          ),
-        ),
-        _componentBlock(
           title: 'Service Pills',
           fileName: 'service_pills.dart',
           child: InstaCareServicePills(
@@ -858,28 +879,6 @@ class _GalleryState extends State<Gallery> {
                     .showSnackBar(const SnackBar(content: Text('Confirmed')));
               }
             },
-          ),
-        ),
-        _sectionHeading('Cards'),
-        _componentBlock(
-          title: 'Checkbox Card',
-          fileName: 'checkbox_card.dart',
-          child: Column(
-            children: [
-              InstaCareCheckboxCard(
-                title: 'Card Title 1',
-                message: 'This is a small message text that describes the card content.',
-                isSelected: checkboxCard1,
-                onChanged: (value) => setState(() => checkboxCard1 = value),
-              ),
-              const SizedBox(height: 12),
-              InstaCareCheckboxCard(
-                title: 'Card Title 2',
-                message: 'Another card with a different message for demonstration.',
-                isSelected: checkboxCard2,
-                onChanged: (value) => setState(() => checkboxCard2 = value),
-              ),
-            ],
           ),
         ),
       ],
