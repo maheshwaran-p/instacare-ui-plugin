@@ -1,6 +1,6 @@
 name: instacare_components
 description: Instacare UI component library
-version: 1.0.5
+version: 1.0.6
 environment:
   sdk: '>=3.0.0 <4.0.0'
   flutter: ">=3.16.0"
