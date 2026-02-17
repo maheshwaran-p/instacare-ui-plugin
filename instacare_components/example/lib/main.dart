@@ -616,7 +616,7 @@ class _GalleryState extends State<Gallery> {
                   border: Border.all(color: AppColors.ivory3),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withOpacity(0.15),
+                      color: AppColors.gray6.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -640,7 +640,7 @@ class _GalleryState extends State<Gallery> {
                   border: Border.all(color: AppColors.ivory3),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withOpacity(0.15),
+                      color: AppColors.gray6.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -664,7 +664,7 @@ class _GalleryState extends State<Gallery> {
                   border: Border.all(color: AppColors.ivory3),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withOpacity(0.15),
+                      color: AppColors.gray6.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -879,6 +879,65 @@ class _GalleryState extends State<Gallery> {
                     .showSnackBar(const SnackBar(content: Text('Confirmed')));
               }
             },
+          ),
+        ),
+        _componentBlock(
+          title: 'Snackbar',
+          fileName: 'snackbar.dart',
+          child: Column(
+            children: [
+              InstaCareButton(
+                text: 'Show Success Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.success,
+                    title: 'Success',
+                    message: 'Your action was completed successfully!',
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              InstaCareButton(
+                text: 'Show Error Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.error,
+                    title: 'Error',
+                    message: 'Something went wrong. Please try again.',
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              InstaCareButton(
+                text: 'Show Info Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.info,
+                    title: 'Information',
+                    message: 'Here is some useful information for you.',
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              InstaCareButton(
+                text: 'Show Pending Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                    context: context,
+                    type: InstaCareSnackbarType.pending,
+                    title: 'Pending',
+                    message: 'Your request is being processed.',
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ],

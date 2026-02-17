@@ -48,7 +48,7 @@ class InstaCareStatusBadge extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: InstaCareTypography.sm.copyWith(
+        style: InstaCareTypography.r.copyWith(
           fontWeight: FontWeight.w600,
           color: AppColors.primary2,
         ),

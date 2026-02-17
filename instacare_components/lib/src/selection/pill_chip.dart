@@ -34,7 +34,7 @@ class InstaCarePillChip extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: InstaCareTypography.s.copyWith(
+          style: InstaCareTypography.r.copyWith(
             color: textColor,
             fontWeight: FontWeight.w600,
           ),

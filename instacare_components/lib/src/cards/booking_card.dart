@@ -61,7 +61,7 @@ class InstaCareBookingCard extends StatelessWidget {
                   patientName.isNotEmpty
                       ? patientName[0].toUpperCase()
                       : fallbackPatientInitial,
-                  style: InstaCareTypography.xs.copyWith(
+                  style: InstaCareTypography.r.copyWith(
                     color: AppColors.primary2,
                     fontWeight: FontWeight.w700,
                   ),
@@ -71,7 +71,7 @@ class InstaCareBookingCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   patientName,
-                  style: InstaCareTypography.m
+                  style: InstaCareTypography.r
                       .copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
@@ -87,14 +87,14 @@ class InstaCareBookingCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   '$bookingIdPrefix $bookingId',
-                  style: InstaCareTypography.s.copyWith(color: AppColors.gray4),
+                  style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
                 ),
               ),
               if (durationText != null)
                 Text(
                   durationText!,
                   style:
-                      InstaCareTypography.s.copyWith(color: AppColors.infoFg),
+                      InstaCareTypography.r.copyWith(color: AppColors.infoFg),
                 ),
             ],
           ),
@@ -107,7 +107,7 @@ class InstaCareBookingCard extends StatelessWidget {
             ),
             child: Text(
               '$category$categoryServiceSeparator$serviceName',
-              style: InstaCareTypography.s.copyWith(color: AppColors.gray2),
+              style: InstaCareTypography.r.copyWith(color: AppColors.gray2),
             ),
           ),
           const SizedBox(height: 8),
@@ -119,7 +119,7 @@ class InstaCareBookingCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   location,
-                  style: InstaCareTypography.s.copyWith(color: AppColors.gray4),
+                  style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
                 ),
               ),
               const SizedBox(width: 8),
@@ -128,7 +128,7 @@ class InstaCareBookingCard extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 dateTime,
-                style: InstaCareTypography.s.copyWith(color: AppColors.gray4),
+                style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
               ),
             ],
           ),

@@ -75,7 +75,7 @@ class InstaCareCheckboxCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     message,
-                    style: InstaCareTypography.s.copyWith(
+                    style: InstaCareTypography.r.copyWith(
                       color: AppColors.gray4,
                     ),
                   ),

@@ -48,7 +48,7 @@ class InstaCareCardListView extends StatelessWidget {
                   children: [
                     Text(
                       items[i].title,
-                      style: InstaCareTypography.m.copyWith(
+                      style: InstaCareTypography.r.copyWith(
                         color: AppColors.gray2,
                         fontWeight: FontWeight.w600,
                       ),

@@ -19,7 +19,7 @@ class InstaCareHoursSummaryPill extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: InstaCareTypography.s.copyWith(
+        style: InstaCareTypography.r.copyWith(
           color: Theme.of(context).colorScheme.primary,
           fontWeight: FontWeight.w600,
         ),
