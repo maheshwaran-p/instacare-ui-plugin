@@ -509,6 +509,31 @@ class _GalleryState extends State<Gallery> {
             ],
           ),
         ),
+        _componentBlock(
+          title: 'Attempts Card',
+          fileName: 'attempts_card.dart',
+          child: const Column(
+            children: [
+              InstaCareAttemptsCard(
+                totalAttempts: 3,
+                usedAttempts: 1,
+                hasPassed: false,
+              ),
+              SizedBox(height: 12),
+              InstaCareAttemptsCard(
+                totalAttempts: 3,
+                usedAttempts: 3,
+                hasPassed: false,
+              ),
+              SizedBox(height: 12),
+              InstaCareAttemptsCard(
+                totalAttempts: 3,
+                usedAttempts: 2,
+                hasPassed: true,
+              ),
+            ],
+          ),
+        ),
         _sectionHeading('Badges'),
         _componentBlock(
           title: 'Appointment Status Pills',
@@ -730,7 +755,7 @@ class _GalleryState extends State<Gallery> {
                 fillColor: AppColors.ivory7,
                 borderColor: AppColors.primary3,
                 focusedBorderColor: AppColors.primary2,
-                hintColor: AppColors.gray2,
+                hintColor: AppColors.gray6,
               ),
               SizedBox(height: 12),
               InstaCareTextField(

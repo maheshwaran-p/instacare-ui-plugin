@@ -117,7 +117,7 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
         const inactive = AppColors.gray7;
 
         return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             for (int index = 0; index < widget.items.length; index++) ...[
               InkWell(
@@ -143,9 +143,8 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
               ),
               if (index < widget.items.length - 1)
                 Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 6),
-                    height: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: _AnimatedConnector(
                       animation: _animations[index],
                       activeColor: primary,
@@ -180,45 +179,34 @@ class _AnimatedConnector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // Background (inactive) line
-        Container(
-          height: 2,
-          color: inactiveColor,
-        ),
-        // Animated (active) line
-        AnimatedBuilder(
-          animation: animation,
-          builder: (context, child) {
-            return Align(
-              alignment: Alignment.centerLeft,
-              child: FractionallySizedBox(
-                widthFactor: animation.value,
-                child: Container(
-                  height: 2,
-                  color: activeColor,
-                ),
-              ),
-            );
-          },
-        ),
-        // Arrow
-        if (showArrow)
+    return SizedBox(
+      height: 2,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Background (inactive) line
+          Container(
+            height: 2,
+            color: inactiveColor,
+          ),
+          // Animated (active) line
           AnimatedBuilder(
             animation: animation,
             builder: (context, child) {
-              return Positioned(
-                right: 0,
-                child: Icon(
-                  Icons.arrow_forward,
-                  size: 12,
-                  color: isCompleted ? activeColor : inactiveColor,
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: FractionallySizedBox(
+                  widthFactor: animation.value,
+                  child: Container(
+                    height: 2,
+                    color: activeColor,
+                  ),
                 ),
               );
             },
           ),
-      ],
+        ],
+      ),
     );
   }
 }
