@@ -755,7 +755,7 @@ class _GalleryState extends State<Gallery> {
                 fillColor: AppColors.ivory7,
                 borderColor: AppColors.primary3,
                 focusedBorderColor: AppColors.primary2,
-                hintColor: AppColors.gray2,
+                hintColor: AppColors.gray6,
               ),
               SizedBox(height: 12),
               InstaCareTextField(
