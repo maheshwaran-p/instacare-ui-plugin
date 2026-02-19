@@ -9,7 +9,7 @@ class InstaCareHeading {
   static Widget topHeaderTitle(String text) {
     return Text(
       text,
-      style: InstaCareTypography.h1.copyWith(
+      style: InstaCareTypography.h2.copyWith(
         fontWeight: FontWeight.w600,
         color: AppColors.gray2,
       ),
@@ -36,7 +36,7 @@ class InstaCareHeading {
         const SizedBox(width: 12),
         Text(
           text,
-          style: InstaCareTypography.h2.copyWith(
+          style: InstaCareTypography.h3.copyWith(
             fontWeight: FontWeight.w600,
             color: AppColors.gray1,
           ),
