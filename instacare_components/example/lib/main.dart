@@ -84,6 +84,77 @@ class _GalleryState extends State<Gallery> {
   String selectedRadio = 'Yes';
   final Set<String> selectedFilters = <String>{'Wound Dressing'};
   Set<String> selectedMultiDropdown = <String>{'check box 2'};
+  bool showRenderedMarkdown = false;
+  static const String _markdownSample = '''
+# H1 – Design Fundamentals
+
+## H2 – Visual Thinking
+
+### H3 – Layout & Structure
+
+#### H4 – Consistency
+
+##### H5 – Details
+
+###### H6 – Precision
+
+---
+
+<p style="color:#16A34A">Green paragraph: Good design balances <b>form</b> and <i>function</i> while staying simple.</p>
+
+---
+
+## Text Styling
+
+- **Bold text**
+- *Italic text*
+- ***Bold and Italic***
+- Simple text
+- ~~Strikethrough~~
+- Inline code: `padding: 16px`
+
+---
+
+## Lists
+
+### Unordered List
+- Balance
+- Contrast
+- Alignment
+
+### Ordered List
+1. Research
+2. Design
+3. Build
+
+---
+
+## Table (4 × 4)
+
+| Item | Purpose | Tool | Output |
+|------|---------|------|--------|
+| Color | Branding | Figma | UI |
+| Font | Readability | CSS | Text |
+| Grid | Layout | Flexbox | Structure |
+| Icon | Meaning | SVG | Visual |
+
+---
+
+## Blockquote
+
+> Good design is obvious.  
+> Great design is transparent.
+
+---
+
+## Code Block
+
+```css
+.button {
+  padding: 16px;
+  border-radius: 8px;
+}
+''';
   final List<_BookingCardDemoState> _bookingCardStates =
       const <_BookingCardDemoState>[
     _BookingCardDemoState(
@@ -391,6 +462,74 @@ class _GalleryState extends State<Gallery> {
     );
   }
 
+  Widget _markdownTogglePreview() {
+    final toggleText =
+        showRenderedMarkdown ? 'Show Raw Markdown' : 'Show Rendered Markdown';
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InstaCareButton.secondary(
+          text: toggleText,
+          onPressed: () => setState(
+            () => showRenderedMarkdown = !showRenderedMarkdown,
+          ),
+        ),
+        const SizedBox(height: 10),
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 340),
+          switchInCurve: Curves.easeOutCubic,
+          switchOutCurve: Curves.easeInCubic,
+          transitionBuilder: (child, animation) {
+            final tween = Tween<Offset>(
+              begin: const Offset(0.22, 0),
+              end: Offset.zero,
+            );
+            return ClipRect(
+              child: SlideTransition(
+                position: tween.animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            );
+          },
+          child: showRenderedMarkdown
+              ? Container(
+                  key: const ValueKey<String>('rendered'),
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: AppColors.baseWhite,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppColors.primary8),
+                  ),
+                  child: const InstaCareMarkdown(data: _markdownSample),
+                )
+              : Container(
+                  key: const ValueKey<String>('raw'),
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: AppColors.baseWhite,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppColors.primary8),
+                  ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: SelectableText(
+                      _markdownSample,
+                      style: InstaCareTypography.s.copyWith(
+                        color: AppColors.gray2,
+                        fontFamily: 'monospace',
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildPartnerPage() {
     final bookingState = _bookingCardStates[
         bookingCardStateIndex.clamp(0, _bookingCardStates.length - 1)];
@@ -495,14 +634,16 @@ class _GalleryState extends State<Gallery> {
             children: [
               InstaCareCheckboxCard(
                 title: 'Card Title 1',
-                message: 'This is a small message text that describes the card content.',
+                message:
+                    'This is a small message text that describes the card content.',
                 isSelected: checkboxCard1,
                 onChanged: (value) => setState(() => checkboxCard1 = value),
               ),
               const SizedBox(height: 12),
               InstaCareCheckboxCard(
                 title: 'Card Title 2',
-                message: 'Another card with a different message for demonstration.',
+                message:
+                    'Another card with a different message for demonstration.',
                 isSelected: checkboxCard2,
                 onChanged: (value) => setState(() => checkboxCard2 = value),
               ),
@@ -708,6 +849,11 @@ class _GalleryState extends State<Gallery> {
               ),
             ],
           ),
+        ),
+        _componentBlock(
+          title: 'Markdown Render Widget',
+          fileName: 'common/markdown.dart',
+          child: _markdownTogglePreview(),
         ),
         _sectionHeading('Buttons'),
         _componentBlock(
