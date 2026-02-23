@@ -23,6 +23,7 @@ export 'src/dialogs/confirmation_dialog.dart';
 export 'src/dialogs/snackbar.dart';
 export 'src/feedback/message_box.dart';
 export 'src/feedback/progress_bar.dart';
+export 'src/animation/markdown.dart';
 export 'src/navigation/bottom_app_nav_bar.dart';
 export 'src/navigation/top_header_title.dart';
 export 'src/pills/hours_summary_pill.dart';

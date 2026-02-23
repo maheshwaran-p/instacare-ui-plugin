@@ -134,7 +134,7 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
                   child: Text(
                     '${index + 1}',
                     style: InstaCareTypography.sm.copyWith(
-                      color: AppColors.baseWhite,
+                      color:AppColors.ivory7 ,
                       fontSize: stepNumberSize,
                       fontWeight: FontWeight.w600,
                     ),
