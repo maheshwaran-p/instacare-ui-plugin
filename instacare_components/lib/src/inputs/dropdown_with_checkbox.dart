@@ -48,9 +48,26 @@ class _ICDropdownWithCheckboxState<T>
   Widget build(BuildContext context) {
     final selected = widget.selectedItems;
 
+    // 🔹 Build selected labels
+    final selectedLabels = selected
+        .map((e) => widget.itemLabel?.call(e) ?? e.toString())
+        .toList();
+
+    // 🔹 Dropdown display text logic
+    final String displayText;
+    if (selectedLabels.isEmpty) {
+      displayText = widget.hint ?? '';
+    } else if (selectedLabels.length <= 2) {
+      displayText = selectedLabels.join(', ');
+    } else {
+      displayText =
+          '${selectedLabels.take(2).join(', ')} +${selectedLabels.length - 2} more';
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Label
         if (widget.label != null) ...[
           Text(
             widget.label!,
@@ -61,6 +78,8 @@ class _ICDropdownWithCheckboxState<T>
           ),
           const SizedBox(height: 8),
         ],
+
+        // Dropdown header
         InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: () => setState(() => _expanded = !_expanded),
@@ -95,19 +114,23 @@ class _ICDropdownWithCheckboxState<T>
               ),
             ),
             child: Text(
-              widget.hint ?? '',
+              displayText,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: InstaCareTypography.r.copyWith(
-                color: AppColors.gray6,
+                color: selectedLabels.isNotEmpty
+                    ? AppColors.gray2
+                    : AppColors.gray6,
               ),
             ),
           ),
         ),
+
+        // Dropdown list
         if (_expanded) ...[
           const SizedBox(height: 8),
           Container(
-            constraints: const BoxConstraints(maxHeight: 220.0),
+            constraints: const BoxConstraints(maxHeight: 220),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: AppColors.primary3),
@@ -117,7 +140,6 @@ class _ICDropdownWithCheckboxState<T>
               controller: _scrollController,
               child: ListView.builder(
                 controller: _scrollController,
-                shrinkWrap: true,
                 itemCount: widget.items.length,
                 itemBuilder: (context, index) {
                   final item = widget.items[index];
@@ -126,20 +148,19 @@ class _ICDropdownWithCheckboxState<T>
                       widget.itemLabel?.call(item) ?? item.toString();
 
                   return Material(
-                    color: isChecked ? AppColors.gray8 : Colors.transparent,
+                    color:
+                        isChecked ? AppColors.gray8 : Colors.transparent,
                     child: InkWell(
                       onTap: () {
                         final next = Set<T>.from(selected);
-                        if (isChecked) {
-                          next.remove(item);
-                        } else {
-                          next.add(item);
-                        }
+                        isChecked ? next.remove(item) : next.add(item);
                         widget.onChanged(next);
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 10),
+                          horizontal: 12,
+                          vertical: 10,
+                        ),
                         child: Row(
                           children: [
                             SizedBox(
@@ -149,19 +170,20 @@ class _ICDropdownWithCheckboxState<T>
                                 value: isChecked,
                                 onChanged: (_) {
                                   final next = Set<T>.from(selected);
-                                  if (isChecked) {
-                                    next.remove(item);
-                                  } else {
-                                    next.add(item);
-                                  }
+                                  isChecked
+                                      ? next.remove(item)
+                                      : next.add(item);
                                   widget.onChanged(next);
                                 },
                                 side: const BorderSide(
-                                    color: AppColors.primary3),
+                                  color: AppColors.primary3,
+                                ),
                                 materialTapTargetSize:
                                     MaterialTapTargetSize.shrinkWrap,
                                 visualDensity: const VisualDensity(
-                                    horizontal: -4, vertical: -4),
+                                  horizontal: -4,
+                                  vertical: -4,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 10),
