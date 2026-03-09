@@ -81,6 +81,7 @@ class _GalleryState extends State<Gallery> {
   bool checkOne = false;
   bool checkboxCard1 = false;
   bool checkboxCard2 = true;
+  bool consentChecked = false;
   String selectedRadio = 'Yes';
   final Set<String> selectedFilters = <String>{'Wound Dressing'};
   Set<String> selectedMultiDropdown = <String>{'check box 2'};
@@ -733,11 +734,116 @@ class _GalleryState extends State<Gallery> {
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       children: [
         _sectionHeading('Patient Components'),
+        _sectionHeading('Navigation'),
         _componentBlock(
-          title: 'No Components',
-          fileName: 'partner_only',
-          child: const Text(
-            'not yet ready ...',
+          title: 'Welcome Header',
+          fileName: 'welcome_header.dart',
+          child: const InstaCareWelcomeHeader(
+            userName: 'Anjana',
+            searchHint: 'What care do you need today?',
+          ),
+        ),
+        _componentBlock(
+          title: 'Bottom Nav Bar (Patient)',
+          fileName: 'bottom_app_nav_bar.dart',
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: InstaCareBottomAppNavBar(
+              currentIndex: currentNavIndex,
+              onTap: (index) => setState(() => currentNavIndex = index),
+              backgroundColor: AppColors.primary9,
+              selectedItemColor: AppColors.primary2,
+              unselectedItemColor: AppColors.primary6,
+              topBorderColor: AppColors.primary2,
+              showShadow: true,
+              items: const [
+                InstaCareBottomNavItem(
+                    icon: Icons.home_outlined, label: 'Home'),
+                InstaCareBottomNavItem(
+                    icon: Icons.grid_view_outlined, label: 'Services'),
+                InstaCareBottomNavItem(
+                    icon: Icons.headset_mic_outlined, label: 'Support'),
+                InstaCareBottomNavItem(
+                    icon: Icons.person_outline, label: 'Profile'),
+              ],
+            ),
+          ),
+        ),
+        _sectionHeading('Inputs'),
+        _componentBlock(
+          title: 'Service Search Bar',
+          fileName: 'search_bar.dart',
+          child: const InstaCareSearchBar(
+            hint: 'What service(s) do you need today?',
+          ),
+        ),
+        _componentBlock(
+          title: 'Title with Back Button',
+          fileName: 'theme/heading.dart',
+          child: InstaCareHeading.titleWithBackButton(
+            text: 'Title',
+            onBackPressed: () {},
+          ),
+        ),
+        _componentBlock(
+          title: 'Consent Checkbox',
+          fileName: 'consent_checkbox.dart',
+          child: InstaCareConsentCheckbox(
+            value: consentChecked,
+            onChanged: (v) => setState(() => consentChecked = v ?? false),
+            onLinkTap: () {},
+          ),
+        ),
+        _sectionHeading('Badges & Status'),
+        _componentBlock(
+          title: 'Status Badge',
+          fileName: 'status_badge.dart',
+          child: const InstaCareStatusBadge(
+            label: 'Status',
+            type: InstaCareStatusBadgeType.custom,
+          ),
+        ),
+        _componentBlock(
+          title: 'OTP Input',
+          fileName: 'otp_input.dart',
+          child: InstaCareOtpInput(
+            length: 4,
+            onChanged: (value) {},
+            onCompleted: (value) {},
+          ),
+        ),
+        _sectionHeading('Cards'),
+        _componentBlock(
+          title: 'Patient Booking Card',
+          fileName: 'patient_booking_card.dart',
+          child: const InstaCarePatientBookingCard(
+            serviceName: 'Initial Physiotherapy Assessment',
+            dateTime: 'March 17, 2026 | 10:30 A.M',
+            patientLabel: 'Patient',
+            partnerLabel: 'Partner',
+            partnerName: 'Unassigned',
+          ),
+        ),
+        _componentBlock(
+          title: 'Cancel Booking (Danger Button)',
+          fileName: 'danger_button.dart',
+          child: InstaCareDangerButton(
+            text: 'Cancel this Booking',
+            fullWidth: true,
+            onPressed: () {},
+          ),
+        ),
+        _componentBlock(
+          title: 'Service Detail Card',
+          fileName: 'service_detail_card.dart',
+          child: InstaCareServiceDetailCard(
+            serviceName: 'Vital Signs Monitoring',
+            duration: '30 Mins',
+            price: '\u20B9500',
+            description:
+                'Basic measurements that tell how your body is functioning.',
+            onMoreDetails: () {},
+            onBookNow: () {},
           ),
         ),
       ],

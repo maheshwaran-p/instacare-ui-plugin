@@ -40,3 +40,8 @@ export 'src/theme/typography.dart';
 export 'src/theme/heading.dart';
 export 'src/types/button_size.dart';
 export 'src/upload/file_upload_tile.dart';
+export 'src/navigation/welcome_header.dart';
+export 'src/inputs/consent_checkbox.dart';
+export 'src/cards/patient_booking_card.dart';
+export 'src/buttons/danger_button.dart';
+export 'src/cards/service_detail_card.dart';
