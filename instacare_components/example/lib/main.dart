@@ -734,6 +734,42 @@ class _GalleryState extends State<Gallery> {
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       children: [
         _sectionHeading('Patient Components'),
+        _sectionHeading('Services'),
+        _componentBlock(
+          title: 'Service Category Grid',
+          fileName: 'service_category_grid.dart',
+          child: InstaCareServiceCategoryGrid(
+            categories: const [
+              InstaCareServiceCategory(
+                name: 'Nursing',
+                description: 'Compassionate care',
+                price: 'from \u20B9499',
+              ),
+              InstaCareServiceCategory(
+                name: 'Physiotherapy',
+                description: 'Professional care',
+                price: 'from \u20B9599',
+              ),
+              InstaCareServiceCategory(
+                name: 'Caretaker',
+                description: 'Verified care',
+                price: 'from \u20B9699',
+              ),
+              InstaCareServiceCategory(
+                name: 'Live-in Care',
+                description: 'Assured care',
+                price: 'from \u20B9899',
+              ),
+            ],
+            onCategoryTap: (category) {
+              showServiceCategoryDialog(
+                context: context,
+                category: category,
+                onNavigate: () {},
+              );
+            },
+          ),
+        ),
         _sectionHeading('Navigation'),
         _componentBlock(
           title: 'Welcome Header',
@@ -814,14 +850,11 @@ class _GalleryState extends State<Gallery> {
         ),
         _sectionHeading('Cards'),
         _componentBlock(
-          title: 'Patient Booking Card',
-          fileName: 'patient_booking_card.dart',
-          child: const InstaCarePatientBookingCard(
-            serviceName: 'Initial Physiotherapy Assessment',
-            dateTime: 'March 17, 2026 | 10:30 A.M',
-            patientLabel: 'Patient',
-            partnerLabel: 'Partner',
-            partnerName: 'Unassigned',
+          title: 'Patient Partner Connect',
+          fileName: 'patient_partner_connect.dart',
+          child: const InstaCarePatientPartnerConnect(
+            patientName: 'Anjana',
+            partnerName: 'Keerthana',
           ),
         ),
         _componentBlock(
@@ -834,17 +867,44 @@ class _GalleryState extends State<Gallery> {
           ),
         ),
         _componentBlock(
-          title: 'Service Detail Card',
-          fileName: 'service_detail_card.dart',
-          child: InstaCareServiceDetailCard(
-            serviceName: 'Vital Signs Monitoring',
-            duration: '30 Mins',
-            price: '\u20B9500',
-            description:
-                'Basic measurements that tell how your body is functioning.',
-            onMoreDetails: () {},
-            onBookNow: () {},
+          title: 'Service List Tile',
+          fileName: 'service_list_tile.dart',
+          child: InstaCareServiceListTile(
+            items: const [
+              InstaCareServiceListItem(
+                name: 'Vital Signs Monitoring',
+                duration: '30 - 45 mins',
+                price: '\u20B9500',
+                description:
+                    'Monitoring essential body parameters such as blood pressure, pulse, and oxygen levels.',
+                imageAsset: InstaCareServiceAssets.nursing,
+                isNew: true,
+              ),
+              InstaCareServiceListItem(
+                name: 'Wound Dressing (Minor)',
+                duration: '30 - 45 mins',
+                price: '\u20B9500',
+                description:
+                    'Basic cleaning and dressing of small cuts, abrasions, or minor wounds.',
+                imageAsset: InstaCareServiceAssets.caretaker,
+              ),
+              InstaCareServiceListItem(
+                name: 'Wound Dressing (Major)',
+                duration: '30 - 45 mins',
+                price: '\u20B9500',
+                description:
+                    'Sterile dressing and care for large, deep, or post-surgical wounds.',
+                imageAsset: InstaCareServiceAssets.physiotherapy,
+              ),
+            ],
+            onItemTap: (item) {},
           ),
+        ),
+        _sectionHeading('Signature'),
+        _componentBlock(
+          title: 'Signature Pad',
+          fileName: 'signature_pad.dart',
+          child: const InstaCareSignaturePad(),
         ),
       ],
     );
