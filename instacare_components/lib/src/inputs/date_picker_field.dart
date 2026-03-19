@@ -30,7 +30,7 @@ class InstaCareDatePickerField extends StatelessWidget {
             label!,
             style: InstaCareTypography.r.copyWith(
               fontWeight: FontWeight.w600,
-              color: AppColors.gray2,
+              color: AppColors.gray200,
             ),
           ),
           const SizedBox(height: 8),
@@ -52,10 +52,10 @@ class InstaCareDatePickerField extends StatelessWidget {
           child: InputDecorator(
             decoration: InputDecoration(
               filled: true,
-              fillColor: AppColors.ivory7,
+              fillColor: AppColors.ivory700,
               suffixIcon: const Icon(
                 Icons.calendar_today_outlined,
-                color: AppColors.gray4,
+                color: AppColors.gray400,
               ),
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -63,16 +63,16 @@ class InstaCareDatePickerField extends StatelessWidget {
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.primary3),
+                borderSide: const BorderSide(color: AppColors.primary300),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.primary3),
+                borderSide: const BorderSide(color: AppColors.primary300),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(
-                  color: AppColors.primary1,
+                  color: AppColors.primary100,
                   width: 2,
                 ),
               ),
@@ -80,7 +80,7 @@ class InstaCareDatePickerField extends StatelessWidget {
             child: Text(
               text,
               style: InstaCareTypography.r.copyWith(
-                color: value == null ? AppColors.gray6 : AppColors.gray2,
+                color: value == null ? AppColors.gray600 : AppColors.gray200,
               ),
             ),
           ),

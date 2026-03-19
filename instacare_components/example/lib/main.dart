@@ -241,7 +241,7 @@ class _GalleryState extends State<Gallery> {
           decoration: BoxDecoration(
             color: AppColors.baseWhite,
             borderRadius: BorderRadius.circular(999),
-            border: Border.all(color: AppColors.primary8),
+            border: Border.all(color: AppColors.primary800),
           ),
           child: Stack(
             children: [
@@ -285,7 +285,7 @@ class _GalleryState extends State<Gallery> {
             label,
             style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: active ? AppColors.baseWhite : AppColors.gray3,
+              color: active ? AppColors.baseWhite : AppColors.gray300,
             ),
           ),
         ),
@@ -301,7 +301,7 @@ class _GalleryState extends State<Gallery> {
         style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w700,
-          color: AppColors.gray2,
+          color: AppColors.gray200,
         ),
       ),
     );
@@ -322,7 +322,7 @@ class _GalleryState extends State<Gallery> {
               child: Text(
                 '${index + 1}',
                 style: InstaCareTypography.m.copyWith(
-                  color: isSelected ? AppColors.primary2 : AppColors.gray4,
+                  color: isSelected ? AppColors.primary200 : AppColors.gray400,
                   fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 ),
               ),
@@ -342,9 +342,9 @@ class _GalleryState extends State<Gallery> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: AppColors.ivory7,
+        color: AppColors.ivory700,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.primary9, width: 1.4),
+        border: Border.all(color: AppColors.primary900, width: 1.4),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -354,7 +354,7 @@ class _GalleryState extends State<Gallery> {
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w700,
-              color: AppColors.gray2,
+              color: AppColors.gray200,
             ),
           ),
           const SizedBox(height: 2),
@@ -363,7 +363,7 @@ class _GalleryState extends State<Gallery> {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
-              color: AppColors.gray5,
+              color: AppColors.gray500,
             ),
           ),
           const SizedBox(height: 12),
@@ -440,10 +440,10 @@ class _GalleryState extends State<Gallery> {
         child: InstaCareBottomAppNavBar(
           currentIndex: currentNavIndex,
           onTap: (index) => setState(() => currentNavIndex = index),
-          backgroundColor: AppColors.ivory7,
-          selectedItemColor: AppColors.primary2,
-          unselectedItemColor: AppColors.primary6,
-          topBorderColor: AppColors.primary2,
+          backgroundColor: AppColors.ivory700,
+          selectedItemColor: AppColors.primary200,
+          unselectedItemColor: AppColors.primary600,
+          topBorderColor: AppColors.primary200,
           showShadow: true,
           items: const [
             InstaCareBottomNavItem(icon: Icons.home_outlined, label: 'Home'),
@@ -501,7 +501,7 @@ class _GalleryState extends State<Gallery> {
                   decoration: BoxDecoration(
                     color: AppColors.baseWhite,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: AppColors.primary8),
+                    border: Border.all(color: AppColors.primary800),
                   ),
                   child: const InstaCareMarkdown(data: _markdownSample),
                 )
@@ -512,14 +512,14 @@ class _GalleryState extends State<Gallery> {
                   decoration: BoxDecoration(
                     color: AppColors.baseWhite,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: AppColors.primary8),
+                    border: Border.all(color: AppColors.primary800),
                   ),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: SelectableText(
                       _markdownSample,
                       style: InstaCareTypography.s.copyWith(
-                        color: AppColors.gray2,
+                        color: AppColors.gray200,
                         fontFamily: 'monospace',
                         height: 1.5,
                       ),
@@ -585,7 +585,7 @@ class _GalleryState extends State<Gallery> {
             dateTime: bookingState.dateTime,
             durationText: bookingState.durationText,
             status: bookingState.status,
-            backgroundColor: AppColors.ivory7,
+            backgroundColor: AppColors.ivory700,
             bookingIdPrefix: 'Booking ID:',
             inTravelStatusLabel: 'In-Travel',
             fallbackPatientInitial: 'P',
@@ -601,7 +601,7 @@ class _GalleryState extends State<Gallery> {
             amount: 'Rs 0',
             redeemButtonText: 'Redeem',
             onRedeem: () {},
-            backgroundColor: AppColors.ivory7,
+            backgroundColor: AppColors.ivory700,
           ),
         ),
         _componentBlock(
@@ -611,7 +611,7 @@ class _GalleryState extends State<Gallery> {
             items: [
               InstaCareCardListItem(
                 card: InstaCareCard(
-                  backgroundColor: AppColors.ivory7,
+                  backgroundColor: AppColors.ivory700,
                   child: Center(child: Text('Card')),
                 ),
                 title: 'Wound Dressing',
@@ -619,7 +619,7 @@ class _GalleryState extends State<Gallery> {
               ),
               InstaCareCardListItem(
                 card: InstaCareCard(
-                  backgroundColor: AppColors.ivory7,
+                  backgroundColor: AppColors.ivory700,
                   child: Center(child: Text('Card')),
                 ),
                 title: 'Nursing Visit',
@@ -791,10 +791,10 @@ class _GalleryState extends State<Gallery> {
             child: InstaCareBottomAppNavBar(
               currentIndex: currentNavIndex,
               onTap: (index) => setState(() => currentNavIndex = index),
-              backgroundColor: AppColors.primary9,
-              selectedItemColor: AppColors.primary2,
-              unselectedItemColor: AppColors.primary6,
-              topBorderColor: AppColors.primary2,
+              backgroundColor: AppColors.primary900,
+              selectedItemColor: AppColors.primary200,
+              unselectedItemColor: AppColors.primary600,
+              topBorderColor: AppColors.primary200,
               showShadow: true,
               items: const [
                 InstaCareBottomNavItem(
@@ -944,12 +944,12 @@ class _GalleryState extends State<Gallery> {
             items: [
               Container(
                 decoration: BoxDecoration(
-                  color: AppColors.primary9,
+                  color: AppColors.primary900,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.ivory3),
+                  border: Border.all(color: AppColors.ivory300),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withValues(alpha: 0.15),
+                      color: AppColors.gray600.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -961,19 +961,19 @@ class _GalleryState extends State<Gallery> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.gray2,
+                      color: AppColors.gray200,
                     ),
                   ),
                 ),
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: AppColors.ivory7,
+                  color: AppColors.ivory700,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.ivory3),
+                  border: Border.all(color: AppColors.ivory300),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withValues(alpha: 0.15),
+                      color: AppColors.gray600.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -985,19 +985,19 @@ class _GalleryState extends State<Gallery> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.gray2,
+                      color: AppColors.gray200,
                     ),
                   ),
                 ),
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: AppColors.primary8,
+                  color: AppColors.primary800,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.ivory3),
+                  border: Border.all(color: AppColors.ivory300),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.gray6.withValues(alpha: 0.15),
+                      color: AppColors.gray600.withValues(alpha: 0.15),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -1009,7 +1009,7 @@ class _GalleryState extends State<Gallery> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.gray2,
+                      color: AppColors.gray200,
                     ),
                   ),
                 ),
@@ -1065,10 +1065,10 @@ class _GalleryState extends State<Gallery> {
               InstaCareTextField(
                 label: 'Text Input',
                 hint: 'placeholder',
-                fillColor: AppColors.ivory7,
-                borderColor: AppColors.primary3,
-                focusedBorderColor: AppColors.primary2,
-                hintColor: AppColors.gray6,
+                fillColor: AppColors.ivory700,
+                borderColor: AppColors.primary300,
+                focusedBorderColor: AppColors.primary200,
+                hintColor: AppColors.gray600,
               ),
               SizedBox(height: 12),
               InstaCareTextField(
@@ -1292,7 +1292,7 @@ class _GalleryState extends State<Gallery> {
         margin: const EdgeInsets.all(12),
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
-          color: AppColors.ivory7,
+          color: AppColors.ivory700,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Container(

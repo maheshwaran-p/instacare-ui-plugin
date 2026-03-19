@@ -75,7 +75,7 @@ class _ServiceCategoryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: AppColors.gray7.withValues(alpha: 0.3),
+            color: AppColors.gray700.withValues(alpha: 0.3),
             blurRadius: 6,
             offset: const Offset(0, 2),
           ),
@@ -212,7 +212,7 @@ Future<void> showServiceCategoryDialog({
             Text(
               category.name,
               style: InstaCareTypography.h2.copyWith(
-                color: AppColors.gray2,
+                color: AppColors.gray200,
                 fontWeight: FontWeight.w600,
               ),
               textAlign: TextAlign.center,
@@ -221,7 +221,7 @@ Future<void> showServiceCategoryDialog({
             Text(
               category.description,
               style: InstaCareTypography.r.copyWith(
-                color: AppColors.gray4,
+                color: AppColors.gray400,
               ),
               textAlign: TextAlign.center,
             ),
@@ -229,7 +229,7 @@ Future<void> showServiceCategoryDialog({
             Text(
               category.price,
               style: InstaCareTypography.m.copyWith(
-                color: AppColors.primary3,
+                color: AppColors.primary300,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -242,7 +242,7 @@ Future<void> showServiceCategoryDialog({
                   onNavigate?.call();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary3,
+                  backgroundColor: AppColors.primary300,
                   foregroundColor: AppColors.baseWhite,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),

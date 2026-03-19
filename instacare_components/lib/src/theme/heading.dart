@@ -11,7 +11,7 @@ class InstaCareHeading {
       text,
       style: InstaCareTypography.h2.copyWith(
         fontWeight: FontWeight.w600,
-        color: AppColors.gray2,
+        color: AppColors.gray200,
       ),
     );
   }
@@ -26,7 +26,7 @@ class InstaCareHeading {
         IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: AppColors.gray1,
+            color: AppColors.gray100,
             size: 28,
           ),
           onPressed: onBackPressed,
@@ -38,7 +38,7 @@ class InstaCareHeading {
           text,
           style: InstaCareTypography.h3.copyWith(
             fontWeight: FontWeight.w600,
-            color: AppColors.gray1,
+            color: AppColors.gray100,
           ),
         ),
       ],

@@ -137,7 +137,7 @@ class _ICDropdownWithCheckboxState<T>
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: AppColors.primary3),
+                    border: Border.all(color: AppColors.primary300),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
@@ -165,7 +165,7 @@ class _ICDropdownWithCheckboxState<T>
                             },
                             child: Container(
                               color: isChecked
-                                  ? AppColors.gray8
+                                  ? AppColors.gray800
                                   : Colors.transparent,
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 12,
@@ -187,7 +187,7 @@ class _ICDropdownWithCheckboxState<T>
                                         widget.onChanged(next);
                                       },
                                       side: const BorderSide(
-                                        color: AppColors.primary3,
+                                        color: AppColors.primary300,
                                       ),
                                       materialTapTargetSize:
                                           MaterialTapTargetSize
@@ -205,7 +205,7 @@ class _ICDropdownWithCheckboxState<T>
                                       label,
                                       style: InstaCareTypography.r
                                           .copyWith(
-                                        color: AppColors.gray2,
+                                        color: AppColors.gray200,
                                       ),
                                     ),
                                   ),
@@ -252,7 +252,7 @@ class _ICDropdownWithCheckboxState<T>
             widget.label!,
             style: InstaCareTypography.r.copyWith(
               fontWeight: FontWeight.w600,
-              color: AppColors.gray2,
+              color: AppColors.gray200,
             ),
           ),
           const SizedBox(height: 8),
@@ -266,7 +266,7 @@ class _ICDropdownWithCheckboxState<T>
             child: InputDecorator(
               decoration: InputDecoration(
                 filled: true,
-                fillColor: AppColors.ivory7,
+                fillColor: AppColors.ivory700,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 14,
@@ -275,20 +275,20 @@ class _ICDropdownWithCheckboxState<T>
                   _expanded
                       ? Icons.keyboard_arrow_up
                       : Icons.keyboard_arrow_down,
-                  color: AppColors.gray4,
+                  color: AppColors.gray400,
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(color: AppColors.primary3),
+                  borderSide: const BorderSide(color: AppColors.primary300),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(color: AppColors.primary3),
+                  borderSide: const BorderSide(color: AppColors.primary300),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(
-                    color: AppColors.primary1,
+                    color: AppColors.primary100,
                     width: 2,
                   ),
                 ),
@@ -299,8 +299,8 @@ class _ICDropdownWithCheckboxState<T>
                 overflow: TextOverflow.ellipsis,
                 style: InstaCareTypography.r.copyWith(
                   color: selectedLabels.isNotEmpty
-                      ? AppColors.gray2
-                      : AppColors.gray6,
+                      ? AppColors.gray200
+                      : AppColors.gray600,
                 ),
               ),
             ),

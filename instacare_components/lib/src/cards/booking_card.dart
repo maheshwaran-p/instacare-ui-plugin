@@ -56,13 +56,13 @@ class InstaCareBookingCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 12,
-                backgroundColor: AppColors.secondary7,
+                backgroundColor: AppColors.secondary700,
                 child: Text(
                   patientName.isNotEmpty
                       ? patientName[0].toUpperCase()
                       : fallbackPatientInitial,
                   style: InstaCareTypography.r.copyWith(
-                    color: AppColors.primary2,
+                    color: AppColors.primary200,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -87,7 +87,7 @@ class InstaCareBookingCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   '$bookingIdPrefix $bookingId',
-                  style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
+                  style: InstaCareTypography.r.copyWith(color: AppColors.gray400),
                 ),
               ),
               if (durationText != null)
@@ -102,33 +102,33 @@ class InstaCareBookingCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              color: AppColors.gray8,
+              color: AppColors.gray800,
               borderRadius: BorderRadius.circular(999),
             ),
             child: Text(
               '$category$categoryServiceSeparator$serviceName',
-              style: InstaCareTypography.r.copyWith(color: AppColors.gray2),
+              style: InstaCareTypography.r.copyWith(color: AppColors.gray200),
             ),
           ),
           const SizedBox(height: 8),
           Row(
             children: [
               const Icon(Icons.location_on_outlined,
-                  size: 14, color: AppColors.gray5),
+                  size: 14, color: AppColors.gray500),
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
                   location,
-                  style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
+                  style: InstaCareTypography.r.copyWith(color: AppColors.gray400),
                 ),
               ),
               const SizedBox(width: 8),
               const Icon(Icons.calendar_today_outlined,
-                  size: 13, color: AppColors.gray5),
+                  size: 13, color: AppColors.gray500),
               const SizedBox(width: 4),
               Text(
                 dateTime,
-                style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
+                style: InstaCareTypography.r.copyWith(color: AppColors.gray400),
               ),
             ],
           ),

@@ -47,7 +47,7 @@ class InstaCarePhoneInput extends StatelessWidget {
             label!,
             style: InstaCareTypography.r.copyWith(
               fontWeight: FontWeight.w600,
-              color: AppColors.gray2,
+              color: AppColors.gray200,
             ),
           ),
           const SizedBox(height: 8),
@@ -75,7 +75,7 @@ class InstaCarePhoneInput extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hint ?? '87921 34521',
             hintStyle: InstaCareTypography.r.copyWith(
-              color: AppColors.gray6,
+              color: AppColors.gray600,
             ),
             errorText: errorText,
 
@@ -122,35 +122,35 @@ class InstaCarePhoneInput extends StatelessWidget {
             ),
 
             filled: true,
-            fillColor: AppColors.ivory7,
+            fillColor: AppColors.ivory700,
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
 
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
               borderSide:
-                  const BorderSide(color: AppColors.primary3),
+                  const BorderSide(color: AppColors.primary300),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
               borderSide:
-                  const BorderSide(color: AppColors.primary3),
+                  const BorderSide(color: AppColors.primary300),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
               borderSide: const BorderSide(
-                color: AppColors.primary1,
+                color: AppColors.primary100,
                 width: 2,
               ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
-              borderSide: const BorderSide(color: AppColors.error3),
+              borderSide: const BorderSide(color: AppColors.error300),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
               borderSide: const BorderSide(
-                color: AppColors.error3,
+                color: AppColors.error300,
                 width: 2,
               ),
             ),

@@ -35,7 +35,7 @@ class _InstaCareFileUploadTileState extends State<InstaCareFileUploadTile> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-              color: _active ? AppColors.primary1 : AppColors.primary3),
+              color: _active ? AppColors.primary100 : AppColors.primary300),
         ),
         child: Column(
           children: [
@@ -51,7 +51,7 @@ class _InstaCareFileUploadTileState extends State<InstaCareFileUploadTile> {
             Text(
               widget.subtitle,
               textAlign: TextAlign.center,
-              style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
+              style: InstaCareTypography.r.copyWith(color: AppColors.gray400),
             ),
           ],
         ),

@@ -34,13 +34,13 @@ class InstaCareCheckboxCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isSelected
-              ? (selectedBackgroundColor ?? AppColors.primary9)
-              : (backgroundColor ?? AppColors.ivory7),
+              ? (selectedBackgroundColor ?? AppColors.primary900)
+              : (backgroundColor ?? AppColors.ivory700),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: isSelected
-                ? (selectedBorderColor ?? AppColors.primary3)
-                : (borderColor ?? AppColors.primary3),
+                ? (selectedBorderColor ?? AppColors.primary300)
+                : (borderColor ?? AppColors.primary300),
             width: isSelected ? 1.5 : 1,
           ),
         ),
@@ -55,7 +55,7 @@ class InstaCareCheckboxCard extends StatelessWidget {
                 onChanged: onChanged != null
                     ? (bool? value) => onChanged!(value ?? false)
                     : null,
-                side: const BorderSide(color: AppColors.primary3),
+                side: const BorderSide(color: AppColors.primary300),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
               ),
@@ -69,14 +69,14 @@ class InstaCareCheckboxCard extends StatelessWidget {
                     title,
                     style: InstaCareTypography.r.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: AppColors.gray2,
+                      color: AppColors.gray200,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     message,
                     style: InstaCareTypography.r.copyWith(
-                      color: AppColors.gray4,
+                      color: AppColors.gray400,
                     ),
                   ),
                 ],

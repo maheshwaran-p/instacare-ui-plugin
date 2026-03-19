@@ -24,7 +24,7 @@ class InstaCareRatingScale extends StatelessWidget {
           onPressed: () => onRatingChanged(ratingValue),
           icon: Icon(
             isFilled ? Icons.star : Icons.star_border,
-            color: isFilled ? AppColors.secondary2 : AppColors.gray6,
+            color: isFilled ? AppColors.secondary200 : AppColors.gray600,
           ),
         );
       }),

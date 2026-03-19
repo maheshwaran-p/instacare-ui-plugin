@@ -25,7 +25,7 @@ class InstaCarePatientPartnerConnect extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
-        color: AppColors.ivory9,
+        color: AppColors.ivory900,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -36,7 +36,7 @@ class InstaCarePatientPartnerConnect extends StatelessWidget {
             avatar: patientAvatar ??
                 const CircleAvatar(
                   radius: 26,
-                  backgroundColor: AppColors.natural6,
+                  backgroundColor: AppColors.natural600,
                   child: Icon(
                     Icons.person_outline_rounded,
                     size: 28,
@@ -49,7 +49,7 @@ class InstaCarePatientPartnerConnect extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 8),
               child: CustomPaint(
                 size: Size(double.infinity, 2),
-                painter: _DottedLinePainter(color: AppColors.natural7),
+                painter: _DottedLinePainter(color: AppColors.natural700),
               ),
             ),
           ),
@@ -59,7 +59,7 @@ class InstaCarePatientPartnerConnect extends StatelessWidget {
             avatar: partnerAvatar ??
                 const CircleAvatar(
                   radius: 26,
-                  backgroundColor: AppColors.primary5,
+                  backgroundColor: AppColors.primary500,
                   child: Icon(
                     Icons.person_outline_rounded,
                     size: 28,
@@ -90,14 +90,14 @@ class InstaCarePatientPartnerConnect extends StatelessWidget {
               style: InstaCareTypography.m.copyWith(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
-                color: AppColors.gray2,
+                color: AppColors.gray200,
               ),
             ),
             const SizedBox(height: 2),
             Text(
               label,
               style: InstaCareTypography.s.copyWith(
-                color: AppColors.gray5,
+                color: AppColors.gray500,
               ),
             ),
           ],

@@ -43,7 +43,7 @@ Future<bool> showInstaCareConfirmationDialog({
                 verticalPadding,
               ),
               decoration: BoxDecoration(
-                color: AppColors.gray9,
+                color: AppColors.gray900,
                 borderRadius: BorderRadius.circular(radius),
               ),
               child: Column(
@@ -55,7 +55,7 @@ Future<bool> showInstaCareConfirmationDialog({
                     textAlign: TextAlign.center,
                     style: InstaCareTypography.h2.copyWith(
                       fontSize: titleSize,
-                      color: AppColors.primary2,
+                      color: AppColors.primary200,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -68,7 +68,7 @@ Future<bool> showInstaCareConfirmationDialog({
                     textAlign: TextAlign.center,
                     style: InstaCareTypography.body.copyWith(
                       fontSize: bodySize,
-                      color: AppColors.gray5,
+                      color: AppColors.gray500,
                     ),
                   ),
 
@@ -82,10 +82,10 @@ Future<bool> showInstaCareConfirmationDialog({
                           height: buttonHeight,
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: AppColors.gray8,
-                              foregroundColor: AppColors.primary2,
+                              backgroundColor: AppColors.gray800,
+                              foregroundColor: AppColors.primary200,
                               side: const BorderSide(
-                                color: AppColors.primary2,
+                                color: AppColors.primary200,
                                 width: 1.6,
                               ),
                               shape: RoundedRectangleBorder(
@@ -112,7 +112,7 @@ Future<bool> showInstaCareConfirmationDialog({
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  AppColors.primary1,
+                                  AppColors.primary100,
                               foregroundColor:
                                   AppColors.baseWhite,
                               elevation: 0,

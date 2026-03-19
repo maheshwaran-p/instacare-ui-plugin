@@ -40,7 +40,7 @@ class InstaCareConsentCheckbox extends StatelessWidget {
                 onChanged: onChanged,
                 activeColor: Theme.of(context).colorScheme.primary,
                 checkColor: AppColors.baseWhite,
-                side: const BorderSide(color: AppColors.primary5, width: 1.5),
+                side: const BorderSide(color: AppColors.primary500, width: 1.5),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -51,14 +51,14 @@ class InstaCareConsentCheckbox extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   style: InstaCareTypography.r.copyWith(
-                    color: AppColors.gray3,
+                    color: AppColors.gray300,
                   ),
                   children: [
                     TextSpan(text: preText),
                     TextSpan(
                       text: linkText,
                       style: InstaCareTypography.r.copyWith(
-                        color: AppColors.primary3,
+                        color: AppColors.primary300,
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.w600,
                       ),

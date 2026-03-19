@@ -44,7 +44,7 @@ class InstaCareMarkdown extends StatelessWidget {
 
   MarkdownStyleSheet _buildStyle(BuildContext context) {
     final body = InstaCareTypography.body.copyWith(
-      color: AppColors.gray2,
+      color: AppColors.gray200,
       height: 1.5,
     );
 
@@ -52,28 +52,28 @@ class InstaCareMarkdown extends StatelessWidget {
       p: body,
       pPadding: const EdgeInsets.only(bottom: 8),
 
-      h1: InstaCareTypography.h1.copyWith(color: AppColors.primary2),
+      h1: InstaCareTypography.h1.copyWith(color: AppColors.primary200),
       h1Padding: const EdgeInsets.only(bottom: 12),
 
-      h2: InstaCareTypography.h2.copyWith(color: AppColors.primary2),
+      h2: InstaCareTypography.h2.copyWith(color: AppColors.primary200),
       h2Padding: const EdgeInsets.only(bottom: 10),
 
-      h3: InstaCareTypography.h3.copyWith(color: AppColors.primary3),
+      h3: InstaCareTypography.h3.copyWith(color: AppColors.primary300),
       h3Padding: const EdgeInsets.only(bottom: 8),
 
       h4: InstaCareTypography.m.copyWith(
         fontWeight: FontWeight.w600,
-        color: AppColors.primary3,
+        color: AppColors.primary300,
       ),
       h4Padding: const EdgeInsets.only(bottom: 6),
 
       h5: InstaCareTypography.sm.copyWith(
         fontWeight: FontWeight.w600,
-        color: AppColors.primary3,
+        color: AppColors.primary300,
       ),
       h5Padding: const EdgeInsets.only(bottom: 4),
 
-      h6: InstaCareTypography.sm.copyWith(color: AppColors.gray4),
+      h6: InstaCareTypography.sm.copyWith(color: AppColors.gray400),
       h6Padding: const EdgeInsets.only(bottom: 4),
 
       em: body.copyWith(fontStyle: FontStyle.italic),
@@ -86,45 +86,45 @@ class InstaCareMarkdown extends StatelessWidget {
       ),
 
       code: InstaCareTypography.m.copyWith(
-        color: AppColors.primary1,
-        backgroundColor: AppColors.primary10,
+        color: AppColors.primary100,
+        backgroundColor: AppColors.primary1000,
       ),
 
-      blockquote: body.copyWith(color: AppColors.gray4),
+      blockquote: body.copyWith(color: AppColors.gray400),
       blockquotePadding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       blockquoteDecoration: BoxDecoration(
-        color: AppColors.primary10,
+        color: AppColors.primary1000,
         borderRadius: BorderRadius.circular(8),
         border: const Border(
-          left: BorderSide(color: AppColors.primary5, width: 4),
+          left: BorderSide(color: AppColors.primary500, width: 4),
         ),
       ),
 
       listIndent: 26,
       listBulletPadding: const EdgeInsets.only(right: 8, top: 2),
-      listBullet: body.copyWith(color: AppColors.primary2),
+      listBullet: body.copyWith(color: AppColors.primary200),
 
-      checkbox: body.copyWith(color: AppColors.primary2),
+      checkbox: body.copyWith(color: AppColors.primary200),
 
       tableHead: InstaCareTypography.m.copyWith(
         fontWeight: FontWeight.w600,
-        color: AppColors.gray2,
+        color: AppColors.gray200,
       ),
       tableBody: body,
-      tableBorder: TableBorder.all(color: AppColors.primary8),
+      tableBorder: TableBorder.all(color: AppColors.primary800),
       tableCellsPadding:
           const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       tableColumnWidth: const IntrinsicColumnWidth(),
 
       codeblockPadding: const EdgeInsets.all(12),
       codeblockDecoration: BoxDecoration(
-        color: AppColors.primary10,
+        color: AppColors.primary1000,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.primary8),
+        border: Border.all(color: AppColors.primary800),
       ),
 
       horizontalRuleDecoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: AppColors.primary8, width: 1)),
+        border: Border(top: BorderSide(color: AppColors.primary800, width: 1)),
       ),
     ).merge(styleSheet);
   }
@@ -144,13 +144,13 @@ class InstaCareMarkdown extends StatelessWidget {
           height: 72,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.primary10,
+            color: AppColors.primary1000,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: AppColors.primary8),
+            border: Border.all(color: AppColors.primary800),
           ),
           child: Text(
             config.alt ?? 'Image unavailable',
-            style: InstaCareTypography.s.copyWith(color: AppColors.gray4),
+            style: InstaCareTypography.s.copyWith(color: AppColors.gray400),
           ),
         ),
       ),
@@ -165,7 +165,7 @@ class InstaCareMarkdown extends StatelessWidget {
             ? Icons.check_box_rounded
             : Icons.check_box_outline_blank_rounded,
         size: 18,
-        color: value ? AppColors.successFg : AppColors.gray5,
+        color: value ? AppColors.successFg : AppColors.gray500,
       ),
     );
   }
@@ -174,7 +174,7 @@ class InstaCareMarkdown extends StatelessWidget {
     if (params.style == BulletStyle.orderedList) {
       return Text(
         '${params.index + 1}.',
-        style: InstaCareTypography.m.copyWith(color: AppColors.primary2),
+        style: InstaCareTypography.m.copyWith(color: AppColors.primary200),
       );
     }
 
@@ -185,7 +185,7 @@ class InstaCareMarkdown extends StatelessWidget {
       margin: const EdgeInsets.only(top: 6),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.primary4,
+        color: AppColors.primary400,
       ),
     );
   }

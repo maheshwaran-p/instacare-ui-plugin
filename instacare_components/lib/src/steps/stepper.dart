@@ -114,7 +114,7 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
         final stepNumberSize = (circleSize * 0.45).clamp(12.0, 16.0);
 
         final primary = Theme.of(context).colorScheme.primary;
-        const inactive = AppColors.gray7;
+        const inactive = AppColors.gray700;
 
         return Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -134,7 +134,7 @@ class _InstaCareVerticalStepperState extends State<InstaCareVerticalStepper>
                   child: Text(
                     '${index + 1}',
                     style: InstaCareTypography.sm.copyWith(
-                      color:AppColors.ivory7 ,
+                      color:AppColors.ivory700 ,
                       fontSize: stepNumberSize,
                       fontWeight: FontWeight.w600,
                     ),

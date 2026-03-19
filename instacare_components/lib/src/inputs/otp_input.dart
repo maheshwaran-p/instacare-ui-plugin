@@ -125,22 +125,22 @@ Widget build(BuildContext context) {
                   decoration: InputDecoration(
                     counterText: '',
                     filled: true,
-                    fillColor: AppColors.ivory7,
+                    fillColor: AppColors.ivory700,
                     contentPadding: EdgeInsets.zero,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius),
                       borderSide:
-                          const BorderSide(color: AppColors.primary3),
+                          const BorderSide(color: AppColors.primary300),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius),
                       borderSide:
-                          const BorderSide(color: AppColors.primary3),
+                          const BorderSide(color: AppColors.primary300),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius),
                       borderSide: const BorderSide(
-                        color: AppColors.primary1,
+                        color: AppColors.primary100,
                         width: 2,
                       ),
                     ),

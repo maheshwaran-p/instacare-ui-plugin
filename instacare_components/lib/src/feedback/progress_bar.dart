@@ -30,7 +30,7 @@ class InstaCareProgressBar extends StatelessWidget {
           child: LinearProgressIndicator(
             minHeight: 10,
             value: clamped,
-            backgroundColor: AppColors.gray8,
+            backgroundColor: AppColors.gray800,
             valueColor: AlwaysStoppedAnimation<Color>(
                 Theme.of(context).colorScheme.primary),
           ),
@@ -38,7 +38,7 @@ class InstaCareProgressBar extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           '${(clamped * 100).round()}% completed',
-          style: InstaCareTypography.r.copyWith(color: AppColors.gray4),
+          style: InstaCareTypography.r.copyWith(color: AppColors.gray400),
         ),
       ],
     );

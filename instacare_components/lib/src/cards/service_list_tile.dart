@@ -66,11 +66,11 @@ class _ServiceTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.natural10,
+          color: AppColors.natural50,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: AppColors.gray7.withValues(alpha: 0.3),
+              color: AppColors.gray700.withValues(alpha: 0.3),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -93,11 +93,11 @@ class _ServiceTile extends StatelessWidget {
                   : Container(
                       width: 100,
                       height: 100,
-                      color: AppColors.primary9,
+                      color: AppColors.primary900,
                       child: const Icon(
                         Icons.medical_services_outlined,
                         size: 36,
-                        color: AppColors.primary5,
+                        color: AppColors.primary500,
                       ),
                     ),
             ),
@@ -115,7 +115,7 @@ class _ServiceTile extends StatelessWidget {
                           style: InstaCareTypography.m.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.gray2,
+                            color: AppColors.gray200,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -131,14 +131,14 @@ class _ServiceTile extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: AppColors.ivory1,
+                              color: AppColors.ivory100,
                               width: 1,
                             ),
                           ),
                           child: Text(
                             newBadgeLabel,
                             style: InstaCareTypography.xs.copyWith(
-                              color: AppColors.ivory1,
+                              color: AppColors.ivory100,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -152,14 +152,14 @@ class _ServiceTile extends StatelessWidget {
                       const Icon(
                         Icons.access_time_rounded,
                         size: 14,
-                        color: AppColors.gray5,
+                        color: AppColors.gray500,
                       ),
                       const SizedBox(width: 4),
                       Flexible(
                         child: Text(
                           '${item.duration} | ${item.price}',
                           style: InstaCareTypography.s.copyWith(
-                            color: AppColors.gray3,
+                            color: AppColors.gray300,
                             fontWeight: FontWeight.w500,
                           ),
                           overflow: TextOverflow.ellipsis,
@@ -171,7 +171,7 @@ class _ServiceTile extends StatelessWidget {
                   Text(
                     item.description,
                     style: InstaCareTypography.s.copyWith(
-                      color: AppColors.gray5,
+                      color: AppColors.gray500,
                       height: 1.4,
                     ),
                     maxLines: 2,

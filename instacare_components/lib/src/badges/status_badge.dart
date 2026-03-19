@@ -24,13 +24,13 @@ class InstaCareStatusBadge extends StatelessWidget {
   Color _backgroundColor(BuildContext context) {
     switch (type) {
       case InstaCareStatusBadgeType.active:
-        return AppColors.success8;
+        return AppColors.success800;
       case InstaCareStatusBadgeType.upcoming:
-        return AppColors.secondary8;
+        return AppColors.secondary800;
       case InstaCareStatusBadgeType.cancelled:
-        return AppColors.error9;
+        return AppColors.error900;
       case InstaCareStatusBadgeType.inTravel:
-        return AppColors.ivory1;
+        return AppColors.ivory100;
       case InstaCareStatusBadgeType.completed:
         return AppColors.infoBg;
       case InstaCareStatusBadgeType.custom:
@@ -50,7 +50,7 @@ class InstaCareStatusBadge extends StatelessWidget {
         label,
         style: InstaCareTypography.r.copyWith(
           fontWeight: FontWeight.w600,
-          color: AppColors.primary2,
+          color: AppColors.primary200,
         ),
       ),
     );

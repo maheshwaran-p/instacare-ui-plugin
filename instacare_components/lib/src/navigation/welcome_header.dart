@@ -29,7 +29,7 @@ class InstaCareWelcomeHeader extends StatelessWidget {
               onTap: onAvatarTap,
               child: const CircleAvatar(
                 radius: 24,
-                backgroundColor: AppColors.secondary5,
+                backgroundColor: AppColors.secondary500,
                 child: Icon(
                   Icons.person_outline_rounded,
                   size: 26,
@@ -44,7 +44,7 @@ class InstaCareWelcomeHeader extends StatelessWidget {
                 style: InstaCareTypography.h1.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.gray2,
+                  color: AppColors.gray200,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -59,31 +59,31 @@ class InstaCareWelcomeHeader extends StatelessWidget {
           decoration: InputDecoration(
             hintText: searchHint,
             hintStyle: InstaCareTypography.r.copyWith(
-              color: AppColors.gray6,
+              color: AppColors.gray600,
             ),
             suffixIcon: const Icon(
               Icons.auto_awesome_outlined,
               size: 22,
-              color: AppColors.secondary4,
+              color: AppColors.secondary400,
             ),
             filled: true,
-            fillColor: AppColors.ivory8,
+            fillColor: AppColors.ivory800,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 14,
               vertical: 13,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: AppColors.secondary6),
+              borderSide: const BorderSide(color: AppColors.secondary600),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: AppColors.secondary6),
+              borderSide: const BorderSide(color: AppColors.secondary600),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: const BorderSide(
-                color: AppColors.primary1,
+                color: AppColors.primary100,
                 width: 2,
               ),
             ),
