@@ -837,8 +837,7 @@ class _GalleryState extends State<Gallery> {
             topBorderColor: AppColors.primary800,
             showShadow: true,
             items: const [
-              InstaCareBottomNavItem(
-                  icon: Icons.home_outlined, label: 'Home'),
+              InstaCareBottomNavItem(icon: Icons.home_outlined, label: 'Home'),
               InstaCareBottomNavItem(
                   icon: Icons.grid_view_outlined, label: 'Services'),
               InstaCareBottomNavItem(
@@ -963,7 +962,6 @@ class _GalleryState extends State<Gallery> {
     );
   }
 
-
   List<_SectionEntry> get _commonSections {
     return [
       const _SectionEntry.heading('Common Components'),
@@ -978,12 +976,14 @@ class _GalleryState extends State<Gallery> {
       _SectionEntry.component(
         title: 'LogoIcon',
         fileName: 'common/logo.dart',
-        builder: (_) => const InstaCareLogoIcon(size: 32, color: AppColors.primary300),
+        builder: (_) =>
+            const InstaCareLogoIcon(size: 32, color: AppColors.primary700),
       ),
       _SectionEntry.component(
         title: 'LogoText',
         fileName: 'common/logo.dart',
-        builder: (_) => const InstaCareLogoText(fontSize: 24, color: AppColors.primary300),
+        builder: (_) =>
+            const InstaCareLogoText(fontSize: 24, color: AppColors.primary700),
       ),
       const _SectionEntry.heading('Typography'),
       _SectionEntry.component(
@@ -1005,7 +1005,8 @@ class _GalleryState extends State<Gallery> {
       _SectionEntry.component(
         title: 'Title with Back Button',
         fileName: 'theme/heading.dart',
-        builder: (_) => InstaCareHeading.titleWithBackButton(text: 'Title', onBackPressed: () {}),
+        builder: (_) => InstaCareHeading.titleWithBackButton(
+            text: 'Title', onBackPressed: () {}),
       ),
       const _SectionEntry.heading('Animation'),
       _SectionEntry.component(
@@ -1024,27 +1025,57 @@ class _GalleryState extends State<Gallery> {
                 color: AppColors.primary900,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: AppColors.ivory300),
-                boxShadow: [BoxShadow(color: AppColors.gray600.withValues(alpha: 0.15), blurRadius: 8, offset: const Offset(0, 2))],
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.gray600.withValues(alpha: 0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2))
+                ],
               ),
-              child: const Center(child: Text('Card 1', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: AppColors.gray200))),
+              child: const Center(
+                  child: Text('Card 1',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.gray200))),
             ),
             Container(
               decoration: BoxDecoration(
                 color: AppColors.ivory700,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: AppColors.ivory300),
-                boxShadow: [BoxShadow(color: AppColors.gray600.withValues(alpha: 0.15), blurRadius: 8, offset: const Offset(0, 2))],
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.gray600.withValues(alpha: 0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2))
+                ],
               ),
-              child: const Center(child: Text('Card 2', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: AppColors.gray200))),
+              child: const Center(
+                  child: Text('Card 2',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.gray200))),
             ),
             Container(
               decoration: BoxDecoration(
                 color: AppColors.primary800,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: AppColors.ivory300),
-                boxShadow: [BoxShadow(color: AppColors.gray600.withValues(alpha: 0.15), blurRadius: 8, offset: const Offset(0, 2))],
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.gray600.withValues(alpha: 0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2))
+                ],
               ),
-              child: const Center(child: Text('Card 3', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: AppColors.gray200))),
+              child: const Center(
+                  child: Text('Card 3',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.gray200))),
             ),
           ],
         ),
@@ -1060,9 +1091,11 @@ class _GalleryState extends State<Gallery> {
         fileName: 'button.dart',
         builder: (_) => Column(
           children: [
-            InstaCareButton(text: 'Primary Button', fullWidth: true, onPressed: () {}),
+            InstaCareButton(
+                text: 'Primary Button', fullWidth: true, onPressed: () {}),
             const SizedBox(height: 10),
-            InstaCareButton.secondary(text: 'Secondary Button', fullWidth: true, onPressed: () {}),
+            InstaCareButton.secondary(
+                text: 'Secondary Button', fullWidth: true, onPressed: () {}),
             const SizedBox(height: 10),
             InstaCareButton(
               text: loading ? 'Loading...' : 'Load Data',
@@ -1076,7 +1109,11 @@ class _GalleryState extends State<Gallery> {
               },
             ),
             const SizedBox(height: 10),
-            const InstaCareButton(text: 'Disabled', fullWidth: true, isDisabled: true, onPressed: null),
+            const InstaCareButton(
+                text: 'Disabled',
+                fullWidth: true,
+                isDisabled: true,
+                onPressed: null),
           ],
         ),
       ),
@@ -1086,16 +1123,26 @@ class _GalleryState extends State<Gallery> {
         fileName: 'text_field.dart',
         builder: (_) => const Column(
           children: [
-            InstaCareTextField(label: 'Text Input', hint: 'placeholder', fillColor: AppColors.ivory700, borderColor: AppColors.primary300, focusedBorderColor: AppColors.primary200, hintColor: AppColors.gray600),
+            InstaCareTextField(
+                label: 'Text Input',
+                hint: 'placeholder',
+                fillColor: AppColors.ivory700,
+                borderColor: AppColors.primary300,
+                focusedBorderColor: AppColors.primary200,
+                hintColor: AppColors.gray600),
             SizedBox(height: 12),
-            InstaCareTextField(label: 'Email', hint: 'Enter your email', prefixIcon: Icons.email_outlined),
+            InstaCareTextField(
+                label: 'Email',
+                hint: 'Enter your email',
+                prefixIcon: Icons.email_outlined),
           ],
         ),
       ),
       _SectionEntry.component(
         title: 'Phone Input',
         fileName: 'phone_input.dart',
-        builder: (_) => const InstaCarePhoneInput(label: 'Mobile Number With Region Selector', hint: '87921 34521'),
+        builder: (_) => const InstaCarePhoneInput(
+            label: 'Mobile Number With Region Selector', hint: '87921 34521'),
       ),
       _SectionEntry.component(
         title: 'Dropdown',
@@ -1153,7 +1200,10 @@ class _GalleryState extends State<Gallery> {
               onChanged: (value) => setState(() => otp = value),
               onCompleted: (value) => setState(() => otp = value),
             ),
-            if (otp.isNotEmpty) ...[const SizedBox(height: 8), Text('Entered OTP: $otp')],
+            if (otp.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text('Entered OTP: $otp')
+            ],
           ],
         ),
       ),
@@ -1163,7 +1213,10 @@ class _GalleryState extends State<Gallery> {
         fileName: 'radio_buttons.dart',
         builder: (_) => InstaCareRadioButtons<String>(
           groupValue: selectedRadio,
-          options: const [InstaCareRadioOption(value: 'Yes', label: 'Yes'), InstaCareRadioOption(value: 'No', label: 'No')],
+          options: const [
+            InstaCareRadioOption(value: 'Yes', label: 'Yes'),
+            InstaCareRadioOption(value: 'No', label: 'No')
+          ],
           onChanged: (value) => setState(() => selectedRadio = value ?? 'Yes'),
           direction: Axis.horizontal,
         ),
@@ -1185,7 +1238,9 @@ class _GalleryState extends State<Gallery> {
           selected: selectedFilters,
           onToggle: (item) {
             setState(() {
-              selectedFilters.contains(item) ? selectedFilters.remove(item) : selectedFilters.add(item);
+              selectedFilters.contains(item)
+                  ? selectedFilters.remove(item)
+                  : selectedFilters.add(item);
             });
           },
         ),
@@ -1205,9 +1260,14 @@ class _GalleryState extends State<Gallery> {
         builder: (ctx) => InstaCareButton.secondary(
           text: 'Pop confirmation',
           onPressed: () async {
-            final confirmed = await showInstaCareConfirmationDialog(context: ctx, title: 'Confirmation', body: 'Do you want to continue?');
+            final confirmed = await showInstaCareConfirmationDialog(
+                context: ctx,
+                title: 'Confirmation',
+                body: 'Do you want to continue?');
             if (!mounted) return;
-            if (confirmed) ScaffoldMessenger.of(ctx).showSnackBar(const SnackBar(content: Text('Confirmed')));
+            if (confirmed)
+              ScaffoldMessenger.of(ctx)
+                  .showSnackBar(const SnackBar(content: Text('Confirmed')));
           },
         ),
       ),
@@ -1216,13 +1276,49 @@ class _GalleryState extends State<Gallery> {
         fileName: 'snackbar.dart',
         builder: (ctx) => Column(
           children: [
-            InstaCareButton(text: 'Show Success Snackbar', fullWidth: true, onPressed: () { InstaCareSnackbar.show(context: ctx, type: InstaCareSnackbarType.success, title: 'Success', message: 'Your action was completed successfully!'); }),
+            InstaCareButton(
+                text: 'Show Success Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                      context: ctx,
+                      type: InstaCareSnackbarType.success,
+                      title: 'Success',
+                      message: 'Your action was completed successfully!');
+                }),
             const SizedBox(height: 10),
-            InstaCareButton(text: 'Show Error Snackbar', fullWidth: true, onPressed: () { InstaCareSnackbar.show(context: ctx, type: InstaCareSnackbarType.error, title: 'Error', message: 'Something went wrong. Please try again.'); }),
+            InstaCareButton(
+                text: 'Show Error Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                      context: ctx,
+                      type: InstaCareSnackbarType.error,
+                      title: 'Error',
+                      message: 'Something went wrong. Please try again.');
+                }),
             const SizedBox(height: 10),
-            InstaCareButton(text: 'Show Info Snackbar', fullWidth: true, onPressed: () { InstaCareSnackbar.show(context: ctx, type: InstaCareSnackbarType.info, title: 'Information', message: 'Here is some useful information for you.'); }),
+            InstaCareButton(
+                text: 'Show Info Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                      context: ctx,
+                      type: InstaCareSnackbarType.info,
+                      title: 'Information',
+                      message: 'Here is some useful information for you.');
+                }),
             const SizedBox(height: 10),
-            InstaCareButton(text: 'Show Pending Snackbar', fullWidth: true, onPressed: () { InstaCareSnackbar.show(context: ctx, type: InstaCareSnackbarType.pending, title: 'Pending', message: 'Your request is being processed.'); }),
+            InstaCareButton(
+                text: 'Show Pending Snackbar',
+                fullWidth: true,
+                onPressed: () {
+                  InstaCareSnackbar.show(
+                      context: ctx,
+                      type: InstaCareSnackbarType.pending,
+                      title: 'Pending',
+                      message: 'Your request is being processed.');
+                }),
           ],
         ),
       ),
@@ -1336,7 +1432,8 @@ class _GalleryState extends State<Gallery> {
               ),
               Text(
                 ' \u00B7 ',
-                style: TextStyle(color: AppColors.gray500.withValues(alpha: 0.5)),
+                style:
+                    TextStyle(color: AppColors.gray500.withValues(alpha: 0.5)),
               ),
               Text(
                 detail,
