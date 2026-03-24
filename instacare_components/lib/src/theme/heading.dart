@@ -25,7 +25,7 @@ class InstaCareHeading {
     return Row(
       children: [
         IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_new,
             color: AppColors.gray900,
             size: 28,
