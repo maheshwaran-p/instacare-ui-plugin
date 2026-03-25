@@ -72,10 +72,6 @@ class InstaCareButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (icon != null) ...[
-                    Icon(icon, size: iconSize, color: textColor),
-                    const SizedBox(width: 8),
-                  ],
                   Flexible(
                     child: Text(
                       text,
@@ -84,11 +80,15 @@ class InstaCareButton extends StatelessWidget {
                         fontSize: textSize,
                         color: textColor,
                         fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              );
+                        ),
+                        ),
+                        ),
+                        if (icon != null) ...[
+                          const SizedBox(width: 8),
+                          Icon(icon, size: iconSize, color: textColor),
+                          ],
+                          ],
+                          );
 
         return ConstrainedBox(
           constraints: BoxConstraints(
