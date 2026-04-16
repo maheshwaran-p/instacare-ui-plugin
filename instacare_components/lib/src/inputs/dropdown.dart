@@ -115,7 +115,7 @@ class _InstaCareDropdownState<T> extends State<InstaCareDropdown<T>>
             child: Material(
               elevation: 4,
               borderRadius: BorderRadius.circular(8),
-              shadowColor: Colors.black26,
+              shadowColor:AppColors.primary400,
               child: Container(
                 width: triggerSize.width,
                 constraints: BoxConstraints(maxHeight: availableHeight),
