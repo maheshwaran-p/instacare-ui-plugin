@@ -77,7 +77,7 @@ class InstaCareDatePickerField extends StatelessWidget {
               fillColor: AppColors.ivory300,
               suffixIcon: const Icon(
                 Icons.calendar_today_outlined,
-                color: AppColors.primary500,
+                color: AppColors.primary900,
               ),
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -102,7 +102,7 @@ class InstaCareDatePickerField extends StatelessWidget {
             child: Text(
               text,
               style: InstaCareTypography.r.copyWith(
-                color: value == null ? AppColors.primary500 : AppColors.primary900,
+                color: value == null ? AppColors.primary900 : AppColors.primary800,
               ),
             ),
           ),
