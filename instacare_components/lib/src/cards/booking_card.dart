@@ -45,6 +45,9 @@ class InstaCareBookingCard extends StatelessWidget {
   /// Number of days until the booking. Null for active/ongoing bookings.
   final int? daysUntil;
 
+  /// Whether to show the partner information row. Defaults to true.
+  final bool showPartnerInfo;
+
   /// Callback when the card is tapped.
   final VoidCallback? onTap;
 
@@ -60,6 +63,7 @@ class InstaCareBookingCard extends StatelessWidget {
     this.serviceImageUrl,
     required this.dateTime,
     this.daysUntil,
+    this.showPartnerInfo = true,
     this.onTap,
   });
 
@@ -119,34 +123,36 @@ class InstaCareBookingCard extends StatelessWidget {
                         ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  // Row 2: Partner info | Booking ID
-                  Row(
-                    children: [
-                      _buildPartnerAvatar(),
-                      const SizedBox(width: 6),
-                      // Partner name
-                      Expanded(
-                        child: Text(
-                          partnerName != null && partnerName!.isNotEmpty
-                              ? 'Assigned Partner : $partnerName'
-                              : 'Partner not assigned',
-                          style: InstaCareTypography.s.copyWith(
-                            color: AppColors.gray500,
+                  // Row 2: Partner info | Booking ID (conditionally shown)
+                  if (showPartnerInfo) ...[
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        _buildPartnerAvatar(),
+                        const SizedBox(width: 6),
+                        // Partner name
+                        Expanded(
+                          child: Text(
+                            partnerName != null && partnerName!.isNotEmpty
+                                ? 'Assigned Partner : $partnerName'
+                                : 'Partner not assigned',
+                            style: InstaCareTypography.s.copyWith(
+                              color: AppColors.gray500,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      // Booking ID
-                      Text(
-                        bookingId,
-                        style: InstaCareTypography.r.copyWith(
-                          color: AppColors.primary800,
+                        // Booking ID
+                        Text(
+                          bookingId,
+                          style: InstaCareTypography.r.copyWith(
+                            color: AppColors.primary800,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ],
               ),
             ),
