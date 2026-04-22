@@ -147,7 +147,7 @@ class _InstaCareDropdownState<T> extends State<InstaCareDropdown<T>>
                           },
                           child: Container(
                             color: isSelected
-                                ? AppColors.primary800
+                                ? AppColors.ivory400
                                 : Colors.transparent,
                             padding: const EdgeInsets.symmetric(
                               horizontal: 16,
