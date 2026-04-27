@@ -144,7 +144,7 @@ class _ICDropdownWithCheckboxState<T>
               child: Material(
                 elevation: 4,
                 borderRadius: BorderRadius.circular(8),
-                shadowColor: Colors.black26,
+                shadowColor: AppColors.gray800,
                 child: Container(
                   width: triggerSize.width,
                   constraints: BoxConstraints(maxHeight: availableHeight),
@@ -280,7 +280,7 @@ class _ICDropdownWithCheckboxState<T>
             child: InputDecorator(
               decoration: InputDecoration(
                 filled: true,
-                fillColor: AppColors.ivory300,
+                fillColor: AppColors.primary700,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 14,
