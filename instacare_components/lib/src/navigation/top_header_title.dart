@@ -6,12 +6,15 @@ class InstaCareTopHeaderTitle extends StatelessWidget implements PreferredSizeWi
   final String title;
   final List<Widget>? actions;
   final VoidCallback? onBack;
+  final Color? color;
+  
 
   const InstaCareTopHeaderTitle({
     super.key,
     required this.title,
     this.actions,
     this.onBack,
+    this.color
   });
 
   @override
@@ -20,6 +23,7 @@ class InstaCareTopHeaderTitle extends StatelessWidget implements PreferredSizeWi
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor:color,
       title: Text(
         title,
         style: InstaCareTypography.h2.copyWith(
