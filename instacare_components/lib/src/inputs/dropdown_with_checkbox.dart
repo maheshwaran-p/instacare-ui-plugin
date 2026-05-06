@@ -55,9 +55,7 @@ class _ICDropdownWithCheckboxState<T>
 
   @override
   void didChangeMetrics() {
-    if (_expanded && mounted) {
-      _removeOverlay();
-    }
+ // i didnt keep it cause it took every mertices seriously and it was causing some issues with the dropdown staying open when the keyboard was opened, and it was also causing some issues with the dropdown staying open when the orientation was changed. so i removed it and it seems to be working fine without it. if we need to add it back we can always add it back later.
   }
 
   @override
@@ -151,7 +149,7 @@ class _ICDropdownWithCheckboxState<T>
                   width: triggerSize.width,
                   constraints: BoxConstraints(maxHeight: availableHeight),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color:AppColors.ivory300,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: AppColors.primary700),
                   ),
@@ -282,7 +280,7 @@ class _ICDropdownWithCheckboxState<T>
             child: InputDecorator(
               decoration: InputDecoration(
                 filled: true,
-                fillColor: AppColors.ivory700,
+                fillColor: AppColors.ivory300,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 14,
