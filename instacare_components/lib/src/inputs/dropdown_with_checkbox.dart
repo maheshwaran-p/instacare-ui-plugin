@@ -82,11 +82,16 @@ class _ICDropdownWithCheckboxState<T>
   }
 
   void _showOverlay() {
-    if (!mounted) return;
+    if (!mounted || _overlayEntry != null || _triggerKey.currentContext == null) {
+      return;
+    }
+    final overlay = Overlay.maybeOf(context, rootOverlay: true);
+    if (overlay == null) {
+      return;
+    }
 
     _overlayEntry = _createOverlayEntry();
-    Overlay.of(context).insert(_overlayEntry!);
-
+    overlay.insert(_overlayEntry!);
     if (mounted) {
       setState(() => _expanded = true);
     }
@@ -108,18 +113,21 @@ class _ICDropdownWithCheckboxState<T>
         _triggerKey.currentContext!.findRenderObject() as RenderBox;
     final triggerSize = renderBox.size;
     final triggerOffset = renderBox.localToGlobal(Offset.zero);
-    final screenSize = MediaQuery.of(context).size;
+    final mediaQuery = MediaQuery.of(context);
+    final screenSize = mediaQuery.size;
+    final safeTop = mediaQuery.padding.top + 8;
+    final safeBottom = mediaQuery.padding.bottom + mediaQuery.viewInsets.bottom + 8;
 
     const maxDropdownHeight = 220.0;
     final spaceBelow =
-        screenSize.height - triggerOffset.dy - triggerSize.height - 8;
-    final spaceAbove = triggerOffset.dy - 8;
+      screenSize.height - triggerOffset.dy - triggerSize.height - safeBottom;
+    final spaceAbove = triggerOffset.dy - safeTop;
 
     final showBelow =
         spaceBelow >= maxDropdownHeight || spaceBelow >= spaceAbove;
     final availableHeight = showBelow
-        ? spaceBelow.clamp(0.0, maxDropdownHeight)
-        : spaceAbove.clamp(0.0, maxDropdownHeight);
+      ? spaceBelow.clamp(0.0, maxDropdownHeight).toDouble()
+      : spaceAbove.clamp(0.0, maxDropdownHeight).toDouble();
 
     return OverlayEntry(
       builder: (context) {

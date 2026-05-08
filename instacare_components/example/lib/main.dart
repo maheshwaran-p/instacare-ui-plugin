@@ -120,6 +120,8 @@ class _GalleryState extends State<Gallery> {
   final Set<String> selectedFilters = <String>{'Wound Dressing'};
   Set<String> selectedMultiDropdown = <String>{'check box 2'};
   bool showRenderedMarkdown = false;
+  String selectedCountryCode = '+91';
+  String selectedCountryIsoCode = 'IN';
   static const String _markdownSample = '''
 # H1 – Design Fundamentals
 
@@ -929,7 +931,18 @@ class _GalleryState extends State<Gallery> {
       _SectionEntry.component(
         title: 'Phone Input',
         fileName: 'phone_input.dart',
-        builder: (_) => const InstaCarePhoneInput(label: 'Mobile Number With Region Selector', hint: '87921 34521'),
+        builder: (_) => InstaCarePhoneInput(
+          label: 'Mobile Number With Region Selector',
+          hint: '87921 34521',
+          countryCode: selectedCountryCode,
+          countryIsoCode: selectedCountryIsoCode,
+          onCountryChanged: (Country country) {
+            setState(() {
+              selectedCountryCode = '+${country.phoneCode}';
+              selectedCountryIsoCode = country.countryCode;
+            });
+          },
+        ),
       ),
       _SectionEntry.component(
         title: 'Dropdown',
