@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:country_picker/country_picker.dart';
 import '../theme/color.dart';
 import '../theme/typography.dart';
 
@@ -14,6 +15,7 @@ class InstaCarePhoneInput extends StatelessWidget {
   final String? errorText;
   final FormFieldValidator<String>? validator;
   final int maxDigits;
+  final ValueChanged<Country>? onCountryChanged;
 
   const InstaCarePhoneInput({
     super.key,
@@ -26,6 +28,7 @@ class InstaCarePhoneInput extends StatelessWidget {
     this.errorText,
     this.validator,
     this.maxDigits = 10,
+    this.onCountryChanged,
   });
 
   // ───── Design tokens (matching InstaCareTextField) ─────
@@ -90,32 +93,92 @@ class InstaCarePhoneInput extends StatelessWidget {
             /// ───── Prefix ─────
             prefixIcon: Padding(
               padding: const EdgeInsets.only(left: _outerPadding),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Flag with vertical alignment fix
-                  Transform.translate(
-                    offset: const Offset(0, -1),
-                    child: CountryFlag.fromCountryCode(
-                      countryIsoCode,
-                      width: _flagSize,
-                      height: _flagSize,
-                      borderRadius: 999,
+              child: InkWell(
+                onTap: onCountryChanged != null
+                    ? () {
+                        showCountryPicker(
+                          context: context,
+                          showPhoneCode: true,
+                          countryListTheme: CountryListThemeData(
+                            borderRadius: BorderRadius.circular(12),
+                            backgroundColor: AppColors.baseWhite,
+                            textStyle: InstaCareTypography.r.copyWith(
+                              color: AppColors.gray800,
+                            ),
+                            searchTextStyle: InstaCareTypography.r.copyWith(
+                              color: AppColors.gray800,
+                            ),
+                            inputDecoration: InputDecoration(
+                              hintText: 'Search country',
+                              hintStyle: InstaCareTypography.r.copyWith(
+                                color: AppColors.gray400,
+                              ),
+                              prefixIcon: const Icon(Icons.search),
+                              filled: true,
+                              fillColor: AppColors.ivory300,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: AppColors.primary700,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: AppColors.primary700,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: AppColors.primary900,
+                                  width: 2,
+                                ),
+                              ),
+                            ),
+                          ),
+                          onSelect: onCountryChanged!,
+                        );
+                      }
+                    : null,
+                borderRadius: BorderRadius.circular(4),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Flag with vertical alignment fix
+                    Transform.translate(
+                      offset: const Offset(0, -1),
+                      child: CountryFlag.fromCountryCode(
+                        countryIsoCode,
+                        width: _flagSize,
+                        height: _flagSize,
+                        borderRadius: 999,
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(width: _smallGap),
+                    const SizedBox(width: _smallGap),
 
-                  // Country code
-                  Text(
-                    countryCode,
-                    style: InstaCareTypography.r.copyWith(
-                      height: 1.0,
+                    // Country code
+                    Text(
+                      countryCode,
+                      style: InstaCareTypography.r.copyWith(
+                        height: 1.0,
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(width: _codeGap),
-                ],
+                    // Dropdown indicator if callback is provided
+                    if (onCountryChanged != null) ...[
+                      const SizedBox(width: 4),
+                      const Icon(
+                        Icons.arrow_drop_down,
+                        size: 20,
+                        color: AppColors.gray600,
+                      ),
+                    ],
+
+                    const SizedBox(width: _codeGap),
+                  ],
+                ),
               ),
             ),
 
