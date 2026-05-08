@@ -59,7 +59,7 @@ class InstaCareAttemptsCard extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             color: AppColors.warningBg,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: AppColors.warningFg.withValues(alpha:0.3),
               width: 1,
@@ -172,7 +172,7 @@ class InstaCareAttemptsCard extends StatelessWidget {
           padding: EdgeInsets.all(isSmallScreen ? 12 : 16),
           decoration: BoxDecoration(
             color: bgColor,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: color.withValues(alpha:0.3),
               width: 1,
