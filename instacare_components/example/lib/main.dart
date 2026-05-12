@@ -933,13 +933,13 @@ class _GalleryState extends State<Gallery> {
         fileName: 'phone_input.dart',
         builder: (_) => InstaCarePhoneInput(
           label: 'Mobile Number With Region Selector',
-          hint: '87921 34521',
+          hint: 'Enter phone number',
           countryCode: selectedCountryCode,
           countryIsoCode: selectedCountryIsoCode,
           onCountryChanged: (Country country) {
             setState(() {
-              selectedCountryCode = '+${country.phoneCode}';
-              selectedCountryIsoCode = country.countryCode;
+              selectedCountryCode = '+${country.dialCode}';
+              selectedCountryIsoCode = country.code;
             });
           },
         ),

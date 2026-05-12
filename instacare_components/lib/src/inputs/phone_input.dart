@@ -10,7 +10,10 @@ class InstaCarePhoneInput extends StatefulWidget {
   final String? hint;
   final TextEditingController? controller;
   final ValueChanged<PhoneNumber>? onChanged;
+  final ValueChanged<Country>? onCountryChanged;
   final String initialCountryCode;
+  final String? countryCode; 
+  final String? countryIsoCode; 
   final String? errorText;
   final bool autofocus;
   final bool readOnly;
@@ -24,7 +27,10 @@ class InstaCarePhoneInput extends StatefulWidget {
     this.hint,
     this.controller,
     this.onChanged,
+    this.onCountryChanged,
     this.initialCountryCode = 'IN',
+    this.countryCode,
+    this.countryIsoCode,
     this.errorText,
     this.autofocus = false,
     this.readOnly = false,
@@ -47,9 +53,10 @@ class _InstaCarePhoneInputState extends State<InstaCarePhoneInput> {
     _currentLength = widget.controller?.text.length ?? 0;
     
     // Set initial max length based on initial country code
+    final isoCode = widget.countryIsoCode ?? widget.initialCountryCode;
     try {
       final initialCountry = countries.firstWhere(
-        (c) => c.code == widget.initialCountryCode,
+        (c) => c.code == isoCode,
         orElse: () => countries.firstWhere((c) => c.code == 'IN'),
       );
       _maxLength = initialCountry.maxLength;
@@ -94,7 +101,7 @@ class _InstaCarePhoneInputState extends State<InstaCarePhoneInput> {
         ],
         IntlPhoneField(
           controller: widget.controller,
-          initialCountryCode: widget.initialCountryCode,
+          initialCountryCode: widget.countryIsoCode ?? widget.initialCountryCode,
           autofocus: widget.autofocus,
           readOnly: widget.readOnly,
           enabled: widget.enabled,
@@ -110,6 +117,9 @@ class _InstaCarePhoneInputState extends State<InstaCarePhoneInput> {
             setState(() {
               _maxLength = country.maxLength;
             });
+            if (widget.onCountryChanged != null) {
+              widget.onCountryChanged!(country);
+            }
           },
           validator: widget.validator,
           autovalidateMode: widget.autovalidateMode,
@@ -122,7 +132,7 @@ class _InstaCarePhoneInputState extends State<InstaCarePhoneInput> {
           flagsButtonPadding: const EdgeInsets.only(left: 8),
           dropdownIconPosition: IconPosition.trailing,
           decoration: InputDecoration(
-            hintText: 'Enter phone number',
+            hintText: widget.hint ?? 'Enter phone number',
             hintStyle: InstaCareTypography.r.copyWith(
               color: AppColors.gray400,
             ),
