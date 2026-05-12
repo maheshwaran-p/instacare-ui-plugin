@@ -1,6 +1,7 @@
 library instacare_components;
 
 export 'package:intl_phone_field/countries.dart' show Country;
+export 'package:intl_phone_field/phone_number.dart' show PhoneNumber;
 
 export 'src/animation/skeleton_loading.dart';
 export 'src/animation/shimmer_skeleton.dart';
