@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:country_flags/country_flags.dart';
-import 'package:country_picker/country_picker.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
+import 'package:intl_phone_field/countries.dart';
 import '../theme/color.dart';
 import '../theme/typography.dart';
 
-class InstaCarePhoneInput extends StatelessWidget {
+class InstaCarePhoneInput extends StatefulWidget {
   final String? label;
   final String? hint;
   final TextEditingController? controller;
-  final ValueChanged<String>? onChanged;
-  final String countryCode;
-  final String countryIsoCode;
-  final String? errorText;
-  final FormFieldValidator<String>? validator;
-  final int maxDigits;
+  final ValueChanged<PhoneNumber>? onChanged;
   final ValueChanged<Country>? onCountryChanged;
+  final String initialCountryCode;
+  final String? countryCode; 
+  final String? countryIsoCode; 
+  final String? errorText;
+  final bool autofocus;
+  final bool readOnly;
+  final bool enabled;
+  final FormFieldValidator<PhoneNumber>? validator;
+  final AutovalidateMode? autovalidateMode;
 
   const InstaCarePhoneInput({
     super.key,
@@ -23,21 +27,61 @@ class InstaCarePhoneInput extends StatelessWidget {
     this.hint,
     this.controller,
     this.onChanged,
-    this.countryCode = '+91',
-    this.countryIsoCode = 'IN',
-    this.errorText,
-    this.validator,
-    this.maxDigits = 10,
     this.onCountryChanged,
+    this.initialCountryCode = 'IN',
+    this.countryCode,
+    this.countryIsoCode,
+    this.errorText,
+    this.autofocus = false,
+    this.readOnly = false,
+    this.enabled = true,
+    this.validator,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
   });
 
-  // ───── Design tokens (matching InstaCareTextField) ─────
-  static const double _radius = 8;
-  static const double _flagSize = 20;
+  @override
+  State<InstaCarePhoneInput> createState() => _InstaCarePhoneInputState();
+}
 
-  static const double _outerPadding = 16;
-  static const double _smallGap = 8;
-  static const double _codeGap = 12;
+class _InstaCarePhoneInputState extends State<InstaCarePhoneInput> {
+  int _currentLength = 0;
+  int _maxLength = 10;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentLength = widget.controller?.text.length ?? 0;
+    
+    // Set initial max length based on initial country code
+    final isoCode = widget.countryIsoCode ?? widget.initialCountryCode;
+    try {
+      final initialCountry = countries.firstWhere(
+        (c) => c.code == isoCode,
+        orElse: () => countries.firstWhere((c) => c.code == 'IN'),
+      );
+      _maxLength = initialCountry.maxLength;
+    } catch (_) {
+      _maxLength = 10;
+    }
+
+    widget.controller?.addListener(_updateLength);
+  }
+
+  @override
+  void dispose() {
+    widget.controller?.removeListener(_updateLength);
+    super.dispose();
+  }
+
+  void _updateLength() {
+    if (mounted) {
+      setState(() {
+        _currentLength = widget.controller?.text.length ?? 0;
+      });
+    }
+  }
+
+  static const double _radius = 8;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +89,9 @@ class InstaCarePhoneInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (label != null) ...[
+        if (widget.label != null) ...[
           Text(
-            label!,
+            widget.label!,
             style: InstaCareTypography.r.copyWith(
               fontWeight: FontWeight.w600,
               color: AppColors.gray800,
@@ -55,133 +99,44 @@ class InstaCarePhoneInput extends StatelessWidget {
           ),
           const SizedBox(height: 8),
         ],
-
-        TextFormField(
-          controller: controller,
-          keyboardType: TextInputType.phone,
-          onChanged: onChanged,
-          validator: validator ??
-              (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Phone number is required';
-                }
-                if (value.length != maxDigits) {
-                  return 'Phone number must be $maxDigits digits';
-                }
-                return null;
-              },
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(maxDigits),
-          ],
+        IntlPhoneField(
+          controller: widget.controller,
+          initialCountryCode: widget.countryIsoCode ?? widget.initialCountryCode,
+          autofocus: widget.autofocus,
+          readOnly: widget.readOnly,
+          enabled: widget.enabled,
+          onChanged: (phone) {
+            setState(() {
+              _currentLength = phone.number.length;
+            });
+            if (widget.onChanged != null) {
+              widget.onChanged!(phone);
+            }
+          },
+          onCountryChanged: (country) {
+            setState(() {
+              _maxLength = country.maxLength;
+            });
+            if (widget.onCountryChanged != null) {
+              widget.onCountryChanged!(country);
+            }
+          },
+          validator: widget.validator,
+          autovalidateMode: widget.autovalidateMode,
           style: InstaCareTypography.r.copyWith(
             color: AppColors.primary900,
-            height: 1.0,
           ),
+          dropdownTextStyle: InstaCareTypography.r.copyWith(
+            color: AppColors.primary900,
+          ),
+          flagsButtonPadding: const EdgeInsets.only(left: 8),
+          dropdownIconPosition: IconPosition.trailing,
           decoration: InputDecoration(
-            hintText: hint ?? '87921 34521',
+            hintText: widget.hint ?? 'Enter phone number',
             hintStyle: InstaCareTypography.r.copyWith(
               color: AppColors.gray400,
-              height: 1.0,
             ),
-            errorText: errorText,
-
-            /// IMPORTANT: remove default 48px constraint
-            prefixIconConstraints:
-                const BoxConstraints(minWidth: 0, minHeight: 0),
-
-            /// ───── Prefix ─────
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(left: _outerPadding),
-              child: InkWell(
-                onTap: onCountryChanged != null
-                    ? () {
-                        showCountryPicker(
-                          context: context,
-                          showPhoneCode: true,
-                          countryListTheme: CountryListThemeData(
-                            borderRadius: BorderRadius.circular(12),
-                            backgroundColor: AppColors.baseWhite,
-                            textStyle: InstaCareTypography.r.copyWith(
-                              color: AppColors.gray800,
-                            ),
-                            searchTextStyle: InstaCareTypography.r.copyWith(
-                              color: AppColors.gray800,
-                            ),
-                            inputDecoration: InputDecoration(
-                              hintText: 'Search country',
-                              hintStyle: InstaCareTypography.r.copyWith(
-                                color: AppColors.gray400,
-                              ),
-                              prefixIcon: const Icon(Icons.search),
-                              filled: true,
-                              fillColor: AppColors.ivory300,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: const BorderSide(
-                                  color: AppColors.primary700,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: const BorderSide(
-                                  color: AppColors.primary700,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: const BorderSide(
-                                  color: AppColors.primary900,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                          ),
-                          onSelect: onCountryChanged!,
-                        );
-                      }
-                    : null,
-                borderRadius: BorderRadius.circular(4),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Flag with vertical alignment fix
-                    Transform.translate(
-                      offset: const Offset(0, -1),
-                      child: CountryFlag.fromCountryCode(
-                        countryIsoCode,
-                        width: _flagSize,
-                        height: _flagSize,
-                        borderRadius: 999,
-                      ),
-                    ),
-
-                    const SizedBox(width: _smallGap),
-
-                    // Country code
-                    Text(
-                      countryCode,
-                      style: InstaCareTypography.r.copyWith(
-                        height: 1.0,
-                      ),
-                    ),
-
-                    // Dropdown indicator if callback is provided
-                    if (onCountryChanged != null) ...[
-                      const SizedBox(width: 4),
-                      const Icon(
-                        Icons.arrow_drop_down,
-                        size: 20,
-                        color: AppColors.gray600,
-                      ),
-                    ],
-
-                    const SizedBox(width: _codeGap),
-                  ],
-                ),
-              ),
-            ),
-
+            errorText: widget.errorText,
             filled: true,
             fillColor: AppColors.ivory300,
             contentPadding:
@@ -189,13 +144,11 @@ class InstaCarePhoneInput extends StatelessWidget {
 
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
-              borderSide:
-                  const BorderSide(color: AppColors.primary700),
+              borderSide: const BorderSide(color: AppColors.primary700),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
-              borderSide:
-                  const BorderSide(color: AppColors.primary700),
+              borderSide: const BorderSide(color: AppColors.primary700),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_radius),
@@ -213,6 +166,13 @@ class InstaCarePhoneInput extends StatelessWidget {
               borderSide: const BorderSide(
                 color: AppColors.error700,
                 width: 2,
+              ),
+            ),
+            counter: Text(
+              '$_currentLength/$_maxLength',
+              style: InstaCareTypography.xs.copyWith(
+                color: AppColors.gray500,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

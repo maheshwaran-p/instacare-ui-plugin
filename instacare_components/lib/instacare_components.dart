@@ -1,7 +1,7 @@
 library instacare_components;
 
-// Re-export country_picker for Country type access
-export 'package:country_picker/country_picker.dart' show Country;
+export 'package:intl_phone_field/countries.dart' show Country;
+export 'package:intl_phone_field/phone_number.dart' show PhoneNumber;
 
 export 'src/animation/skeleton_loading.dart';
 export 'src/animation/shimmer_skeleton.dart';
